@@ -71,4 +71,12 @@ public class DatabaseConnection {
             throw new RuntimeException(e);
         }
     }
+    private void delete(String sqlUpdate){
+        try{
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sqlUpdate);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
