@@ -2,34 +2,34 @@ import java.sql.*;
 
 public class DatabaseConnection {
 
-    private String nameUser;
-    private String password;
-    private int port;
+    private static String nameUser;
+    private static String password;
+    private static int port;
     private String url;
 
     private Connection connection;
-    private DatabaseConnection databaseConnection = null;
-    private String server;
+    private static DatabaseConnection databaseConnection = null;
+    private static String server;
 
     private DatabaseConnection(String nameUser, String password, String ip, int port, String databaseName) {
         this.nameUser = nameUser;
         this.password = password;
         this.url = "jdbc:mysql://"+ip+":"+port+"/"+databaseName;
     }
-    private void inicialitzeJSON(Configuration configuration){
+    public void inicialitzeJSON(Configuration configuration){
         nameUser = configuration.getUser();
         password = configuration.getPassword();
         port = configuration.getPort();
         server = configuration.getServer();
     }
-    private void connection(){
+    public void connection(){
         try {
             connection = DriverManager.getConnection(url,nameUser,password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    private DatabaseConnection getDatabaseConnection (){
+    public static DatabaseConnection getDatabaseConnection (){
         if(databaseConnection == null){
             databaseConnection = new DatabaseConnection(nameUser,password,server,port,"BetweenUs");
             databaseConnection.connection();
@@ -37,7 +37,7 @@ public class DatabaseConnection {
         return databaseConnection;
     }
 
-    private void insert(String sqlQuery){
+    public void insert(String sqlQuery){
         try{
             Statement statement = connection.createStatement();
             statement.executeUpdate(sqlQuery);
@@ -45,7 +45,7 @@ public class DatabaseConnection {
             throw new RuntimeException(e);
         }
     }
-    private ResultSet select(String sqlSelect){
+    public ResultSet select(String sqlSelect){
         ResultSet resultSet=null;
         try{
             Statement statement = connection.createStatement();
@@ -55,7 +55,7 @@ public class DatabaseConnection {
         }
         return resultSet;
     }
-    private void connect(String sqlConnect){
+    public void connect(String sqlConnect){
         try{
             Statement statement = connection.createStatement();
             statement.executeUpdate(sqlConnect);
@@ -63,7 +63,7 @@ public class DatabaseConnection {
             throw new RuntimeException(e);
         }
     }
-    private void update(String sqlUpdate){
+    public void update(String sqlUpdate){
         try{
             Statement statement = connection.createStatement();
             statement.executeUpdate(sqlUpdate);
@@ -71,10 +71,10 @@ public class DatabaseConnection {
             throw new RuntimeException(e);
         }
     }
-    private void delete(String sqlUpdate){
+    public void delete(String sqlDelete){
         try{
             Statement statement = connection.createStatement();
-            statement.executeUpdate(sqlUpdate);
+            statement.executeUpdate(sqlDelete);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
