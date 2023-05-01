@@ -1,3 +1,5 @@
+import presentation.views.MainView;
+
 public class Main {
     public static void main(String[] args) {
         DatabaseDAO databaseDAO = new DatabaseDAO();
@@ -6,6 +8,8 @@ public class Main {
         databaseDAO.createTablePartida();
         databaseDAO.createTableJugada();
 
-
+        MainView mainView = new MainView();
+        //MainController mainController = new MainController(mainView);
+        mainView.start();
     }
 }
