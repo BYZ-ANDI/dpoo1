@@ -1,3 +1,4 @@
+import Business.Entities.User;
 import presentation.views.MainView;
 
 public class Main {
@@ -7,13 +8,15 @@ public class Main {
         databaseDAO.createTableJugador();
         databaseDAO.createTablePartida();
         databaseDAO.createTableJugada();
+        UserDAO userD = new UserDAO();
 
-        UserDAO user = new UserDAO("jan", "jan@gmail.com", "jan123");
-        user.signupUser("jan", "jan@gmail.com", "jan123");
-        if (user.loginUser("jan","jan@gmail.com", "jan123")){
+        User user = new User("jan", "jan@gmail.com", "jan123");
+
+        userD.signupUser(user);
+        if (userD.loginUser("jan","jan@gmail.com", "jan123")){
             System.out.println("Success");
         }
-        user.deleteUser(user,"jan");
+        userD.deleteUser(user,"jan");
         //MainView mainView = new MainView();
         //MainController mainController = new MainController(mainView);
         //mainView.start();

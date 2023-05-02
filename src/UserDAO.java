@@ -1,3 +1,5 @@
+import Business.Entities.User;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -5,17 +7,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class UserDAO {
-    String name;
-    String mail;
-    String password;
 
-    public UserDAO(String name, String mail, String password) {
-        this.name = name;
-        this.mail = mail;
-        this.password = password;
-    }
 
-    public void signupUser (String name, String mail, String password){
+    public void signupUser (User user){
         List<String> users = new ArrayList<>();
         List<String> mails = new ArrayList<>();
         ResultSet resultSet0 = DatabaseConnection.getDatabaseConnection().select("SELECT nombre_jugador FROM Jugador;");
@@ -38,8 +32,8 @@ public class UserDAO {
             throwables.printStackTrace();
         }
 
-        for (String user : users) {
-            if (Objects.equals(user, name)){
+        for (String player : users) {
+            if (Objects.equals(player, user.getName())){
                 verify = false;
                 break;
             }
@@ -47,13 +41,13 @@ public class UserDAO {
 
         if (verify){
             for (String m : mails) {
-                if (Objects.equals(m, mail)){
+                if (Objects.equals(m, user.getMail())){
                     verify = false;
                     break;
                 }
             }
             if (verify){
-                DatabaseConnection.getDatabaseConnection().insert("INSERT INTO Jugador(nombre_jugador, correo, contraseña, n_partidas_ganadas) VALUES ('" + name + "','" + mail + "','" + password + "','0');" );
+                DatabaseConnection.getDatabaseConnection().insert("INSERT INTO Jugador(nombre_jugador, correo, contraseña, n_partidas_ganadas) VALUES ('" + user.getName() + "','" + user.getMail() + "','" + user.getPassword() + "','0');" );
             }
         }
 
@@ -86,7 +80,7 @@ public class UserDAO {
         return false;
     }
 
-    public void deleteUser (UserDAO user, String name){
+    public void deleteUser (User user, String name){
         DatabaseConnection.getDatabaseConnection().delete("DELETE FROM Jugador WHERE nombre_jugador LIKE '" + name +"';");
         user = null;
     }

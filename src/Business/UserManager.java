@@ -28,4 +28,6 @@ public class UserManager {
     public boolean confirmPassword() {
         return password.equals(confirm_password);
     }
+
+    //public
 }
