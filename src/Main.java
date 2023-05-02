@@ -8,8 +8,14 @@ public class Main {
         databaseDAO.createTablePartida();
         databaseDAO.createTableJugada();
 
-        MainView mainView = new MainView();
+        UserDAO user = new UserDAO("jan", "jan@gmail.com", "jan123");
+        user.signupUser("jan", "jan@gmail.com", "jan123");
+        if (user.loginUser("jan","jan@gmail.com", "jan123")){
+            System.out.println("Success");
+        }
+        user.deleteUser(user,"jan");
+        //MainView mainView = new MainView();
         //MainController mainController = new MainController(mainView);
-        mainView.start();
+        //mainView.start();
     }
 }
