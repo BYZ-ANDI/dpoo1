@@ -1,3 +1,5 @@
+package persistence;
+
 import java.sql.*;
 
 public class DatabaseConnection {

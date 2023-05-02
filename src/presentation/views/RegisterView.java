@@ -105,6 +105,9 @@ public class RegisterView extends JPanel {
         jiPanel.setLayout(jpPanel.getLayout());
         jiPanel.add(jpPanel, gbc);
     }
+    public String getName() {
+        return jtfName.getText();
+    }
     public String getEmail() {
         return jtfEmail.getText();
     }

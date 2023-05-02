@@ -1,12 +1,17 @@
 package Business;
 
+import Business.Entities.User;
+import persistence.UserDAO;
+
 public class UserManager {
     private static final String EMAIL_FORMAT = "@";
     private static final String PASSWORD_FORMAT = " ";
+    private String name;
     private String email;
     private String password;
     private String confirm_password;
-    public UserManager(String email, String password, String confirm_password) {
+    public UserManager(String name, String email, String password, String confirm_password) {
+        this.name = name;
         this.email = email;
         this.password = password;
         this.confirm_password = confirm_password;
@@ -27,6 +32,12 @@ public class UserManager {
     }
     public boolean confirmPassword() {
         return password.equals(confirm_password);
+    }
+    public void createUser (String name, String email, String password){
+        UserDAO userDAO = new UserDAO();
+        User user = new User(name,email,password);
+
+        userDAO.signupUser(user);
     }
 
     //public

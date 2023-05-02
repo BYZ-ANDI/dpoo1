@@ -1,3 +1,5 @@
+package persistence;
+
 public class Configuration {
     private String user;
     private String password;

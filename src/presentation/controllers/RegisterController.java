@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import Business.Entities.User;
 import Business.UserManager;
 import com.sun.tools.javac.Main;
 import presentation.model.MainModel;
@@ -19,7 +20,7 @@ public class RegisterController implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        UserManager userManager = new UserManager(registerView.getEmail(), registerView.getPassword(), registerView.getConfirmPassword());
+        UserManager userManager = new UserManager(registerView.getName(), registerView.getEmail() ,registerView.getPassword(), registerView.getConfirmPassword());
 
         if (!userManager.correctEmail()) {
             registerView.emailErrorMessage();
@@ -34,7 +35,8 @@ public class RegisterController implements ActionListener {
             return;
         }
 
-        // Guardar la informacion del user en la database
+        // Guardar la informacion del user en la database i en RAM
+        userManager.createUser(registerView.getName(), registerView.getEmail(), registerView.getPassword());
 
         registerView.registerCorrect();
 
