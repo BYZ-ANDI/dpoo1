@@ -1,4 +1,6 @@
 import Business.Entities.User;
+import presentation.controllers.MainController;
+import presentation.model.MainModel;
 import presentation.views.MainView;
 
 public class Main {
@@ -17,8 +19,10 @@ public class Main {
             System.out.println("Success");
         }
         userD.deleteUser(user,"jan");
-        //MainView mainView = new MainView();
-        //MainController mainController = new MainController(mainView);
-        //mainView.start();
+
+        MainModel mainModel = new MainModel();
+        MainView mainView = new MainView(mainModel);
+        MainController mainController = new MainController(mainView, mainModel);
+        mainView.start();
     }
 }

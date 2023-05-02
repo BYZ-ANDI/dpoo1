@@ -1,6 +1,8 @@
 package presentation.controllers;
 
 import Business.UserManager;
+import com.sun.tools.javac.Main;
+import presentation.model.MainModel;
 import presentation.views.LogView;
 import presentation.views.RegisterView;
 
@@ -10,8 +12,10 @@ import java.awt.event.ActionListener;
 
 public class RegisterController implements ActionListener {
     private RegisterView registerView;
-    public RegisterController(RegisterView registerView) {
+    private MainModel mainModel;
+    public RegisterController(RegisterView registerView, MainModel mainModel) {
         this.registerView = registerView;
+        this.mainModel = mainModel;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -34,6 +38,7 @@ public class RegisterController implements ActionListener {
 
         registerView.registerCorrect();
 
-        // Pasar a la Partida Principal
+        // Pasar a la Partida Principal || de momento esta a LogView.
+        mainModel.goToLogView();
     }
 }

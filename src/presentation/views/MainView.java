@@ -1,16 +1,22 @@
 package presentation.views;
 
+import com.sun.tools.javac.Main;
 import presentation.controllers.LogController;
 import presentation.controllers.LogoutController;
 import presentation.controllers.RegisterController;
+import presentation.model.MainModel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainView extends JFrame {
     private CardLayout cardLayout;
-    private JPanel views;
-    public MainView() {
+    private LogView logView;
+    private LogoutView logoutView;
+    private RegisterView registerView;
+    private MainModel mainModel;
+    public MainView(MainModel mainModel) {
+        this.mainModel = mainModel;
         setLayout(new BorderLayout());
         configWindow();
         configLayout();
@@ -26,26 +32,26 @@ public class MainView extends JFrame {
         cardLayout = new CardLayout();
         getContentPane().setLayout(cardLayout);
 
-        LogView logView = new LogView();
+        logView = new LogView();
         logView.setName("Log In");
-        LogController logController = new LogController(logView);
+        LogController logController = new LogController(logView, mainModel);
         logView.registController(logController);
         getContentPane().add(logView, "Log In");
 
-        LogoutView logoutView = new LogoutView();
+        logoutView = new LogoutView();
         logoutView.setName("Logout");
-        LogoutController logoutController = new LogoutController(logoutView);
+        LogoutController logoutController = new LogoutController(logoutView, mainModel);
         logoutView.registController(logoutController);
         getContentPane().add(logoutView, "Logout");
 
-        RegisterView registerView = new RegisterView();
+        registerView = new RegisterView();
         registerView.setName("Register");
-        RegisterController registerController = new RegisterController(registerView);
+        RegisterController registerController = new RegisterController(registerView, mainModel);
         registerView.registController(registerController);
         getContentPane().add(registerView, "Register");
     }
     public void start() {
-        showLoginView();
+        showLogoutView();
         setVisible(true);
     }
     public void showLoginView() {
