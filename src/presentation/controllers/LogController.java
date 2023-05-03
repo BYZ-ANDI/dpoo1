@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import Business.UserManager;
 import presentation.model.MainModel;
 import presentation.views.LogView;
 import presentation.views.MainView;
@@ -17,13 +18,14 @@ public class LogController implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        UserManager userManager = new UserManager(logview.getName(), logview.getEmail(), logview.getPassword());
         if(e.getActionCommand().equals(logview.REGISTER_COMMAND)) {
             // Pasar a la register View
             mainModel.goToRegisterView();
-
         }
         else if(e.getActionCommand().equals(logview.SUBMIT_COMMAND)) {
             // Pasar a la View de la Partida.
+            userManager.loginUser(logview.getName(), logview.getEmail(), logview.getPassword());
         }
     }
 }

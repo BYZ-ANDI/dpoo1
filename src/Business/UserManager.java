@@ -16,6 +16,11 @@ public class UserManager {
         this.password = password;
         this.confirm_password = confirm_password;
     }
+    public UserManager(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
     public boolean correctEmail() {
         if (!email.contains(EMAIL_FORMAT)) {
             return false;
@@ -40,5 +45,12 @@ public class UserManager {
         userDAO.signupUser(user);
     }
 
-    //public
+    public void loginUser ( String name, String email, String password){
+        UserDAO userDAO = new UserDAO();
+        User user = new User(name,email,password);
+
+        if(userDAO.loginUser(user)){
+            System.out.println("Success");
+        }
+    }
 }

@@ -108,6 +108,15 @@ public class LogView extends JPanel {
         jbRegister.setActionCommand(REGISTER_COMMAND);
         jbSubmit.setActionCommand(SUBMIT_COMMAND);
     }
+    public String getName() {
+        return jtfName.getText();
+    }
+    public String getEmail() {
+        return jtfEmail.getText();
+    }
+    public String getPassword() {
+        return jtfPassword.getText();
+    }
     public void registController (LogController logController) {
         jbRegister.addActionListener(logController);
         jbSubmit.addActionListener(logController);

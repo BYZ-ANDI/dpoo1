@@ -17,9 +17,9 @@ public class Main {
         //User user = new User("jan", "jan@gmail.com", "jan123");
 
         //userD.signupUser(user);
-        if (userD.loginUser("jan","jan@gmail.com", "jan123")){
-            System.out.println("Success");
-        }
+        //if (userD.loginUser("jan","jan@gmail.com", "jan123")){
+        //    System.out.println("Success");
+        //}
         //userD.deleteUser(user,"jan");
 
         MainModel mainModel = new MainModel();

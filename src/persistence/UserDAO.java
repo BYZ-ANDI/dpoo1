@@ -53,7 +53,7 @@ public class UserDAO {
 
     }
 
-    public boolean loginUser (String name, String mail, String password){
+    public boolean loginUser (User user){
         List<String> users = new ArrayList<>();
         ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select("SELECT nombre_jugador FROM Jugador;");
 
@@ -62,13 +62,13 @@ public class UserDAO {
                 users.add(resultSet.getString("nombre_jugador"));
             }
             for (int i = 0; i < users.size(); i++) {
-                if(Objects.equals(name, users.get(i))){
-                    ResultSet resultSet1 = DatabaseConnection.getDatabaseConnection().select("SELECT correo FROM Jugador WHERE nombre_jugador LIKE '" + name + "';");
+                if(Objects.equals(user.getName(), users.get(i))){
+                    ResultSet resultSet1 = DatabaseConnection.getDatabaseConnection().select("SELECT correo FROM Jugador WHERE nombre_jugador LIKE '" + user.getName() + "';");
                     resultSet1.next();
-                    if (Objects.equals(resultSet1.getString("correo"), mail)){
-                        ResultSet resultSet2 = DatabaseConnection.getDatabaseConnection().select("SELECT contraseña FROM Jugador WHERE nombre_jugador LIKE '" + name + "';");
+                    if (Objects.equals(resultSet1.getString("correo"), user.getMail())){
+                        ResultSet resultSet2 = DatabaseConnection.getDatabaseConnection().select("SELECT contraseña FROM Jugador WHERE nombre_jugador LIKE '" + user.getName() + "';");
                         resultSet2.next();
-                        if (Objects.equals(resultSet2.getString("contraseña"), password)){
+                        if (Objects.equals(resultSet2.getString("contraseña"), user.getPassword())){
                             return true;
                         }
                     }
