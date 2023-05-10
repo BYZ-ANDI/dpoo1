@@ -1,7 +1,6 @@
-package Business.Entities;
+package Business.entities;
 
 public class Game {
-
     String name;
     int N_persponajes;
     int N_impostores;

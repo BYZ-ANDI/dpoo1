@@ -1,7 +1,6 @@
-package Business.Entities;
+package Business.entities;
 
 public class Move {
-
     String Name;
     String Player;
     String Color_Character;

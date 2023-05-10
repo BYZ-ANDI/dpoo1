@@ -1,7 +1,7 @@
 package persistence;
 
-import Business.Entities.Game;
 import Business.Entities.User;
+import Business.entities.Game;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

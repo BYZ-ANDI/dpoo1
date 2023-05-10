@@ -1,6 +1,6 @@
 package Business;
 
-import Business.Entities.Game;
+import Business.entities.Game;
 import Business.Entities.User;
 import persistence.GameDAO;
 
