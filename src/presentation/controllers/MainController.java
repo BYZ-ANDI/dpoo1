@@ -18,4 +18,10 @@ public class MainController {
     public void changeToRegisterView() {
         mainView.showRegisterView();
     }
+    public void changeToMainMenuView() {
+        mainView.showMainMenuView();
+    }
+    public void changeToCreationGameView() {
+        mainView.showCreationGameView();
+    }
 }

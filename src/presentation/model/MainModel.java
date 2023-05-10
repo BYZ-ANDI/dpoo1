@@ -13,7 +13,12 @@ public class MainModel {
     public void goToRegisterView() {
         mainController.changeToRegisterView();
     }
-
+    public void goToMainMenuView() {
+        mainController.changeToMainMenuView();
+    }
+    public void goToCreationGameView() {
+        mainController.changeToCreationGameView();
+    }
     public void setController(MainController mainController) {
         this.mainController = mainController;
     }

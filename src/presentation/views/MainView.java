@@ -1,9 +1,7 @@
 package presentation.views;
 
 import com.sun.tools.javac.Main;
-import presentation.controllers.LogController;
-import presentation.controllers.LogoutController;
-import presentation.controllers.RegisterController;
+import presentation.controllers.*;
 import presentation.model.MainModel;
 
 import javax.swing.*;
@@ -15,6 +13,8 @@ public class MainView extends JFrame {
     private LogoutView logoutView;
     private RegisterView registerView;
     private MainModel mainModel;
+    private MainMenuView mainMenuView;
+    private CreationGameView creationGameView;
     public MainView(MainModel mainModel) {
         this.mainModel = mainModel;
         setLayout(new BorderLayout());
@@ -49,9 +49,22 @@ public class MainView extends JFrame {
         RegisterController registerController = new RegisterController(registerView, mainModel);
         registerView.registController(registerController);
         getContentPane().add(registerView, "Register");
+
+        mainMenuView = new MainMenuView();
+        mainMenuView.setName("Menu");
+        MainMenuController mainMenuController = new MainMenuController(mainMenuView, mainModel);
+        mainMenuView.registController(mainMenuController);
+        getContentPane().add(mainMenuView, "Menu");
+
+        creationGameView = new CreationGameView();
+        creationGameView.setName("Creation Game");
+        CreationGameController creationGameController = new CreationGameController(creationGameView, mainModel);
+        creationGameView.registController(creationGameController);
+        getContentPane().add(creationGameView, "Creation Game");
     }
     public void start() {
-        showLogoutView();
+        //showLogoutView();
+        showMainMenuView();
         setVisible(true);
     }
     public void showLoginView() {
@@ -62,5 +75,11 @@ public class MainView extends JFrame {
     }
     public void showLogoutView() {
         cardLayout.show(getContentPane(), "Logout");
+    }
+    public void showMainMenuView() {
+        cardLayout.show(getContentPane(), "Menu");
+    }
+    public void showCreationGameView() {
+        cardLayout.show(getContentPane(), "Creation Game");
     }
 }
