@@ -1,6 +1,6 @@
 package persistence;
 
-import Business.Entities.User;
+import Business.entities.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

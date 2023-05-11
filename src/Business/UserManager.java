@@ -1,6 +1,6 @@
 package Business;
 
-import Business.Entities.User;
+import Business.entities.User;
 import persistence.UserDAO;
 
 public class UserManager {

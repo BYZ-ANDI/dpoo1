@@ -1,7 +1,7 @@
 package Business;
 
 import Business.entities.Game;
-import Business.Entities.User;
+import Business.entities.User;
 import persistence.GameDAO;
 
 public class GameManager {
