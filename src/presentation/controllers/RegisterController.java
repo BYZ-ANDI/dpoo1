@@ -2,12 +2,9 @@ package presentation.controllers;
 
 import Business.Entities.User;
 import Business.UserManager;
-import com.sun.tools.javac.Main;
-import presentation.model.MainModel;
-import presentation.views.LogView;
+import Business.model.MainModel;
 import presentation.views.RegisterView;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

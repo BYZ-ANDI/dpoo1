@@ -1,6 +1,6 @@
 package presentation.controllers;
 
-import presentation.model.MainModel;
+import Business.model.MainModel;
 import presentation.views.CreationGameView;
 
 import javax.swing.*;

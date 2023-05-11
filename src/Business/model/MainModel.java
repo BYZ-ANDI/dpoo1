@@ -1,4 +1,4 @@
-package presentation.model;
+package Business.model;
 
 import presentation.controllers.MainController;
 

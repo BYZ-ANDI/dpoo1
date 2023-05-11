@@ -1,8 +1,7 @@
 package presentation.views;
 
-import com.sun.tools.javac.Main;
 import presentation.controllers.*;
-import presentation.model.MainModel;
+import Business.model.MainModel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package Business.Entities;
+package Business.entities;
 
 public class User {
     String name;

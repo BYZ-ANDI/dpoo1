@@ -2,7 +2,7 @@ import Business.Entities.User;
 import persistence.DatabaseDAO;
 import persistence.UserDAO;
 import presentation.controllers.MainController;
-import presentation.model.MainModel;
+import Business.model.MainModel;
 import presentation.views.MainView;
 
 public class Main {

@@ -1,10 +1,8 @@
 package presentation.controllers;
 
 import Business.UserManager;
-import presentation.model.MainModel;
+import Business.model.MainModel;
 import presentation.views.LogView;
-import presentation.views.MainView;
-import presentation.views.RegisterView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
