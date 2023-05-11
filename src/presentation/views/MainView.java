@@ -14,8 +14,13 @@ public class MainView extends JFrame {
     private MainModel mainModel;
     private MainMenuView mainMenuView;
     private CreationGameView creationGameView;
-    public MainView(MainModel mainModel) {
+    public MainView(MainModel mainModel, LogView logView, LogoutView logoutView, RegisterView registerView, MainMenuView mainMenuView, CreationGameView creationGameView) {
         this.mainModel = mainModel;
+        this.logView = logView;
+        this.logoutView = logoutView;
+        this.registerView = registerView;
+        this.mainMenuView = mainMenuView;
+        this.creationGameView = creationGameView;
         setLayout(new BorderLayout());
         configWindow();
         configLayout();
@@ -31,34 +36,19 @@ public class MainView extends JFrame {
         cardLayout = new CardLayout();
         getContentPane().setLayout(cardLayout);
 
-        logView = new LogView();
         logView.setName("Log In");
-        LogController logController = new LogController(logView, mainModel);
-        logView.registController(logController);
         getContentPane().add(logView, "Log In");
 
-        logoutView = new LogoutView();
         logoutView.setName("Logout");
-        LogoutController logoutController = new LogoutController(logoutView, mainModel);
-        logoutView.registController(logoutController);
         getContentPane().add(logoutView, "Logout");
 
-        registerView = new RegisterView();
         registerView.setName("Register");
-        RegisterController registerController = new RegisterController(registerView, mainModel);
-        registerView.registController(registerController);
         getContentPane().add(registerView, "Register");
 
-        mainMenuView = new MainMenuView();
         mainMenuView.setName("Menu");
-        MainMenuController mainMenuController = new MainMenuController(mainMenuView, mainModel);
-        mainMenuView.registController(mainMenuController);
         getContentPane().add(mainMenuView, "Menu");
 
-        creationGameView = new CreationGameView();
         creationGameView.setName("Creation Game");
-        CreationGameController creationGameController = new CreationGameController(creationGameView, mainModel);
-        creationGameView.registController(creationGameController);
         getContentPane().add(creationGameView, "Creation Game");
     }
     public void start() {

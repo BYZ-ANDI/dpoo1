@@ -11,14 +11,14 @@ import java.awt.event.ActionListener;
 public class RegisterController implements ActionListener {
     private RegisterView registerView;
     private MainModel mainModel;
-    public RegisterController(RegisterView registerView, MainModel mainModel) {
+    private UserManager userManager;
+    public RegisterController(RegisterView registerView, MainModel mainModel, UserManager userManager) {
         this.registerView = registerView;
         this.mainModel = mainModel;
+        this.userManager = userManager;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        UserManager userManager = new UserManager(registerView.getName(), registerView.getEmail() ,registerView.getPassword(), registerView.getConfirmPassword());
-
         if (!userManager.correctEmail()) {
             registerView.emailErrorMessage();
             return;
@@ -27,6 +27,7 @@ public class RegisterController implements ActionListener {
             registerView.passwordErrorMessage();
             return;
         }
+        userManager.setConfirm_password(registerView.getConfirmPassword());
         if (!userManager.confirmPassword()) {
             registerView.confirmPasswordErrorMessage();
             return;
