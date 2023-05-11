@@ -1,7 +1,7 @@
 package presentation.controllers;
 
 import Business.UserManager;
-import Business.model.MainModel;
+import presentation.model.MainModel;
 import presentation.views.LogView;
 
 import java.awt.event.ActionEvent;

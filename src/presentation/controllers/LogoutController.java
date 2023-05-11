@@ -1,6 +1,6 @@
 package presentation.controllers;
 
-import Business.model.MainModel;
+import presentation.model.MainModel;
 import presentation.views.LogoutView;
 
 import java.awt.event.ActionEvent;

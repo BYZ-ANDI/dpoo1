@@ -7,12 +7,10 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class CreationGameView extends JPanel {
-    private JPanel jpButtons;
-    private JPanel jpGame;
-    private JPanel jpPanel;
+    private JPanel jpButtons, jpPanel, jpGame, jpLogout;
     private JLabel jlGameName, jlNumPers, jlTitle, jlNumImpos, jlColor;
     private JTextField jtfGameName;
-    private JButton jbSubmit, jbMap;
+    private JButton jbSubmit, jbMap, jbLogout;
     private JComboBox<String> jcbNumPers, jcbNumImpos, jcbColor;
     private JImagePanel jiPanel;
     public static final String NUMPERS_COMMAND = "NUMPERS_COMMAND";
@@ -20,6 +18,7 @@ public class CreationGameView extends JPanel {
     public static final String COLORS_COMMAND = "COLORS_COMMAND";
     public static final String MAP_COMMAND = "MAP_COMMAND";
     public static final String SUBMIT_COMMAND = "SUBMIT_COMMAND";
+    public static final String LOGOUT_COMMAND = "LOGOUT_COMMAND";
     public static final String[] num_players = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
     public static final String[] num_impostor = {"1", "2", "3"};
     public static final String[] colors = {"vermell", "blau", "verd", "rosa", "taronja", "groc", "negre", "blanc", "lila", "marró", "cian", "llima"};
@@ -37,6 +36,7 @@ public class CreationGameView extends JPanel {
     }
     private void configLayout() {
         jpGame = new JPanel();
+        jpLogout = new JPanel(new BorderLayout());
         jpPanel = new JPanel(new GridBagLayout());
         jpButtons = new JPanel(new GridLayout(0, 1, 0, 5));
         jiPanel = new JImagePanel("images/betweenUsRegister.jpg");
@@ -44,7 +44,7 @@ public class CreationGameView extends JPanel {
         jpPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         jpPanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2),
-                BorderFactory.createEmptyBorder(10, 10, 10, 10)
+                BorderFactory.createEmptyBorder(20, 80, 20, 10)
         ));
 
         this.add(jiPanel);
@@ -64,6 +64,7 @@ public class CreationGameView extends JPanel {
         jcbColor.setSelectedIndex(0);
         jbMap = new JButton("Choose Map");
         jbSubmit = new JButton("Submit");
+        jbLogout = new JButton("Logout");
 
         JPanel jpBoxes = new JPanel(new GridLayout(0, 1, 0, 5));
         jpBoxes.setBackground(new Color (80, 100, 200));
@@ -102,11 +103,13 @@ public class CreationGameView extends JPanel {
         jpButtons.add(jbSubmit);
         jbSubmit.setAlignmentX(Component.CENTER_ALIGNMENT);
         jbSubmit.setPreferredSize(new Dimension(100, 25));
+        jpLogout.add(jbLogout, BorderLayout.EAST);
 
         jpGame.setLayout(new BorderLayout(10,10));
         jpGame.setBackground(new Color (80, 100, 200));
         jpGame.add(jpBoxes, BorderLayout.CENTER);
         jpGame.add(jpButtons, BorderLayout.SOUTH);
+        jpGame.add(jpLogout, BorderLayout.NORTH);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -115,16 +118,25 @@ public class CreationGameView extends JPanel {
         gbc.weighty = 1;
         gbc.anchor = GridBagConstraints.CENTER;
 
-        jpPanel.add(jpGame);
+        GridBagConstraints gbc2 = new GridBagConstraints();
+        gbc2.gridx = 1;
+        gbc2.gridy = 0;
+        gbc2.weightx = 0;
+        gbc2.weighty = 1;
+        gbc2.anchor = GridBagConstraints.NORTHEAST;
+
+        jpPanel.add(jpGame, gbc);
+        jpPanel.add(jpLogout, gbc2);
 
         jiPanel.setLayout(jpPanel.getLayout());
-        jiPanel.add(jpPanel, gbc);
+        jiPanel.add(jpPanel);
 
         jbMap.setActionCommand(MAP_COMMAND);
         jbSubmit.setActionCommand(SUBMIT_COMMAND);
         jcbNumPers.setName(NUMPERS_COMMAND);
         jcbNumImpos.setName(NUMIMP_COMMAND);
         jcbColor.setName(COLORS_COMMAND);
+        jbLogout.setActionCommand(LOGOUT_COMMAND);
     }
     public void start() {
         setVisible(true);
@@ -132,8 +144,36 @@ public class CreationGameView extends JPanel {
     public void registController(CreationGameController creationGameController) {
         jbMap.addActionListener(creationGameController);
         jbSubmit.addActionListener(creationGameController);
+        jbLogout.addActionListener(creationGameController);
         jcbNumPers.addMouseWheelListener(creationGameController);
         jcbNumImpos.addMouseWheelListener(creationGameController);
         jcbColor.addMouseWheelListener(creationGameController);
+    }
+    public String getGameName() {
+        return jtfGameName.getText();
+    }
+    public int getNUmPers() {
+        return Integer.parseInt((String) jcbNumPers.getSelectedItem());
+    }
+    public int getNUmImpos() {
+        return Integer.parseInt((String) jcbNumImpos.getSelectedItem());
+    }
+    public String getColor() {
+        return (String) jcbColor.getSelectedItem();
+    }
+    public void setColor(int selectedItem) {
+        jcbColor.setSelectedIndex(selectedItem);
+    }
+    public void setNumPers(int selectedItem) {
+        jcbNumPers.setSelectedIndex(selectedItem);
+    }
+    public void setNumImpos(int selectedItem) {
+        jcbNumImpos.setSelectedIndex(selectedItem);
+    }
+    public void PersAndImposErrorMessage() {
+        JOptionPane.showMessageDialog(null, "La relació entre personatges i impostors es incorrecte!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    public void createCorrect() {
+        JOptionPane.showMessageDialog(null, "Has creat correctement la partida!", "Correcte", JOptionPane.INFORMATION_MESSAGE);
     }
 }

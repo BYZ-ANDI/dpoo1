@@ -1,8 +1,8 @@
-import Business.Entities.User;
+import Business.entities.User;
 import persistence.DatabaseDAO;
 import persistence.UserDAO;
 import presentation.controllers.MainController;
-import Business.model.MainModel;
+import presentation.model.MainModel;
 import presentation.views.MainView;
 
 public class Main {

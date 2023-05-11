@@ -1,7 +1,7 @@
 package presentation.views;
 
 import presentation.controllers.*;
-import Business.model.MainModel;
+import presentation.model.MainModel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -4,22 +4,25 @@ import Business.entities.Game;
 import Business.entities.User;
 import persistence.GameDAO;
 
+import javax.xml.crypto.Data;
+import java.util.List;
+
 public class GameManager {
     private String name_game;
     private int N_persponajes;
     private int N_impostores;
-    private String mapa;
-    private String name_user;
+    private List<Data> mapa;
+    /*private String name_user;
     private String email;
-    private String password;
-    public GameManager(String name_game, int N_persponajes, int N_impostores, String mapa, String name_user, String email, String password){
+    private String password;*/
+    public GameManager(String name_game, int N_persponajes, int N_impostores, List<Data> mapa){
         this.name_game = name_game;
         this.N_persponajes = N_persponajes;
         this.N_impostores = N_impostores;
         this.mapa = mapa;
-        this.name_user = name_user;
+        /*this.name_user = name_user;
         this.email = email;
-        this.password = password;
+        this.password = password;*/
     }
 
     public void createGame(String name_game, int N_persponajes, int N_impostores, String mapa, String name_user, String email, String password, String color){
@@ -44,4 +47,10 @@ public class GameManager {
         userDAO.signupUser(user);
     }
      */
+    public boolean correctPersAndImpos() {
+        if (N_impostores > N_persponajes / 3) {
+            return false;
+        }
+        return true;
+    }
 }

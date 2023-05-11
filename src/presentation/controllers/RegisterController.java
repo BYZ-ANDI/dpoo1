@@ -2,7 +2,7 @@ package presentation.controllers;
 
 import Business.Entities.User;
 import Business.UserManager;
-import Business.model.MainModel;
+import presentation.model.MainModel;
 import presentation.views.RegisterView;
 
 import java.awt.event.ActionEvent;
