@@ -1,6 +1,6 @@
 package presentation.controllers;
 
-import Business.Entities.User;
+import Business.entities.User;
 import Business.UserManager;
 import presentation.model.MainModel;
 import presentation.views.RegisterView;
