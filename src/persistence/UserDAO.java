@@ -80,15 +80,8 @@ public class UserDAO {
         return false;
     }
 
-    public void deleteUser (User user, String name){
-        DatabaseConnection.getDatabaseConnection().delete("DELETE FROM Jugador WHERE nombre_jugador LIKE '" + name +"';");
-        user = null;
+    public void deleteUser (User user){
+        DatabaseConnection.getDatabaseConnection().delete("DELETE FROM Jugador WHERE nombre_jugador LIKE '" + user.getName() +"';");
     }
-
-    public void userLogout (UserDAO user){
-        user = null;
-    }
-
-
 }
 

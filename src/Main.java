@@ -32,7 +32,7 @@ public class Main {
 
         LogController logController = new LogController(logView, mainModel, userManager);
         logView.registController(logController);
-        LogoutController logoutController = new LogoutController(logoutView, mainModel);
+        LogoutController logoutController = new LogoutController(logoutView, mainModel,userManager,user );
         logoutView.registController(logoutController);
         RegisterController registerController = new RegisterController(registerView, mainModel, userManager);
         registerView.registController(registerController);

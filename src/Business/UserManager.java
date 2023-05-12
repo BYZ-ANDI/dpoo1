@@ -54,6 +54,14 @@ public class UserManager {
             System.out.println("Success");
         }
     }
+
+    public void deleteUser(User user){
+        userDAO.deleteUser(user);
+        resetUser();
+    }
+    public void logoutUser(){
+        resetUser();
+    }
     public void setConfirm_password(String confirm_password) {
         this.confirm_password = confirm_password;
     }
