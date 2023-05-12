@@ -16,6 +16,7 @@ public class UserManager {
     }
     public boolean correctEmail() {
         if (!user.getMail().contains(EMAIL_FORMAT)) {
+            resetUser();
             return false;
         }
         return true;
@@ -24,12 +25,17 @@ public class UserManager {
         // Falta implementar la validacion de la password.
         if (user.getPassword().length() < 8 || user.getPassword().contains(PASSWORD_FORMAT)
                 || !user.getPassword().matches(".*[A-Z].*") || !user.getPassword().matches(".*[a-z].*") || !user.getPassword().matches(".*[0-9].*")) {
+            resetUser();
             return false;
         }
         return true;
     }
     public boolean confirmPassword() {
-        return user.getPassword().equals(confirm_password);
+        if(user.getPassword().equals(confirm_password)) {
+            return true;
+        }
+        resetUser();
+        return false;
     }
     public void createUser (String name, String email, String password){
         user.setName(name);
@@ -50,5 +56,10 @@ public class UserManager {
     }
     public void setConfirm_password(String confirm_password) {
         this.confirm_password = confirm_password;
+    }
+    public void resetUser() {
+        user.setName(null);
+        user.setMail(null);
+        user.setPassword(null);
     }
 }

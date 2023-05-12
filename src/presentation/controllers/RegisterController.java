@@ -19,6 +19,8 @@ public class RegisterController implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Guardar la informacion del user en la database i en RAM
+        userManager.createUser(registerView.getName(), registerView.getEmail(), registerView.getPassword());
         if (!userManager.correctEmail()) {
             registerView.emailErrorMessage();
             return;
@@ -32,9 +34,6 @@ public class RegisterController implements ActionListener {
             registerView.confirmPasswordErrorMessage();
             return;
         }
-
-        // Guardar la informacion del user en la database i en RAM
-        userManager.createUser(registerView.getName(), registerView.getEmail(), registerView.getPassword());
 
         registerView.registerCorrect();
 
