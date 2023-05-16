@@ -2,13 +2,13 @@ package persistence;
 
 import Business.Entities.Room;
 import com.google.gson.Gson;
+
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-
-public class MapDAO {
+public class MapsDAO {
     public List<Room> loadRooms(String filePath) {
         List<Room> rooms = new ArrayList<>();
 
@@ -17,12 +17,12 @@ public class MapDAO {
             MapData mapData = gson.fromJson(reader, MapData.class);
             for (RoomData roomData : mapData.rooms) {
                 Room room = new Room(roomData.id, roomData.color,
-                        roomData.exits.length > 1 ? roomData.exits[0].direction : null,
-                        roomData.exits.length > 1 ? roomData.exits[0].room_id : null,
-                        roomData.exits.length > 1 ? roomData.exits[1].direction : null,
-                        roomData.exits.length > 1 ? roomData.exits[1].room_id : null,
-                        roomData.exits.length > 2 ? roomData.exits[2].direction : null,
-                        roomData.exits.length > 2 ? roomData.exits[2].room_id : null,
+                        roomData.direction1 != null ? roomData.direction1 : null,
+                        roomData.room_id1 != null ? roomData.room_id1 : null,
+                        roomData.direction2 != null ? roomData.direction2 : null,
+                        roomData.room_id2 != null ? roomData.room_id2 : null,
+                        roomData.direction3 != null ? roomData.direction3 : null,
+                        roomData.room_id3 != null ? roomData.room_id3 : null,
                         roomData.vent);
                 rooms.add(room);
             }
@@ -41,12 +41,12 @@ public class MapDAO {
     private static class RoomData {
         String id;
         String color;
-        ExitData[] exits;
+        String direction1;
+        String room_id1;
+        String direction2;
+        String room_id2;
+        String direction3;
+        String room_id3;
         String vent;
-    }
-
-    private static class ExitData {
-        String direction;
-        String room_id;
     }
 }

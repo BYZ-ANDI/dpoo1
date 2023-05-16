@@ -8,7 +8,8 @@
           "direction": "right",
           "room_id": "hallway1"
         }
-      ]
+      ],
+      "vent": "logs"
     },
     {
       "id": "hallway1",
@@ -50,15 +51,24 @@
           "direction": "left",
           "room_id": "hallway2"
         }
-      ]
+      ],
+      "vent": "room1"
     },
     {
       "id": "null1",
-      "color": "BLACK"
+      "color": "BLACK",
+      "exits": [
+        {
+        }
+      ]
     },
     {
       "id": "null2",
-      "color": "BLACK"
+      "color": "BLACK",
+      "exits": [
+        {
+        }
+      ]
     },
     {
       "id": "hallway3",
@@ -76,7 +86,11 @@
     },
     {
       "id": "null3",
-      "color": "BLACK"
+      "color": "BLACK",
+      "exits": [
+        {
+        }
+      ]
     },
     {
       "id": "logs",
@@ -86,7 +100,8 @@
           "direction": "right",
           "room_id": "hallway5"
         }
-      ]
+      ],
+      "vent": "spawn"
     },
     {
       "id": "hallway5",
@@ -126,11 +141,19 @@
     },
     {
       "id": "null4",
-      "color": "BLACK"
+      "color": "BLACK",
+      "exits": [
+        {
+        }
+      ]
     },
     {
       "id": "null5",
-      "color": "BLACK"
+      "color": "BLACK",
+      "exits": [
+        {
+        }
+      ]
     },
     {
       "id": "room1",
@@ -144,7 +167,8 @@
           "direction": "right",
           "room_id": "hallway6"
         }
-      ]
+      ],
+      "vent": "roles"
     },
     {
       "id": "hallway6",
@@ -175,26 +199,5 @@
       ]
     }
   ],
-  "vents":[
-    {
-      "id" : "vent1",
-      "roomid": "spawn",
-      "exits":[
-        {
-          "direction": "logs"
-        }
-      ]
-    },
-    {
-      "id" : "vent2",
-      "roomid": "room1",
-      "exits":[
-        {
-          "direction": "roles"
-        }
-      ]
-    }
-  ],
-
   "starting_room": "spawn"
 }

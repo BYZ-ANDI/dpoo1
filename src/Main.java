@@ -41,14 +41,6 @@ public class Main {
         CreationGameController creationGameController = new CreationGameController(creationGameView, mainModel);
         creationGameView.registController(creationGameController);
 
-        //User user = new User("jan", "jan@gmail.com", "jan123");
-
-        //userD.signupUser(user);
-        //if (userD.loginUser("jan","jan@gmail.com", "jan123")){
-        //    System.out.println("Success");
-        //}
-        //userD.deleteUser(user,"jan");
-
         MainController mainController = new MainController(mainView, mainModel);
         mainView.start();
     }
