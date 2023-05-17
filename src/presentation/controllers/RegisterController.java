@@ -40,6 +40,7 @@ public class RegisterController implements ActionListener {
         }
         userManager.createUserData();
         registerView.registerCorrect();
+        registerView.resetRegisterJtf();
 
         // Pasar a la Partida Principal || de momento esta a LogView.
         mainModel.goToLogView();

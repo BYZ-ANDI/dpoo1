@@ -139,4 +139,10 @@ public class RegisterView extends JPanel {
     public void emptyName() {
         JOptionPane.showMessageDialog(null, "No has introduït res al nom!", "Error", JOptionPane.ERROR_MESSAGE);
     }
+    public void resetRegisterJtf() {
+        jtfEmail.setText("");
+        jtfPassword_confirm.setText("");
+        jtfPassword.setText("");
+        jtfName.setText("");
+    }
 }
