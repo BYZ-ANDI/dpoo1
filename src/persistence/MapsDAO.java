@@ -1,6 +1,6 @@
 package persistence;
 
-import Business.Entities.Room;
+import Business.entities.Room;
 import com.google.gson.Gson;
 
 import java.io.FileReader;

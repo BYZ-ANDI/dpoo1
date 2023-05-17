@@ -1,18 +1,12 @@
 package presentation.views;
 
-import Business.Entities.Room;
-import persistence.MapDAO;
+import Business.entities.Room;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import javax.swing.*;
-import java.awt.*;
-import java.util.List;
-import Business.Entities.Room;
-import persistence.MapDAO;
+
 import persistence.MapsDAO;
 
 public class MapGUI extends JFrame {
