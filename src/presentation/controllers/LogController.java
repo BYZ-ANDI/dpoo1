@@ -25,8 +25,11 @@ public class LogController implements ActionListener {
         }
         else if(e.getActionCommand().equals(logview.SUBMIT_COMMAND)) {
             // Pasar a la View de la Partida.
-            userManager.loginUser(logview.getName(), logview.getEmail(), logview.getPassword());
-            mainModel.goToMainMenuView();
+            if(userManager.loginUser(logview.getName(), logview.getEmail(), logview.getPassword())) {
+                mainModel.goToMainMenuView();
+            } else {
+                logview.errorUserLogin();
+            }
         }
     }
 }

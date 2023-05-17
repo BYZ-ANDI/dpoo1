@@ -45,14 +45,15 @@ public class UserManager {
     public void createUserData() {
         userDAO.signupUser(user);
     }
-    public void loginUser ( String name, String email, String password){
+    public boolean loginUser ( String name, String email, String password){
         user.setName(name);
         user.setMail(email);
         user.setPassword(password);
 
         if(userDAO.loginUser(user)){
-            System.out.println("Success");
+            return true;
         }
+        return false;
     }
 
     public void deleteUser(User user){

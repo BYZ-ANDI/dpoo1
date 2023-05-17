@@ -126,4 +126,7 @@ public class LogView extends JPanel {
     public void start() {
         setVisible(true);
     }
+    public void errorUserLogin() {
+        JOptionPane.showMessageDialog(null, "El usuari que s'ha introduït, no existeix o es erroni!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
 }
