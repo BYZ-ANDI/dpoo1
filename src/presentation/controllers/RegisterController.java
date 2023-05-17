@@ -34,7 +34,11 @@ public class RegisterController implements ActionListener {
             registerView.confirmPasswordErrorMessage();
             return;
         }
-
+        if (userManager.emptyName()) {
+            registerView.emptyName();
+            return;
+        }
+        userManager.createUserData();
         registerView.registerCorrect();
 
         // Pasar a la Partida Principal || de momento esta a LogView.

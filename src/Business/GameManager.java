@@ -1,6 +1,7 @@
 package Business;
 
 import Business.entities.Game;
+import Business.entities.Map;
 import Business.entities.User;
 import persistence.GameDAO;
 
@@ -8,34 +9,32 @@ import javax.xml.crypto.Data;
 import java.util.List;
 
 public class GameManager {
-    private String name_game;
-    private int N_persponajes;
-    private int N_impostores;
-    private List<Data> mapa;
-    /*private String name_user;
-    private String email;
-    private String password;*/
-    public GameManager(String name_game, int N_persponajes, int N_impostores, List<Data> mapa){
-        this.name_game = name_game;
-        this.N_persponajes = N_persponajes;
-        this.N_impostores = N_impostores;
+    private Game game;
+    private GameDAO gameDAO;
+    private User user;
+    private Map mapa;
+
+    public GameManager(Game game, GameDAO gameDAO, User user, Map mapa){
+        this.game = game;
+        this.gameDAO = gameDAO;
+        this.user = user;
         this.mapa = mapa;
-        /*this.name_user = name_user;
-        this.email = email;
-        this.password = password;*/
     }
 
-    public void createGame(String name_game, int N_persponajes, int N_impostores, String mapa, String name_user, String email, String password, String color){
-        GameDAO gameDAO = new GameDAO();
-        Game game = new Game(name_game, N_persponajes, N_impostores, mapa);
-        User user = new User(name_user, email, password);
+    public void createGame(String name_game, int N_persponajes, int N_impostores, String color){
+        game.setName(name_game);
+        game.setN_impostores(N_persponajes);
+        game.setN_persponajes(N_impostores);
+        game.setMapa(mapa);
 
         gameDAO.gameRecord(game, user, color);
     }
 
-    public void inicarGame(String name_game, int N_persponajes, int N_impostores, String mapa){
-        GameDAO gameDAO = new GameDAO();
-        Game game = new Game(name_game, N_persponajes, N_impostores, mapa);
+    public void inicarGame(String name_game, int N_persponajes, int N_impostores){
+        game.setName(name_game);
+        game.setN_impostores(N_persponajes);
+        game.setN_persponajes(N_impostores);
+        game.setMapa(mapa);
 
         gameDAO.startGame(game);
     }
@@ -47,10 +46,24 @@ public class GameManager {
         userDAO.signupUser(user);
     }
      */
-    public boolean correctPersAndImpos() {
+    public boolean correctPersAndImpos(int N_impostores, int N_persponajes) {
         if (N_impostores > N_persponajes / 3) {
+            resetGame();
             return false;
         }
         return true;
+    }
+    public void resetGame() {
+        game.setName(null);
+        game.setN_persponajes(0);
+        game.setN_impostores(0);
+        game.setMapa(null);
+    }
+    public boolean emptyName() {
+        if(game.getName().isEmpty()) {
+            resetGame();
+            return true;
+        }
+        return false;
     }
 }

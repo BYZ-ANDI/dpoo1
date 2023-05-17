@@ -41,10 +41,10 @@ public class UserManager {
         user.setName(name);
         user.setMail(email);
         user.setPassword(password);
-
+    }
+    public void createUserData() {
         userDAO.signupUser(user);
     }
-
     public void loginUser ( String name, String email, String password){
         user.setName(name);
         user.setMail(email);
@@ -69,5 +69,12 @@ public class UserManager {
         user.setName(null);
         user.setMail(null);
         user.setPassword(null);
+    }
+    public boolean emptyName() {
+        if(user.getName().isEmpty()) {
+            resetUser();
+            return true;
+        }
+        return false;
     }
 }

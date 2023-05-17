@@ -152,10 +152,10 @@ public class CreationGameView extends JPanel {
     public String getGameName() {
         return jtfGameName.getText();
     }
-    public int getNUmPers() {
+    public int getNumPers() {
         return Integer.parseInt((String) jcbNumPers.getSelectedItem());
     }
-    public int getNUmImpos() {
+    public int getNumImpos() {
         return Integer.parseInt((String) jcbNumImpos.getSelectedItem());
     }
     public String getColor() {
@@ -175,5 +175,8 @@ public class CreationGameView extends JPanel {
     }
     public void createCorrect() {
         JOptionPane.showMessageDialog(null, "Has creat correctement la partida!", "Correcte", JOptionPane.INFORMATION_MESSAGE);
+    }
+    public void emptyName() {
+        JOptionPane.showMessageDialog(null, "No has introduït res al nom!", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

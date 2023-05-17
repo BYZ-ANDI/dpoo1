@@ -8,7 +8,7 @@ import java.awt.*;
 public class MainMenuView extends JPanel {
     private JPanel jpMenu, jpPanel, jpLogout;
     private JLabel jlCreateNewGame, jlGame, jlSameGame, jlTitle;
-    private JTextField jtfSameGame;
+    private JTextField jtfSameGame, jtfGame;
     private JButton jbCreateNewGame, jbCreateGame, jbGame, jbLogout, jbDelete;
     private JImagePanel jiPanel;
 
@@ -48,9 +48,10 @@ public class MainMenuView extends JPanel {
         jlCreateNewGame = new JLabel("Create a new Game: ");
         jbCreateNewGame = new JButton("Create new Game");
         jlGame = new JLabel("Continue a Game: ");
+        jtfGame = new JTextField();
         jbGame = new JButton("Continue a Game");
         jlSameGame = new JLabel("Create a new Game manteining settings: ");
-        jtfSameGame = new JTextField("Enter Name of Game in progress...", 20);
+        jtfSameGame = new JTextField();
         jbCreateGame = new JButton("Create a Game");
         jbLogout = new JButton("Logout");
         jbDelete = new JButton("Delete a Game");
@@ -67,8 +68,6 @@ public class MainMenuView extends JPanel {
         jlGame.setFont(text_font);
         jlSameGame.setFont(text_font);
 
-        jtfSameGame.setFont(new Font("Oswald", Font.BOLD + Font.ITALIC, 10));
-
         jlTitle.setForeground(Color.WHITE);
         jlCreateNewGame.setForeground(Color.WHITE);
         jlGame.setForeground(Color.WHITE);
@@ -79,6 +78,7 @@ public class MainMenuView extends JPanel {
         jpBoxes.add(jbCreateNewGame);
         jbCreateNewGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         jpBoxes.add(jlGame);
+        jpBoxes.add(jtfGame);
         jpBoxes.add(jbGame);
         jbGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         jpBoxes.add(jlSameGame);
@@ -127,7 +127,6 @@ public class MainMenuView extends JPanel {
         jbCreateGame.addActionListener(mainMenuController);
         jbLogout.addActionListener(mainMenuController);
         jbDelete.addActionListener(mainMenuController);
-        jtfSameGame.addFocusListener(mainMenuController);
     }
     public void start() {
         setVisible(true);

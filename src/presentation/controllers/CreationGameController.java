@@ -14,10 +14,12 @@ import java.io.File;
 public class CreationGameController implements ActionListener, MouseWheelListener {
     private CreationGameView creationGameView;
     private MainModel mainModel;
+    private GameManager gameManager;
 
-    public CreationGameController(CreationGameView creationGameView, MainModel mainModel) {
+    public CreationGameController(CreationGameView creationGameView, MainModel mainModel, GameManager gameManager) {
         this.creationGameView = creationGameView;
         this.mainModel = mainModel;
+        this.gameManager = gameManager;
     }
 
     @Override
@@ -34,10 +36,13 @@ public class CreationGameController implements ActionListener, MouseWheelListene
             }
         } else if(e.getActionCommand().equals(creationGameView.SUBMIT_COMMAND)) {
             // Pasar a la MapView || GameView
-            GameManager gameManager = new GameManager(creationGameView.getGameName(), creationGameView.getNUmPers(),
-                    creationGameView.getNUmImpos(), mainModel.getMapa());
-            if (!gameManager.correctPersAndImpos()) {
+            // Hay que cambiar lo del GameManager, para que funcione bien.
+            gameManager.createGame(creationGameView.getGameName(), creationGameView.getNumImpos(), creationGameView.getNumPers(), creationGameView.getColor());
+            if (!gameManager.correctPersAndImpos(creationGameView.getNumImpos(), creationGameView.getNumPers())) {
                 creationGameView.PersAndImposErrorMessage();
+                return;
+            } else if(gameManager.emptyName()) {
+                creationGameView.emptyName();
                 return;
             }
             creationGameView.createCorrect();

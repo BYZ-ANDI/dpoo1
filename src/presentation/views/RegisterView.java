@@ -136,4 +136,7 @@ public class RegisterView extends JPanel {
     public void registerCorrect() {
         JOptionPane.showMessageDialog(null, "Has sigut registrat correctament!", "Correcte", JOptionPane.INFORMATION_MESSAGE);
     }
+    public void emptyName() {
+        JOptionPane.showMessageDialog(null, "No has introduït res al nom!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
 }
