@@ -45,6 +45,7 @@ public class CreationGameController implements ActionListener, MouseWheelListene
                 creationGameView.emptyName();
                 return;
             }
+            gameManager.createGameData(creationGameView.getColor());
             creationGameView.createCorrect();
         } else if(e.getActionCommand().equals(creationGameView.LOGOUT_COMMAND)) {
             mainModel.goToLogoutView();
