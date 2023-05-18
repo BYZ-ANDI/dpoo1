@@ -14,13 +14,15 @@ public class MainView extends JFrame {
     private MainModel mainModel;
     private MainMenuView mainMenuView;
     private CreationGameView creationGameView;
-    public MainView(MainModel mainModel, LogView logView, LogoutView logoutView, RegisterView registerView, MainMenuView mainMenuView, CreationGameView creationGameView) {
+    private MapGUI mapGUI;
+    public MainView(MainModel mainModel, LogView logView, LogoutView logoutView, RegisterView registerView, MainMenuView mainMenuView, CreationGameView creationGameView, MapGUI mapGUI) {
         this.mainModel = mainModel;
         this.logView = logView;
         this.logoutView = logoutView;
         this.registerView = registerView;
         this.mainMenuView = mainMenuView;
         this.creationGameView = creationGameView;
+        this.mapGUI = mapGUI;
         setLayout(new BorderLayout());
         configWindow();
         configLayout();
@@ -50,6 +52,9 @@ public class MainView extends JFrame {
 
         creationGameView.setName("Creation Game");
         getContentPane().add(creationGameView, "Creation Game");
+
+        mapGUI.setName("Map");
+        getContentPane().add(mapGUI, "Map");
     }
     public void start() {
         //showLogoutView();
@@ -71,4 +76,5 @@ public class MainView extends JFrame {
     public void showCreationGameView() {
         cardLayout.show(getContentPane(), "Creation Game");
     }
+    public void showMapView(){cardLayout.show(getContentPane(), "Map");}
 }

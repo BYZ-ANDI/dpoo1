@@ -32,7 +32,7 @@ public class CreationGameController implements ActionListener, MouseWheelListene
                 File selectedFile = fileChooser.getSelectedFile();
                 // Lógica para procesar el archivo seleccionado
                 //por ejemplo, cargar los datos en el modelo usando Gson
-                mainModel.loadDataFromJsonFile(selectedFile);
+                mainModel.loadDataFromJsonFile(selectedFile.getName());
             }
         } else if(e.getActionCommand().equals(creationGameView.SUBMIT_COMMAND)) {
             // Pasar a la MapView || GameView

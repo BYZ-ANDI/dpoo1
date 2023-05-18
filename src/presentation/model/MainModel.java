@@ -1,7 +1,9 @@
 package presentation.model;
 
+import Business.entities.Room;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import persistence.MapsDAO;
 import presentation.controllers.MainController;
 
 import javax.xml.crypto.Data;
@@ -12,8 +14,13 @@ import java.io.Reader;
 import java.util.List;
 
 public class MainModel {
-    private List<Data> dataList;
+    private MapsDAO mapsDAO;
+    private List<Room> rooms;
     private  MainController mainController;
+    public MainModel(List<Room> rooms, MapsDAO mapsDAO) {
+        this.rooms = rooms;
+        this.mapsDAO = mapsDAO;
+    }
     public void goToLogView() {
         mainController.changeToLogView();
     }
@@ -29,18 +36,11 @@ public class MainModel {
     public void goToCreationGameView() {
         mainController.changeToCreationGameView();
     }
+    public void goToMapView(){mainController.changeToMapView();}
     public void setController(MainController mainController) {
         this.mainController = mainController;
     }
-    public void loadDataFromJsonFile(File file) {
-        Gson gson = new Gson();
-        try (Reader reader = new FileReader(file)) {
-            dataList = gson.fromJson(reader, new TypeToken<List<Data>>(){}.getType());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public List<Data> getMapa() {
-        return dataList;
+    public void loadDataFromJsonFile(String file) {
+        rooms = mapsDAO.loadRooms("/src/persistence/" + file);
     }
 }
