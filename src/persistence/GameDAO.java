@@ -36,6 +36,7 @@ public class GameDAO {
             DatabaseConnection.getDatabaseConnection().insert("INSERT INTO Partida(nombre_partida, n_personajes, n_impostores, mapa) VALUES ('" + game.getName() + "','" + game.getN_persponajes() + "','" + game.getN_impostores() + "','" + game.getMapa() + "' );");
             DatabaseConnection.getDatabaseConnection().insert("INSERT INTO Jugada(nombre_jugador, nombre_partida, color_personaje) VALUES ('" + user.getName() + "','" + game.getName() + "','" + color + "');");
         }
+
     }
     public boolean startGame(Game game){
         List<String> games = new ArrayList<>();
@@ -60,4 +61,9 @@ public class GameDAO {
         DatabaseConnection.getDatabaseConnection().delete("DELETE FROM Partida WHERE nombre_partida LIKE '" + name + "'");
         game = null;
     }*/
+
+    public void saveGame(String partidaName, int n_personajes, int n_impostores, String mapa){
+        String query = "UPDATE 'partida' SET 'n_personajes'='"+n_personajes+"','n_impostores'='"+n_impostores+"' WHERE 'nombre_partida'='"+partidaName+"'";
+        DatabaseConnection.getDatabaseConnection().update(query);
+    }
 }

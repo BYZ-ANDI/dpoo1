@@ -11,7 +11,7 @@ import java.util.Map;
 
 import persistence.MapsDAO;
 
-public class MapGUI extends JPanel {
+public class MapGUI extends JFrame {
     private JPanel contentPanel;
     private JButton toggleVisionButton;
     private JButton moveUpButton;
@@ -51,6 +51,7 @@ public class MapGUI extends JPanel {
 
     public MapGUI(List<Room> rooms) {
         // Set the title and size of the window
+        setTitle("Map View");
         setSize(600, 400);
 
         // Create a content panel and set its layout
@@ -132,10 +133,10 @@ public class MapGUI extends JPanel {
         }
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         List<Room> rooms;
         MapsDAO mapDAO = new MapsDAO();
         rooms = mapDAO.loadRooms("src/persistence/maps.json");
         new MapGUI(rooms);
-    }*/
+    }
 }

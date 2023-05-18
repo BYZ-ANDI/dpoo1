@@ -67,4 +67,7 @@ public class GameManager {
         }
         return false;
     }
+    public void savePartida(String partidaName, int n_personajes, int n_impostores, String mapa){
+        gameDAO.saveGame(partidaName,n_personajes,n_impostores,mapa);
+    }
 }

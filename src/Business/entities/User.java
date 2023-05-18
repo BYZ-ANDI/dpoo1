@@ -1,5 +1,4 @@
 package Business.entities;
-
 public class User {
     String name;
     String mail;
