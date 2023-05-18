@@ -36,7 +36,6 @@ public class GameDAO {
             DatabaseConnection.getDatabaseConnection().insert("INSERT INTO Partida(nombre_partida, n_personajes, n_impostores, mapa) VALUES ('" + game.getName() + "','" + game.getN_persponajes() + "','" + game.getN_impostores() + "','" + game.getMapa() + "' );");
             DatabaseConnection.getDatabaseConnection().insert("INSERT INTO Jugada(nombre_jugador, nombre_partida, color_personaje) VALUES ('" + user.getName() + "','" + game.getName() + "','" + color + "');");
         }
-        
     }
     public boolean startGame(Game game){
         List<String> games = new ArrayList<>();

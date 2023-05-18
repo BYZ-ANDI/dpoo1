@@ -26,7 +26,8 @@ public class GameManager {
         game.setN_impostores(N_persponajes);
         game.setN_persponajes(N_impostores);
         game.setMapa(mapa);
-
+    }
+    public void createGameData(String color) {
         gameDAO.gameRecord(game, user, color);
     }
 
