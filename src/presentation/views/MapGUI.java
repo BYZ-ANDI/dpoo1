@@ -1,6 +1,7 @@
 package presentation.views;
 
 import Business.entities.Room;
+import persistence.MapsDAO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
-
-import persistence.MapsDAO;
 
 public class MapGUI extends JFrame {
     private JPanel contentPanel;
@@ -19,8 +18,7 @@ public class MapGUI extends JFrame {
     private JButton moveLeftButton;
     private JButton moveRightButton;
 
-
-    private java.util.Map<String, Color> createColorMap() {
+    private Map<String, Color> createColorMap() {
         Map<String, Color> colorMap = new java.util.HashMap<>();
         colorMap.put("RED", Color.RED);
         colorMap.put("GRAY", Color.GRAY);
@@ -50,25 +48,22 @@ public class MapGUI extends JFrame {
     }
 
     public MapGUI(List<Room> rooms) {
-        // Set the title and size of the window
         setTitle("Map View");
         setSize(600, 400);
 
-        // Create a content panel and set its layout
         contentPanel = new JPanel();
         contentPanel.setLayout(new GridLayout(4, 4));
 
         Map<String, Color> colorMap = createColorMap();
 
-        // Create a cell for each room
         for (Room room : rooms) {
             String colorName = room.getColour();
             Color color = colorMap.get(colorName);
 
-            JLabel room1Label = new JLabel("");
-            room1Label.setBackground(color); // set background color
-            room1Label.setOpaque(true); // make the label opaque
-            contentPanel.add(room1Label);
+            JLabel roomLabel = new JLabel(room.getId());
+            roomLabel.setBackground(color);
+            roomLabel.setOpaque(true);
+            contentPanel.add(roomLabel);
         }
 
         add(contentPanel);
@@ -96,9 +91,13 @@ public class MapGUI extends JFrame {
 
         add(buttonPanel, BorderLayout.SOUTH);
     }
+
     private class ToggleVisionListener implements ActionListener {
+        private boolean isGlobalView = true;
+
         public void actionPerformed(ActionEvent e) {
-            boolean isGlobalView = !moveUpButton.isVisible();
+            isGlobalView = !isGlobalView;
+
             Map<String, Color> colorMap = createColorMap();
             updateView(isGlobalView, colorMap);
 
@@ -109,6 +108,7 @@ public class MapGUI extends JFrame {
             moveRightButton.setVisible(!isGlobalView);
         }
     }
+
     private class MoveUpListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             // TODO: Implement the logic to move up
