@@ -108,6 +108,15 @@ public class LogView extends JPanel {
         jbRegister.setActionCommand(REGISTER_COMMAND);
         jbSubmit.setActionCommand(SUBMIT_COMMAND);
     }
+    public String getName() {
+        return jtfName.getText();
+    }
+    public String getEmail() {
+        return jtfEmail.getText();
+    }
+    public String getPassword() {
+        return jtfPassword.getText();
+    }
     public void registController (LogController logController) {
         jbRegister.addActionListener(logController);
         jbSubmit.addActionListener(logController);
@@ -116,5 +125,13 @@ public class LogView extends JPanel {
     // Funcion General de todas las views.
     public void start() {
         setVisible(true);
+    }
+    public void errorUserLogin() {
+        JOptionPane.showMessageDialog(null, "El usuari que s'ha introduït, no existeix o es erroni!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    public void resetLogJtf() {
+        jtfEmail.setText("");
+        jtfPassword.setText("");
+        jtfName.setText("");
     }
 }

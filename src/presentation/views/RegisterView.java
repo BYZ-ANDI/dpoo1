@@ -105,6 +105,9 @@ public class RegisterView extends JPanel {
         jiPanel.setLayout(jpPanel.getLayout());
         jiPanel.add(jpPanel, gbc);
     }
+    public String getName() {
+        return jtfName.getText();
+    }
     public String getEmail() {
         return jtfEmail.getText();
     }
@@ -132,5 +135,14 @@ public class RegisterView extends JPanel {
     }
     public void registerCorrect() {
         JOptionPane.showMessageDialog(null, "Has sigut registrat correctament!", "Correcte", JOptionPane.INFORMATION_MESSAGE);
+    }
+    public void emptyName() {
+        JOptionPane.showMessageDialog(null, "No has introduït res al nom!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    public void resetRegisterJtf() {
+        jtfEmail.setText("");
+        jtfPassword_confirm.setText("");
+        jtfPassword.setText("");
+        jtfName.setText("");
     }
 }

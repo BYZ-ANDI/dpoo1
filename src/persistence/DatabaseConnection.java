@@ -1,3 +1,5 @@
+package persistence;
+
 import java.sql.*;
 
 public class DatabaseConnection {
@@ -31,7 +33,7 @@ public class DatabaseConnection {
     }
     public static DatabaseConnection getDatabaseConnection (){
         if(databaseConnection == null){
-            databaseConnection = new DatabaseConnection(nameUser,password,server,port,"BetweenUs");
+            databaseConnection = new DatabaseConnection("root","","localhost",3306,"Between_Us");
             databaseConnection.connection();
         }
         return databaseConnection;

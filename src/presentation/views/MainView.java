@@ -1,16 +1,28 @@
 package presentation.views;
 
-import presentation.controllers.LogController;
-import presentation.controllers.LogoutController;
-import presentation.controllers.RegisterController;
+import presentation.controllers.*;
+import presentation.model.MainModel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainView extends JFrame {
     private CardLayout cardLayout;
-    private JPanel views;
-    public MainView() {
+    private LogView logView;
+    private LogoutView logoutView;
+    private RegisterView registerView;
+    private MainModel mainModel;
+    private MainMenuView mainMenuView;
+    private CreationGameView creationGameView;
+    private MapGUI mapGUI;
+    public MainView(MainModel mainModel, LogView logView, LogoutView logoutView, RegisterView registerView, MainMenuView mainMenuView, CreationGameView creationGameView, MapGUI mapGUI) {
+        this.mainModel = mainModel;
+        this.logView = logView;
+        this.logoutView = logoutView;
+        this.registerView = registerView;
+        this.mainMenuView = mainMenuView;
+        this.creationGameView = creationGameView;
+        this.mapGUI = mapGUI;
         setLayout(new BorderLayout());
         configWindow();
         configLayout();
@@ -26,26 +38,27 @@ public class MainView extends JFrame {
         cardLayout = new CardLayout();
         getContentPane().setLayout(cardLayout);
 
-        LogView logView = new LogView();
         logView.setName("Log In");
-        LogController logController = new LogController(logView);
-        logView.registController(logController);
         getContentPane().add(logView, "Log In");
 
-        LogoutView logoutView = new LogoutView();
         logoutView.setName("Logout");
-        LogoutController logoutController = new LogoutController(logoutView);
-        logoutView.registController(logoutController);
         getContentPane().add(logoutView, "Logout");
 
-        RegisterView registerView = new RegisterView();
         registerView.setName("Register");
-        RegisterController registerController = new RegisterController(registerView);
-        registerView.registController(registerController);
         getContentPane().add(registerView, "Register");
+
+        mainMenuView.setName("Menu");
+        getContentPane().add(mainMenuView, "Menu");
+
+        creationGameView.setName("Creation Game");
+        getContentPane().add(creationGameView, "Creation Game");
+
+        mapGUI.setName("Map");
+        getContentPane().add(mapGUI, "Map");
     }
     public void start() {
-        showLoginView();
+        //showLogoutView();
+        showMainMenuView();
         setVisible(true);
     }
     public void showLoginView() {
@@ -57,4 +70,11 @@ public class MainView extends JFrame {
     public void showLogoutView() {
         cardLayout.show(getContentPane(), "Logout");
     }
+    public void showMainMenuView() {
+        cardLayout.show(getContentPane(), "Menu");
+    }
+    public void showCreationGameView() {
+        cardLayout.show(getContentPane(), "Creation Game");
+    }
+    public void showMapView(){cardLayout.show(getContentPane(), "Map");}
 }

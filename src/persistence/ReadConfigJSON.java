@@ -1,5 +1,9 @@
+package persistence;
+
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import persistence.Configuration;
+
 import java.io.FileReader;
 import java.io.IOException;
 

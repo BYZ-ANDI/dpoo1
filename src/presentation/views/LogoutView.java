@@ -39,8 +39,8 @@ public class LogoutView extends JPanel {
 
         jlTitle = new JLabel("LOGOUT HERE!");
         jlTitle.setHorizontalAlignment(JLabel.CENTER);
-        jlLogout = new JLabel("Enter Name:");
-        jlDelete = new JLabel("Enter Email:");
+        jlLogout = new JLabel("Logout:");
+        jlDelete = new JLabel("Delete account:");
 
         jbLogout = new JButton("Logout your account");
         jbDelete = new JButton("Delete your account");
