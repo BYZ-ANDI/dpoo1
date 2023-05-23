@@ -5,6 +5,7 @@ import persistence.MapsDAO;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,25 +62,29 @@ public class MapGUI extends JFrame {
 
         Map<String, Color> colorMap = createColorMap();
 
-        /*for (Room room : rooms) {
+        for (Room room : rooms) {
             String colorName = room.getColour();
             Color color = colorMap.get(colorName);
 
             JLabel roomLabel = new JLabel(room.getId());
+            roomLabel.setBorder(new LineBorder(Color.black,1));
             roomLabel.setBackground(color);
             roomLabel.setOpaque(true);
             contentPanel.add(roomLabel);
-        }*/
+        }
         cells = new JPanel[4][4];
-        for (int i = 0; i < 4; i++) {
+        /*for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
+                String colorName = rooms.get(j).getColour();
+                Color color = colorMap.get(colorName);
+
                 cells[i][j] = new JPanel();
                 cells[i][j].setBorder(new LineBorder(Color.black,1));
-                cells[i][j].setBackground(Color.gray);
+                cells[i][j].setBackground(ColorUIResource.DARK_GRAY);
                 cells[i][j].setPreferredSize(new Dimension(30,30));
                 contentPanel.add(cells[i][j]);
             }
-        }
+        }*/
 
         add(contentPanel);
         setVisible(true);
@@ -108,18 +113,16 @@ public class MapGUI extends JFrame {
         add(buttonPanel, BorderLayout.SOUTH);
         // Add player circles to the map
         //for (Player player : players) {
-            JLabel playerLabel = new JLabel();
-            playerLabel.setOpaque(true);
+            //JLabel playerLabel = new JLabel();
+            //playerLabel.setOpaque(true);
             //playerLabel.setBackground(player.getPlayerColor());
-            playerLabel.setBackground(Color.white);
-            playerLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            playerLabel.setVerticalAlignment(SwingConstants.CENTER);
+            //playerLabel.setBackground(Color.white);
+            //playerLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            //playerLabel.setVerticalAlignment(SwingConstants.CENTER);
             //playerLabel.setText(player.getPlayerName());
-            playerLabel.setText("Tripulante");
-            Circle circle = new Circle();
-
-            cells[0][0].add(circle);
+            //playerLabel.setText("Tripulante");
+            //Circle circle = new Circle();
+            //cells[0][0].add(circle);
         //}
         //}
     }
@@ -133,10 +136,10 @@ public class MapGUI extends JFrame {
             updateView(isGlobalView, colorMap);
 
             toggleVisionButton.setText(isGlobalView ? "Limited Vision" : "Global Vision");
-            moveUpButton.setVisible(!isGlobalView);
-            moveDownButton.setVisible(!isGlobalView);
-            moveLeftButton.setVisible(!isGlobalView);
-            moveRightButton.setVisible(!isGlobalView);
+            moveUpButton.setVisible(true);
+            moveDownButton.setVisible(true);
+            moveLeftButton.setVisible(true);
+            moveRightButton.setVisible(true);
         }
     }
 
