@@ -24,5 +24,7 @@ public class MainController {
     public void changeToCreationGameView() {
         mainView.showCreationGameView();
     }
-    public void changeToMapView(){mainView.showMapView();}
+    public void changeToMapView(){
+        mainView.showMapView();
+    }
 }

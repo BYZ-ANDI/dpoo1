@@ -3,6 +3,7 @@ package presentation.controllers;
 import Business.GameManager;
 import presentation.model.MainModel;
 import presentation.views.CreationGameView;
+import presentation.views.MapGUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,39 +16,43 @@ public class CreationGameController implements ActionListener, MouseWheelListene
     private CreationGameView creationGameView;
     private MainModel mainModel;
     private GameManager gameManager;
+    private File selectedFile;
 
-    public CreationGameController(CreationGameView creationGameView, MainModel mainModel, GameManager gameManager) {
+    public CreationGameController(CreationGameView creationGameView, MainModel mainModel, GameManager gameManager, File selectedFile) {
         this.creationGameView = creationGameView;
         this.mainModel = mainModel;
         this.gameManager = gameManager;
+        this.selectedFile = selectedFile;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals(creationGameView.MAP_COMMAND)) {
+        if (e.getActionCommand().equals(creationGameView.MAP_COMMAND)) {
             // Hacer lo del JFileChooser
             JFileChooser fileChooser = new JFileChooser();
             int result = fileChooser.showOpenDialog(creationGameView);
             if (result == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
+                selectedFile = fileChooser.getSelectedFile();
                 // Lógica para procesar el archivo seleccionado
                 //por ejemplo, cargar los datos en el modelo usando Gson
                 mainModel.loadDataFromJsonFile(selectedFile.getName());
             }
-        } else if(e.getActionCommand().equals(creationGameView.SUBMIT_COMMAND)) {
+        } else if (e.getActionCommand().equals(creationGameView.SUBMIT_COMMAND)) {
             // Pasar a la MapView || GameView
             // Hay que cambiar lo del GameManager, para que funcione bien.
-            gameManager.createGame(creationGameView.getGameName(), creationGameView.getNumImpos(), creationGameView.getNumPers(), creationGameView.getColor());
+            gameManager.createGame(creationGameView.getGameName(), creationGameView.getNumImpos(), creationGameView.getNumPers(), creationGameView.getColor(), selectedFile.getName());
             if (!gameManager.correctPersAndImpos(creationGameView.getNumImpos(), creationGameView.getNumPers())) {
                 creationGameView.PersAndImposErrorMessage();
                 return;
-            } else if(gameManager.emptyName()) {
+            } else if (gameManager.emptyName()) {
                 creationGameView.emptyName();
                 return;
             }
             gameManager.createGameData(creationGameView.getColor());
             creationGameView.createCorrect();
-        } else if(e.getActionCommand().equals(creationGameView.LOGOUT_COMMAND)) {
+            //MapGUI mapGUI = new MapGUI(mainModel);
+            mainModel.goToMapView();
+        } else if (e.getActionCommand().equals(creationGameView.LOGOUT_COMMAND)) {
             mainModel.goToLogoutView();
         }
     }

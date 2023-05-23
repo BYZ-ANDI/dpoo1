@@ -1,16 +1,9 @@
 package presentation.model;
 
 import Business.entities.Room;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import persistence.MapsDAO;
 import presentation.controllers.MainController;
 
-import javax.xml.crypto.Data;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
 
 public class MainModel {
@@ -36,11 +29,16 @@ public class MainModel {
     public void goToCreationGameView() {
         mainController.changeToCreationGameView();
     }
-    public void goToMapView(){mainController.changeToMapView();}
+    public void goToMapView(){
+        mainController.changeToMapView();
+    }
     public void setController(MainController mainController) {
         this.mainController = mainController;
     }
     public void loadDataFromJsonFile(String file) {
-        rooms = mapsDAO.loadRooms("/src/persistence/" + file);
+        rooms = mapsDAO.loadRooms("src/persistence/" + file);
+    }
+    public List<Room> getRooms(){
+        return rooms;
     }
 }

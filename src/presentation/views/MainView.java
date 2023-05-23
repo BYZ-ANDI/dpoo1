@@ -76,5 +76,7 @@ public class MainView extends JFrame {
     public void showCreationGameView() {
         cardLayout.show(getContentPane(), "Creation Game");
     }
-    public void showMapView(){cardLayout.show(getContentPane(), "Map");}
+    public void showMapView(){
+        cardLayout.show(getContentPane(), "Map");
+    }
 }

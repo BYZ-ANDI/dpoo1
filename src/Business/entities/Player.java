@@ -3,59 +3,32 @@ package Business.entities;
 import java.awt.Color;
 
 public class Player {
-    private String name;
-    private int totalCharacters;
-    private int imposters;
-    private Color color;
-    private String mapFilePath;
+    private String color;
+    private boolean alive;
+    private String room;
 
-    public Player(String name, int totalCharacters, int imposters, Color color, String mapFilePath) {
-        this.name = name;
-        this.totalCharacters = totalCharacters;
-        this.imposters = imposters;
+    public Player(String color, boolean alive, String room) {
         this.color = color;
-        this.mapFilePath = mapFilePath;
+        this.alive = alive;
+        this.room = room;
     }
 
-    // Getters and Setters
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getTotalCharacters() {
-        return totalCharacters;
-    }
-
-    public void setTotalCharacters(int totalCharacters) {
-        this.totalCharacters = totalCharacters;
-    }
-
-    public int getImposters() {
-        return imposters;
-    }
-
-    public void setImposters(int imposters) {
-        this.imposters = imposters;
-    }
-
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
-
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
-
-    public String getMapFilePath() {
-        return mapFilePath;
+    public boolean isAlive() {
+        return alive;
     }
-
-    public void setMapFilePath(String mapFilePath) {
-        this.mapFilePath = mapFilePath;
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+    public String getRoom() {
+        return room;
+    }
+    public void setRoom(String room) {
+        this.room = room;
     }
 }

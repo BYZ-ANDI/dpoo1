@@ -2,6 +2,7 @@ package presentation.views;
 
 import Business.entities.Room;
 import persistence.MapsDAO;
+import presentation.model.MainModel;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -12,7 +13,9 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
-public class MapGUI extends JFrame {
+public class MapGUI extends JPanel {
+    private MainModel mainModel;
+    private List<Room> rooms;
     private JPanel contentPanel;
     private JButton toggleVisionButton;
     private JButton moveUpButton;
@@ -53,8 +56,10 @@ public class MapGUI extends JFrame {
         }
     }
 
-    public MapGUI(List<Room> rooms) {
-        setTitle("Map View");
+    public MapGUI(MainModel mainModel) {
+        this.mainModel = mainModel;
+        rooms = mainModel.getRooms();
+
         setSize(600, 400);
 
         contentPanel = new JPanel();
@@ -72,7 +77,7 @@ public class MapGUI extends JFrame {
             roomLabel.setOpaque(true);
             contentPanel.add(roomLabel);
         }
-        cells = new JPanel[4][4];
+        //cells = new JPanel[4][4];
         /*for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 String colorName = rooms.get(j).getColour();
@@ -88,7 +93,6 @@ public class MapGUI extends JFrame {
 
         add(contentPanel);
         setVisible(true);
-
 
         toggleVisionButton = new JButton("Toggle Vision");
         moveUpButton = new JButton("Up");
@@ -167,10 +171,10 @@ public class MapGUI extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         List<Room> rooms;
         MapsDAO mapDAO = new MapsDAO();
         rooms = mapDAO.loadRooms("src/persistence/maps.json");
         new MapGUI(rooms);
-    }
+    }*/
 }

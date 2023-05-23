@@ -36,11 +36,11 @@ public class Main {
         CreationGameView creationGameView = new CreationGameView();
         List<Room> rooms = new ArrayList<>();
         MainModel mainModel = new MainModel(rooms, mapDAO);
-        MapGUI mapGUI = new MapGUI(rooms);
+        MapGUI mapGUI = new MapGUI(mainModel);
         MainView mainView = new MainView(mainModel, logView, logoutView, registerView, mainMenuView, creationGameView,mapGUI);
 
         UserManager userManager = new UserManager(user, userDAO);
-        GameManager gameManager = new GameManager(game, gameDAO, user, mapa);
+        GameManager gameManager = new GameManager(game, gameDAO, user);
 
         LogController logController = new LogController(logView, mainModel, userManager);
         logView.registController(logController);
@@ -50,7 +50,7 @@ public class Main {
         registerView.registController(registerController);
         MainMenuController mainMenuController = new MainMenuController(mainMenuView, mainModel, gameManager);
         mainMenuView.registController(mainMenuController);
-        CreationGameController creationGameController = new CreationGameController(creationGameView, mainModel, gameManager);
+        CreationGameController creationGameController = new CreationGameController(creationGameView, mainModel, gameManager, null);
         creationGameView.registController(creationGameController);
 
         MainController mainController = new MainController(mainView, mainModel);

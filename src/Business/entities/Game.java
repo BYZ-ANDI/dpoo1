@@ -4,9 +4,9 @@ public class Game {
     String name;
     int N_persponajes;
     int N_impostores;
-    Map mapa;
+    String mapa;
 
-    public Game(String name, int N_persponajes, int N_impostores, Map mapa) {
+    public Game(String name, int N_persponajes, int N_impostores, String mapa) {
         this.name = name;
         this.N_persponajes = N_persponajes;
         this.N_impostores = N_impostores;
@@ -20,11 +20,11 @@ public class Game {
     public int getN_impostores() {return this.N_impostores;}
     public void setN_impostores(int N_impostores){this.N_impostores = N_impostores;}
 
-    public Map getMapa() {
+    public String getMapa() {
         return mapa;
     }
 
-    public void setMapa(Map mapa) {
+    public void setMapa(String mapa) {
         this.mapa = mapa;
     }
 }
