@@ -4,6 +4,7 @@ import Business.entities.Room;
 import persistence.MapsDAO;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,10 @@ public class MapGUI extends JFrame {
     private JButton moveDownButton;
     private JButton moveLeftButton;
     private JButton moveRightButton;
+
+    //--------------Creación matriz mapa--------------
+
+    private  JPanel[][] cells;
 
     private Map<String, Color> createColorMap() {
         Map<String, Color> colorMap = new java.util.HashMap<>();
@@ -56,7 +61,7 @@ public class MapGUI extends JFrame {
 
         Map<String, Color> colorMap = createColorMap();
 
-        for (Room room : rooms) {
+        /*for (Room room : rooms) {
             String colorName = room.getColour();
             Color color = colorMap.get(colorName);
 
@@ -64,10 +69,21 @@ public class MapGUI extends JFrame {
             roomLabel.setBackground(color);
             roomLabel.setOpaque(true);
             contentPanel.add(roomLabel);
+        }*/
+        cells = new JPanel[4][4];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                cells[i][j] = new JPanel();
+                cells[i][j].setBorder(new LineBorder(Color.black,1));
+                cells[i][j].setBackground(Color.gray);
+                cells[i][j].setPreferredSize(new Dimension(30,30));
+                contentPanel.add(cells[i][j]);
+            }
         }
 
         add(contentPanel);
         setVisible(true);
+
 
         toggleVisionButton = new JButton("Toggle Vision");
         moveUpButton = new JButton("Up");
@@ -90,6 +106,22 @@ public class MapGUI extends JFrame {
         buttonPanel.add(moveRightButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
+        // Add player circles to the map
+        //for (Player player : players) {
+            JLabel playerLabel = new JLabel();
+            playerLabel.setOpaque(true);
+            //playerLabel.setBackground(player.getPlayerColor());
+            playerLabel.setBackground(Color.white);
+            playerLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            playerLabel.setVerticalAlignment(SwingConstants.CENTER);
+            //playerLabel.setText(player.getPlayerName());
+            playerLabel.setText("Tripulante");
+            Circle circle = new Circle();
+
+            cells[0][0].add(circle);
+        //}
+        //}
     }
 
     private class ToggleVisionListener implements ActionListener {
@@ -97,7 +129,6 @@ public class MapGUI extends JFrame {
 
         public void actionPerformed(ActionEvent e) {
             isGlobalView = !isGlobalView;
-
             Map<String, Color> colorMap = createColorMap();
             updateView(isGlobalView, colorMap);
 
