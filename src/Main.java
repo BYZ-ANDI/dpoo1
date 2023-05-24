@@ -33,14 +33,16 @@ public class Main {
         LogoutView logoutView = new LogoutView();
         RegisterView registerView = new RegisterView();
         MainMenuView mainMenuView = new MainMenuView();
-        CreationGameView creationGameView = new CreationGameView();
         List<Room> rooms = new ArrayList<>();
         MainModel mainModel = new MainModel(rooms, mapDAO);
         MapGUI mapGUI = new MapGUI(mainModel);
+        GameManager gameManager = new GameManager(game,gameDAO,user);
+        GameController gameController = new GameController(gameManager,mapGUI);
+        mapGUI.MapGUIController(gameController);
+        CreationGameView creationGameView = new CreationGameView();
         MainView mainView = new MainView(mainModel, logView, logoutView, registerView, mainMenuView, creationGameView,mapGUI);
 
         UserManager userManager = new UserManager(user, userDAO);
-        GameManager gameManager = new GameManager(game, gameDAO, user);
 
         LogController logController = new LogController(logView, mainModel, userManager);
         logView.registController(logController);
@@ -50,7 +52,7 @@ public class Main {
         registerView.registController(registerController);
         MainMenuController mainMenuController = new MainMenuController(mainMenuView, mainModel, gameManager);
         mainMenuView.registController(mainMenuController);
-        CreationGameController creationGameController = new CreationGameController(creationGameView, mainModel, gameManager, null);
+        CreationGameController creationGameController = new CreationGameController(creationGameView, mainModel, gameManager, null, mapGUI);
         creationGameView.registController(creationGameController);
 
         MainController mainController = new MainController(mainView, mainModel);

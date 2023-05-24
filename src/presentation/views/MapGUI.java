@@ -2,6 +2,7 @@ package presentation.views;
 
 import Business.entities.Room;
 import persistence.MapsDAO;
+import presentation.controllers.GameController;
 import presentation.model.MainModel;
 
 import javax.swing.*;
@@ -17,12 +18,15 @@ public class MapGUI extends JPanel {
     private MainModel mainModel;
     private List<Room> rooms;
     private JPanel contentPanel;
-    private JButton toggleVisionButton;
-    private JButton moveUpButton;
-    private JButton moveDownButton;
-    private JButton moveLeftButton;
-    private JButton moveRightButton;
-
+    private JButton toggleVisionButton = new JButton("Toggle Vision");
+    private JButton moveUpButton = new JButton("Up");
+    private JButton moveDownButton = new JButton("Down");
+    private JButton moveLeftButton = new JButton("Left");
+    private JButton moveRightButton = new JButton("Right");
+    private Circle circle;
+    private int XCirclePosition;
+    private int YCirclePosition;
+    private String userColor;
     //--------------Creación matriz mapa--------------
 
     private  JPanel[][] cells;
@@ -58,16 +62,25 @@ public class MapGUI extends JPanel {
 
     public MapGUI(MainModel mainModel) {
         this.mainModel = mainModel;
+    }
+    public void setColor(String color){
+        this.userColor = color;
+    }
+
+    public void createMapGUI(){
         rooms = mainModel.getRooms();
 
         setSize(600, 400);
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout(5,5));
+        mainPanel.setSize(600,600);
 
         contentPanel = new JPanel();
         contentPanel.setLayout(new GridLayout(4, 4));
 
         Map<String, Color> colorMap = createColorMap();
 
-        for (Room room : rooms) {
+        /*for (Room room : rooms) {
             String colorName = room.getColour();
             Color color = colorMap.get(colorName);
 
@@ -76,35 +89,29 @@ public class MapGUI extends JPanel {
             roomLabel.setBackground(color);
             roomLabel.setOpaque(true);
             contentPanel.add(roomLabel);
-        }
-        //cells = new JPanel[4][4];
-        /*for (int i = 0; i < 4; i++) {
+        }*/
+        cells = new JPanel[4][4];
+        int iterador = 0;
+        for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                String colorName = rooms.get(j).getColour();
-                Color color = colorMap.get(colorName);
-
                 cells[i][j] = new JPanel();
                 cells[i][j].setBorder(new LineBorder(Color.black,1));
-                cells[i][j].setBackground(ColorUIResource.DARK_GRAY);
-                cells[i][j].setPreferredSize(new Dimension(30,30));
+                cells[i][j].setPreferredSize(new Dimension(150,150));
+                String colorName = rooms.get(iterador).getColour();
+                Color color = colorMap.get(colorName);
+                JLabel roomLabel = new JLabel(rooms.get(iterador).getId());
+                roomLabel.setBorder(new LineBorder(Color.black,1));
+                roomLabel.setBackground(color);
+                cells[i][j].setBackground(color);
+                roomLabel.setOpaque(true);
+                roomLabel.setSize(150,150);
+                cells[i][j].add(roomLabel);
                 contentPanel.add(cells[i][j]);
+                iterador++;
             }
-        }*/
-
-        add(contentPanel);
+        }
+        mainPanel.add(contentPanel,BorderLayout.NORTH);
         setVisible(true);
-
-        toggleVisionButton = new JButton("Toggle Vision");
-        moveUpButton = new JButton("Up");
-        moveDownButton = new JButton("Down");
-        moveLeftButton = new JButton("Left");
-        moveRightButton = new JButton("Right");
-
-        toggleVisionButton.addActionListener(new ToggleVisionListener());
-        moveUpButton.addActionListener(new MoveUpListener());
-        moveDownButton.addActionListener(new MoveDownListener());
-        moveLeftButton.addActionListener(new MoveLeftListener());
-        moveRightButton.addActionListener(new MoveRightListener());
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
@@ -114,7 +121,8 @@ public class MapGUI extends JPanel {
         buttonPanel.add(moveLeftButton);
         buttonPanel.add(moveRightButton);
 
-        add(buttonPanel, BorderLayout.SOUTH);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+        add(mainPanel);
         // Add player circles to the map
         //for (Player player : players) {
             //JLabel playerLabel = new JLabel();
@@ -125,10 +133,39 @@ public class MapGUI extends JPanel {
             //playerLabel.setVerticalAlignment(SwingConstants.CENTER);
             //playerLabel.setText(player.getPlayerName());
             //playerLabel.setText("Tripulante");
-            //Circle circle = new Circle();
-            //cells[0][0].add(circle);
+            circle = new Circle();
+            //circle.setColor(userColor);
+            cells[0][0].add(circle);
+            YCirclePosition = 0;
+            XCirclePosition = 0;
         //}
-        //}
+    }
+
+    public void MapGUIController(ActionListener listener){
+        moveUpButton.addActionListener(listener);
+        moveUpButton.setActionCommand("up");
+        moveDownButton.addActionListener(listener);
+        moveDownButton.setActionCommand("down");
+        moveLeftButton.addActionListener(listener);
+        moveLeftButton.setActionCommand("left");
+        moveRightButton.addActionListener(listener);
+        moveRightButton.setActionCommand("right");
+    }
+    public int getYCirclePosition(){
+        return YCirclePosition;
+    }
+    public int getXCirclePosition(){
+        return XCirclePosition;
+    }
+    public void uptadeCirclePosition(int i, int j){
+        YCirclePosition = i;
+        XCirclePosition = j;
+        cells[i][j].add(circle);
+        repaint();
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
     }
 
     private class ToggleVisionListener implements ActionListener {
@@ -146,31 +183,6 @@ public class MapGUI extends JPanel {
             moveRightButton.setVisible(true);
         }
     }
-
-    private class MoveUpListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            // TODO: Implement the logic to move up
-        }
-    }
-
-    private class MoveDownListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            // TODO: Implement the logic to move down
-        }
-    }
-
-    private class MoveLeftListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            // TODO: Implement the logic to move left
-        }
-    }
-
-    private class MoveRightListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            // TODO: Implement the logic to move right
-        }
-    }
-
     /*public static void main(String[] args) {
         List<Room> rooms;
         MapsDAO mapDAO = new MapsDAO();

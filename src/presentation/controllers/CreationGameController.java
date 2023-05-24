@@ -17,12 +17,14 @@ public class CreationGameController implements ActionListener, MouseWheelListene
     private MainModel mainModel;
     private GameManager gameManager;
     private File selectedFile;
+    private MapGUI mapGUI;
 
-    public CreationGameController(CreationGameView creationGameView, MainModel mainModel, GameManager gameManager, File selectedFile) {
+    public CreationGameController(CreationGameView creationGameView, MainModel mainModel, GameManager gameManager, File selectedFile, MapGUI mapGUI) {
         this.creationGameView = creationGameView;
         this.mainModel = mainModel;
         this.gameManager = gameManager;
         this.selectedFile = selectedFile;
+        this.mapGUI = mapGUI;
     }
 
     @Override
@@ -49,6 +51,7 @@ public class CreationGameController implements ActionListener, MouseWheelListene
                 return;
             }
             gameManager.createGameData(creationGameView.getColor());
+            mapGUI.setColor(creationGameView.getColor());
             creationGameView.createCorrect();
             //MapGUI mapGUI = new MapGUI(mainModel);
             mainModel.goToMapView();

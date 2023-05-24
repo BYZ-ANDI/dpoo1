@@ -78,5 +78,6 @@ public class MainView extends JFrame {
     }
     public void showMapView(){
         cardLayout.show(getContentPane(), "Map");
+        mapGUI.createMapGUI();
     }
 }
