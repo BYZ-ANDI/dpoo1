@@ -41,7 +41,8 @@ public class Main {
         mapGUI.MapGUIController(gameController);
         CreationGameView creationGameView = new CreationGameView();
         GameTrackingController gameTrackingController = new GameTrackingController(mainModel, gameManager);
-        MainView mainView = new MainView(mainModel, logView, logoutView, registerView, mainMenuView, creationGameView, mapGUI, gameTrackingController);
+        LogsView logsView = new LogsView();
+        MainView mainView = new MainView(mainModel, logView, logoutView, registerView, mainMenuView, creationGameView, mapGUI, gameTrackingController, logsView);
 
         UserManager userManager = new UserManager(user, userDAO);
 

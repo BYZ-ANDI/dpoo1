@@ -41,4 +41,13 @@ public class Player {
     public void setClasified(String clasified) {
         this.clasified = clasified;
     }
+    public void toggleClassification() {
+        if (clasified.equals("Unknown")) {
+            clasified = "Suspicious";
+        } else if (clasified.equals("Suspicious")) {
+            clasified = "Not Suspicious";
+        } else if (clasified.equals("Not Suspicious")) {
+            clasified = "Unknown";
+        }
+    }
 }
