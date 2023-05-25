@@ -16,6 +16,7 @@ public class GameController implements ActionListener {
     private MapGUI mapGUI;
     private List<Room> rooms;
     private Room[][] roomsMatrix = new Room[4][4];
+    private boolean toggleButtonPressed = false;
     public GameController(GameManager gameManager, MapGUI mapGUI){
         this.gameManager = gameManager;
         this.mapGUI = mapGUI;
@@ -65,6 +66,16 @@ public class GameController implements ActionListener {
                     //enviar a vista nueva posicion de X
                 }
             }
+        }
+        if(e.getActionCommand().equals("toggle")){
+            if (!toggleButtonPressed){
+                toggleButtonPressed = true;
+                mapGUI.seeMap();
+            } else {
+                toggleButtonPressed = false;
+                mapGUI.hideMap();
+            }
+
         }
         if(e.getActionCommand().equals("EXIT")){
             //gameExit();
