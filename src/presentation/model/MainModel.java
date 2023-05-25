@@ -1,14 +1,17 @@
 package presentation.model;
 
+import Business.entities.Player;
 import Business.entities.Room;
 import persistence.MapsDAO;
 import presentation.controllers.MainController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainModel {
     private MapsDAO mapsDAO;
     private List<Room> rooms;
+    private List<Player> personajes;
     private  MainController mainController;
     public MainModel(List<Room> rooms, MapsDAO mapsDAO) {
         this.rooms = rooms;
@@ -32,6 +35,7 @@ public class MainModel {
     public void goToMapView(){
         mainController.changeToMapView();
     }
+    public void goToGameTrackingView() {mainController.changeToGameTrackingView();}
     public void setController(MainController mainController) {
         this.mainController = mainController;
     }
@@ -40,5 +44,14 @@ public class MainModel {
     }
     public List<Room> getRooms(){
         return rooms;
+    }
+    public List<Player> getPers() {
+        personajes = new ArrayList<>();
+        personajes.add(new Player("RED", true, "Spawn", "Unknown"));
+        personajes.add(new Player("BLUE", true, "Spawn", "Unknown"));
+        personajes.add(new Player("ORANGE", true, "Spawn", "Unknown"));
+        personajes.add(new Player("GREEN", true, "Spawn", "Unknown"));
+
+        return personajes;
     }
 }

@@ -15,7 +15,8 @@ public class MainView extends JFrame {
     private MainMenuView mainMenuView;
     private CreationGameView creationGameView;
     private MapGUI mapGUI;
-    public MainView(MainModel mainModel, LogView logView, LogoutView logoutView, RegisterView registerView, MainMenuView mainMenuView, CreationGameView creationGameView, MapGUI mapGUI) {
+    private GameTrackingController gameTrackingController;
+    public MainView(MainModel mainModel, LogView logView, LogoutView logoutView, RegisterView registerView, MainMenuView mainMenuView, CreationGameView creationGameView, MapGUI mapGUI, GameTrackingController gameTrackingController) {
         this.mainModel = mainModel;
         this.logView = logView;
         this.logoutView = logoutView;
@@ -23,6 +24,7 @@ public class MainView extends JFrame {
         this.mainMenuView = mainMenuView;
         this.creationGameView = creationGameView;
         this.mapGUI = mapGUI;
+        this.gameTrackingController = gameTrackingController;
         setLayout(new BorderLayout());
         configWindow();
         configLayout();
@@ -55,10 +57,15 @@ public class MainView extends JFrame {
 
         mapGUI.setName("Map");
         getContentPane().add(mapGUI, "Map");
+
+        gameTrackingController.getGameTrackingView().setName("Game Tracking");
+        getContentPane().add(gameTrackingController.getGameTrackingView(), "Game Tracking");
+
     }
     public void start() {
         //showLogoutView();
-        showMainMenuView();
+        //showMainMenuView();
+        showGameTrackingView();
         setVisible(true);
     }
     public void showLoginView() {
@@ -79,5 +86,9 @@ public class MainView extends JFrame {
     public void showMapView(){
         cardLayout.show(getContentPane(), "Map");
         mapGUI.createMapGUI();
+    }
+    public void showGameTrackingView() {
+        cardLayout.show(getContentPane(), "Game Tracking");
+        gameTrackingController.getGameTrackingView().configLayout();
     }
 }

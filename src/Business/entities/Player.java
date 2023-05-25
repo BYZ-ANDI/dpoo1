@@ -6,11 +6,13 @@ public class Player {
     private String color;
     private boolean alive;
     private String room;
+    private String clasified;
 
-    public Player(String color, boolean alive, String room) {
+    public Player(String color, boolean alive, String room, String clasified) {
         this.color = color;
         this.alive = alive;
         this.room = room;
+        this.clasified = clasified;
     }
 
     public String getColor() {
@@ -30,5 +32,13 @@ public class Player {
     }
     public void setRoom(String room) {
         this.room = room;
+    }
+
+    public String getClasified() {
+        return clasified;
+    }
+
+    public void setClasified(String clasified) {
+        this.clasified = clasified;
     }
 }

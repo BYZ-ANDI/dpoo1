@@ -27,9 +27,12 @@ public class MapGUI extends JPanel {
     private int XCirclePosition;
     private int YCirclePosition;
     private String userColor;
+    private Room[][] roomsMatrix = new Room[4][4];
+    private Map<String, Color> colorMap;
     //--------------Creación matriz mapa--------------
 
     private  JPanel[][] cells;
+    private JLabel roomLabel;
 
     private Map<String, Color> createColorMap() {
         Map<String, Color> colorMap = new java.util.HashMap<>();
@@ -41,6 +44,31 @@ public class MapGUI extends JPanel {
         colorMap.put("MAGENTA", Color.MAGENTA);
         colorMap.put("ORANGE", Color.ORANGE);
         return colorMap;
+    }
+
+    private String fromColorToRGB(String color){
+        if (color.equals("RED")){
+            return "255,0,0";
+        }
+        if (color.equals("BLUE")){
+            return "25,135,189";
+        }
+        if (color.equals("GRAY")){
+            return "111,116,119";
+        }
+        if (color.equals("BLACK")){
+            return "0,0,0";
+        }
+        if (color.equals("GREEN")){
+            return "48,144,50";
+        }
+        if (color.equals("MAGENTA")){
+            return "207,52,118";
+        }
+        if (color.equals("ORANGE")){
+            return "255,165,0";
+        }
+        return null;
     }
 
     private void updateView(boolean isGlobalView, Map<String, Color> colorMap) {
@@ -78,7 +106,7 @@ public class MapGUI extends JPanel {
         contentPanel = new JPanel();
         contentPanel.setLayout(new GridLayout(4, 4));
 
-        Map<String, Color> colorMap = createColorMap();
+        colorMap = createColorMap();
 
         /*for (Room room : rooms) {
             String colorName = room.getColour();
@@ -91,21 +119,23 @@ public class MapGUI extends JPanel {
             contentPanel.add(roomLabel);
         }*/
         cells = new JPanel[4][4];
+        setRoomMatrix(rooms);
         int iterador = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 cells[i][j] = new JPanel();
-                cells[i][j].setBorder(new LineBorder(Color.black,1));
+                cells[i][j].setBorder(new LineBorder(Color.white,1));
                 cells[i][j].setPreferredSize(new Dimension(150,150));
                 String colorName = rooms.get(iterador).getColour();
-                Color color = colorMap.get(colorName);
-                JLabel roomLabel = new JLabel(rooms.get(iterador).getId());
+                String colorRGB = fromColorToRGB(colorName);
+                String[] colorNameParts = colorRGB.split(",");
+                roomLabel = new JLabel(rooms.get(iterador).getId());
                 roomLabel.setBorder(new LineBorder(Color.black,1));
-                roomLabel.setBackground(color);
-                cells[i][j].setBackground(color);
-                roomLabel.setOpaque(true);
+                roomLabel.setBackground(new Color(Integer.parseInt(colorNameParts[0]),Integer.parseInt(colorNameParts[1]),Integer.parseInt(colorNameParts[2]), (int) (0.2f * 127)));
+                cells[i][j].setBackground(new Color(Integer.parseInt(colorNameParts[0]),Integer.parseInt(colorNameParts[1]),Integer.parseInt(colorNameParts[2]), (int) (0.2f * 127)));
+                roomLabel.setOpaque(false);
                 roomLabel.setSize(150,150);
-                cells[i][j].add(roomLabel);
+                //cells[i][j].add(roomLabel); // texto de cada room
                 contentPanel.add(cells[i][j]);
                 iterador++;
             }
@@ -133,12 +163,25 @@ public class MapGUI extends JPanel {
             //playerLabel.setVerticalAlignment(SwingConstants.CENTER);
             //playerLabel.setText(player.getPlayerName());
             //playerLabel.setText("Tripulante");
-            circle = new Circle();
+            circle = new Circle(userColor);
             //circle.setColor(userColor);
             cells[0][0].add(circle);
+            String colorName = roomsMatrix[0][0].getColour();
+            Color color = colorMap.get(colorName);
+            cells[0][0].setBackground(color);
             YCirclePosition = 0;
             XCirclePosition = 0;
         //}
+    }
+
+    private void setRoomMatrix(List<Room> rooms) {
+        int iterador = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                roomsMatrix[i][j] = rooms.get(iterador);
+                iterador++;
+            }
+        }
     }
 
     public void MapGUIController(ActionListener listener){
@@ -150,6 +193,8 @@ public class MapGUI extends JPanel {
         moveLeftButton.setActionCommand("left");
         moveRightButton.addActionListener(listener);
         moveRightButton.setActionCommand("right");
+        toggleVisionButton.addActionListener(listener);
+        toggleVisionButton.setActionCommand("toggle");
     }
     public int getYCirclePosition(){
         return YCirclePosition;
@@ -158,14 +203,44 @@ public class MapGUI extends JPanel {
         return XCirclePosition;
     }
     public void uptadeCirclePosition(int i, int j){
+        cells[YCirclePosition][XCirclePosition].setBackground(new Color(255,0,0, (int) (0.2f * 127)));
         YCirclePosition = i;
         XCirclePosition = j;
         cells[i][j].add(circle);
+        String colorName = roomsMatrix[i][j].getColour();
+        Color color = colorMap.get(colorName);
+        cells[i][j].setBackground(color);
         repaint();
+
     }
 
     public List<Room> getRooms() {
         return rooms;
+    }
+
+    public void seeMap() {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                String colorName = roomsMatrix[i][j].getColour();
+                Color color = colorMap.get(colorName);
+                cells[i][j].setBackground(color);
+            }
+        }
+    }
+
+    public void hideMap(){
+        int iterador = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                String colorName = rooms.get(iterador).getColour();
+                String colorRGB = fromColorToRGB(colorName);
+                String[] colorNameParts = colorRGB.split(",");
+                roomLabel.setBackground(new Color(Integer.parseInt(colorNameParts[0]),Integer.parseInt(colorNameParts[1]),Integer.parseInt(colorNameParts[2]), (int) (0.2f * 127)));
+                roomLabel.setOpaque(false);
+                cells[i][j].setBackground(new Color(Integer.parseInt(colorNameParts[0]),Integer.parseInt(colorNameParts[1]),Integer.parseInt(colorNameParts[2]), (int) (0.2f * 127)));
+                iterador++;
+            }
+        }
     }
 
     private class ToggleVisionListener implements ActionListener {

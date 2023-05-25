@@ -27,4 +27,7 @@ public class MainController {
     public void changeToMapView(){
         mainView.showMapView();
     }
+    public void changeToGameTrackingView() {
+        mainView.showGameTrackingView();
+    }
 }
