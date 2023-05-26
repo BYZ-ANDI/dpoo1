@@ -52,6 +52,7 @@ public class CreationGameController implements ActionListener, MouseWheelListene
             }
             gameManager.createGameData(creationGameView.getColor());
             mapGUI.setColor(creationGameView.getColor());
+            mapGUI.setNumImpostores(creationGameView.getNumImpos(),creationGameView.getNumPers());
             creationGameView.createCorrect();
             //MapGUI mapGUI = new MapGUI(mainModel);
             mainModel.goToMapView();

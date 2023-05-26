@@ -38,6 +38,7 @@ public class Main {
         MapGUI mapGUI = new MapGUI(mainModel);
         GameManager gameManager = new GameManager(game,gameDAO,user);
         GameController gameController = new GameController(gameManager,mapGUI, mainModel);
+        mapGUI.setGameController(gameController);
         mapGUI.MapGUIController(gameController);
         CreationGameView creationGameView = new CreationGameView();
         GameTrackingController gameTrackingController = new GameTrackingController(mainModel, gameManager);

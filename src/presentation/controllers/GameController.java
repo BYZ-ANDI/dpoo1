@@ -1,29 +1,37 @@
 package presentation.controllers;
 
 import Business.GameManager;
+import Business.ImpostorManager;
 import Business.entities.Room;
 import presentation.model.MainModel;
 import presentation.views.MapGUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameController implements ActionListener {
     private int posX;
     private int posY;
     private boolean[][] gameBoardMatrix = new boolean[4][4];
     private MainModel mainModel;
-
     private GameManager gameManager;
     private MapGUI mapGUI;
     private List<Room> rooms;
     private Room[][] roomsMatrix = new Room[4][4];
+    private int xImpostor = 0;
+    private int yImpostor = 0;
     private boolean toggleButtonPressed = false;
     public GameController(GameManager gameManager, MapGUI mapGUI, MainModel mainModel){
         this.gameManager = gameManager;
         this.mapGUI = mapGUI;
         this.mainModel = mainModel;
+    }
+    public void startImposterManager(){
+        ImpostorManager impostorManager = new ImpostorManager();
+        impostorManager.startImpostor(xImpostor, yImpostor);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -115,5 +123,13 @@ public class GameController implements ActionListener {
     }
     private void gameExit(String partidaName, int n_personajes, int n_impostores, String mapa){
         gameManager.savePartida(partidaName,n_personajes,n_impostores,mapa);
+    }
+
+    public void setFila(int impostorYPosition) {
+        this.posY = impostorYPosition;
+    }
+
+    public void setColumna(int impostorXPosition) {
+        this.posX = impostorXPosition;
     }
 }

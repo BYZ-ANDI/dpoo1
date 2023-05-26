@@ -11,6 +11,7 @@ import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,13 +27,18 @@ public class MapGUI extends JPanel {
     private JButton logoutButton = new JButton("Logout");
     private Circle circle;
     private int XCirclePosition;
+    private int impostorXPosition;
+    private int impostorYPosition;
     private int YCirclePosition;
     private String userColor;
     private Room[][] roomsMatrix = new Room[4][4];
     private Map<String, Color> colorMap;
     private  JPanel[][] cells;
     private JLabel roomLabel;
-
+    private int numImpostores = 0;
+    private int numTripulantes = 0;
+    private JLabel status = new JLabel();
+    private GameController gameController;
     private Map<String, Color> createColorMap() {
         Map<String, Color> colorMap = new java.util.HashMap<>();
         colorMap.put("RED", Color.RED);
@@ -44,6 +50,16 @@ public class MapGUI extends JPanel {
         colorMap.put("ORANGE", Color.ORANGE);
         return colorMap;
     }
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
+
+    public void setNumImpostores(int numImpostores, int numTripulantes) {
+        this.numImpostores = numImpostores;
+        this.numTripulantes = numTripulantes-numImpostores;
+    }
+
     private String fromColorToRGB(String color){
         if (color.equals("RED")){
             return "255,0,0";
@@ -68,28 +84,13 @@ public class MapGUI extends JPanel {
         }
         return null;
     }
-    private void updateView(boolean isGlobalView, Map<String, Color> colorMap) {
-        for (Component component : contentPanel.getComponents()) {
-            if (component instanceof JLabel) {
-                JLabel label = (JLabel) component;
-                String colorName = label.getBackground().getRed() + "," + label.getBackground().getGreen() + "," + label.getBackground().getBlue();
-
-                if (isGlobalView || label.getText().equals("Spawn")) {
-                    // Global view or player's room, keep the color unchanged
-                    label.setBackground(colorMap.get(colorName));
-                } else {
-                    // Limited view, darken the color of other rooms
-                    label.setBackground(Color.DARK_GRAY);
-                }
-            }
-        }
-    }
     public MapGUI(MainModel mainModel) {
         this.mainModel = mainModel;
     }
     public void setColor(String color){
         this.userColor = color;
     }
+
     public void createMapGUI(){
         rooms = mainModel.getRooms();
 
@@ -154,9 +155,30 @@ public class MapGUI extends JPanel {
             String colorName = roomsMatrix[0][0].getColour();
             Color color = colorMap.get(colorName);
             cells[0][0].setBackground(color);
+            circle.add(status);
             YCirclePosition = 0;
             XCirclePosition = 0;
-        //}
+        for (int i = 0; i < numImpostores; i++) {
+            Circle circle2 = new Circle("blau");
+            cells[0][0].add(circle2);
+            String colorName2 = roomsMatrix[0][0].getColour();
+            Color color2 = colorMap.get(colorName2);
+            cells[0][0].setBackground(color2);
+            impostorXPosition = 0;
+            impostorYPosition = 0;
+            gameController.setFila(impostorYPosition);
+            gameController.setColumna(impostorXPosition);
+            gameController.startImposterManager();
+        }
+        for (int i = 0; i < numTripulantes-1; i++) {
+            Circle circle2 = new Circle("groc");
+            cells[0][0].add(circle2);
+            String colorName2 = roomsMatrix[0][0].getColour();
+            Color color2 = colorMap.get(colorName2);
+            cells[0][0].setBackground(color2);
+            YCirclePosition = 0;
+            XCirclePosition = 0;
+        }
     }
 
     private void setRoomMatrix(List<Room> rooms) {
@@ -196,6 +218,7 @@ public class MapGUI extends JPanel {
         String colorName = roomsMatrix[i][j].getColour();
         Color color = colorMap.get(colorName);
         cells[i][j].setBackground(color);
+        status.setText("X");
         repaint();
 
     }

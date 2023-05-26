@@ -4,9 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Circle extends JPanel {
-    private static final int WIDTH = 10;
-    private static final int HEIGHT = 10;
-    private Graphics2D g2d;
+    private static final int WIDTH = 20;
+    private static final int HEIGHT = 20;
     private Color color;
 
 
