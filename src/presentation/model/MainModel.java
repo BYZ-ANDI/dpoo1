@@ -1,5 +1,6 @@
 package presentation.model;
 
+import Business.entities.Logs;
 import Business.entities.Player;
 import Business.entities.Room;
 import persistence.MapsDAO;
@@ -12,6 +13,7 @@ public class MainModel {
     private MapsDAO mapsDAO;
     private List<Room> rooms;
     private List<Player> personajes;
+    private List<Logs> logs;
     private  MainController mainController;
     public MainModel(List<Room> rooms, MapsDAO mapsDAO) {
         this.rooms = rooms;
@@ -36,6 +38,9 @@ public class MainModel {
         mainController.changeToMapView();
     }
     public void goToGameTrackingView() {mainController.changeToGameTrackingView();}
+    public void goToLogsView(){
+        mainController.changeToLogsView();
+    }
     public void setController(MainController mainController) {
         this.mainController = mainController;
     }
@@ -53,5 +58,10 @@ public class MainModel {
         personajes.add(new Player("GREEN", true, "Spawn", "Unknown"));
 
         return personajes;
+    }
+    public List<Logs> getLogs() {
+        logs = new ArrayList<>();
+
+        return logs;
     }
 }

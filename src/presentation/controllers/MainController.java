@@ -30,4 +30,8 @@ public class MainController {
     public void changeToGameTrackingView() {
         mainView.showGameTrackingView();
     }
+    public void changeToLogsView() {
+        mainView.showLogsView();
+    }
+
 }

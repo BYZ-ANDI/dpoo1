@@ -16,7 +16,9 @@ public class MainView extends JFrame {
     private CreationGameView creationGameView;
     private MapGUI mapGUI;
     private GameTrackingController gameTrackingController;
-    public MainView(MainModel mainModel, LogView logView, LogoutView logoutView, RegisterView registerView, MainMenuView mainMenuView, CreationGameView creationGameView, MapGUI mapGUI, GameTrackingController gameTrackingController) {
+    private LogsView logsView;
+
+    public MainView(MainModel mainModel, LogView logView, LogoutView logoutView, RegisterView registerView, MainMenuView mainMenuView, CreationGameView creationGameView, MapGUI mapGUI, GameTrackingController gameTrackingController, LogsView logsView) {
         this.mainModel = mainModel;
         this.logView = logView;
         this.logoutView = logoutView;
@@ -25,17 +27,19 @@ public class MainView extends JFrame {
         this.creationGameView = creationGameView;
         this.mapGUI = mapGUI;
         this.gameTrackingController = gameTrackingController;
+        this.logsView = logsView;
         setLayout(new BorderLayout());
         configWindow();
         configLayout();
     }
 
     private void configWindow() {
-        setSize(900,650);
+        setSize(900, 650);
         setTitle("Between Us");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
     private void configLayout() {
         cardLayout = new CardLayout();
         getContentPane().setLayout(cardLayout);
@@ -61,34 +65,48 @@ public class MainView extends JFrame {
         gameTrackingController.getGameTrackingView().setName("Game Tracking");
         getContentPane().add(gameTrackingController.getGameTrackingView(), "Game Tracking");
 
+        logsView.setName("Logs");
+        getContentPane().add(logsView, "Logs");
     }
+
     public void start() {
         //showLogoutView();
         //showMainMenuView();
-        showGameTrackingView();
+        showLoginView();
         setVisible(true);
     }
+
     public void showLoginView() {
         cardLayout.show(getContentPane(), "Log In");
     }
+
     public void showRegisterView() {
         cardLayout.show(getContentPane(), "Register");
     }
+
     public void showLogoutView() {
         cardLayout.show(getContentPane(), "Logout");
     }
+
     public void showMainMenuView() {
         cardLayout.show(getContentPane(), "Menu");
     }
+
     public void showCreationGameView() {
         cardLayout.show(getContentPane(), "Creation Game");
     }
-    public void showMapView(){
+
+    public void showMapView() {
         cardLayout.show(getContentPane(), "Map");
         mapGUI.createMapGUI();
     }
+
     public void showGameTrackingView() {
         cardLayout.show(getContentPane(), "Game Tracking");
         gameTrackingController.getGameTrackingView().configLayout();
+    }
+
+    public void showLogsView() {
+        cardLayout.show(getContentPane(), "Logs");
     }
 }
