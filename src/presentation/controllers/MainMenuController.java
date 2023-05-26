@@ -27,7 +27,17 @@ public class MainMenuController implements ActionListener {
         } else if(e.getActionCommand().equals(mainMenuView.GAME_COMMAND)) {
             // Buscar partida por el nombre.
         } else if(e.getActionCommand().equals(mainMenuView.SAMEGAME_COMMAND)) {
-            // Buscar partida con el mismo nombre.
+            if (mainMenuView.getJtfSameGame().isEmpty()){
+                mainMenuView.emptyNameSettingsGame();
+            }else if(mainMenuView.getJtfSameGameName().isEmpty()){
+                mainMenuView.emptyNameNewGame();
+            }else{
+                if (gameManager.inicarGame(mainMenuView.getJtfSameGame(), mainMenuView.getJtfSameGameName())){
+                    mainMenuView.GameLoadSuccessMessage();
+                }else {
+                    mainMenuView.GameLoadErrorMessage();
+                }
+            }
         } else if(e.getActionCommand().equals(mainMenuView.LOGOUT_COMMAND)) {
             mainModel.goToLogoutView();
         } else if(e.getActionCommand().equals(mainMenuView.DELETE_COMMAND)) {

@@ -19,25 +19,29 @@ public class GameManager {
         this.gameDAO = gameDAO;
         this.user = user;
     }
-
     public void createGame(String name_game, int N_persponajes, int N_impostores, String color, String mapa){
         game.setName(name_game);
         game.setN_impostores(N_persponajes);
         game.setN_persponajes(N_impostores);
         game.setMapa(mapa);
     }
-
     public void createGameData(String color) {
         gameDAO.gameRecord(game, user, color);
     }
 
-    public void inicarGame(String name_game, int N_persponajes, int N_impostores, String mapa){
-        game.setName(name_game);
-        game.setN_impostores(N_persponajes);
-        game.setN_persponajes(N_impostores);
-        game.setMapa(mapa);
+    public boolean inicarGame(String name_game, String new_game_name){
+        String color;
 
-        gameDAO.startGame(game);
+        if(!gameDAO.findGame(name_game)){
+            return false;
+        }
+
+        game = gameDAO.startGame(name_game, new_game_name, game);
+
+        color = gameDAO.getGameColor(name_game);
+        gameDAO.gameRecord(game,user, color);
+
+        return true;
     }
 
     public boolean deleteGame(String game_game){

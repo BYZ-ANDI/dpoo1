@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class MainMenuView extends JPanel {
     private JPanel jpMenu, jpPanel, jpLogout;
-    private JLabel jlCreateNewGame, jlGame, jlSameGame, jlTitle;
-    private JTextField jtfSameGame, jtfGame;
+    private JLabel jlCreateNewGame, jlGame, jlSameGameTitle, jlSameGame, jlfSameGameName, jlTitle;
+    private JTextField jtfSameGame, jtfSameGameName, jtfGame;
     private JButton jbCreateNewGame, jbCreateGame, jbGame, jbLogout, jbDelete;
     private JImagePanel jiPanel;
 
@@ -47,15 +47,18 @@ public class MainMenuView extends JPanel {
         jlGame = new JLabel("Continue a Game: ");
         jtfGame = new JTextField();
         jbGame = new JButton("Continue a Game");
-        jlSameGame = new JLabel("Create a new Game manteining settings: ");
+        jlSameGame = new JLabel("Create a new Game manteining settings or delete it");
+        jlSameGameTitle = new JLabel("Name of the Game to copy settings or to delete it:");
         jtfSameGame = new JTextField();
+        jlfSameGameName = new JLabel("Name of the new game:");
+        jtfSameGameName = new JTextField();
         jbCreateGame = new JButton("Create a Game");
         jbLogout = new JButton("Logout");
         jbDelete = new JButton("Delete a Game");
 
         JPanel jpBoxes = new JPanel(new GridLayout(0, 1, 0, 5));
         jpBoxes.setBackground(new Color (80, 100, 200));
-        jpBoxes.setPreferredSize(new Dimension(400, 250));
+        jpBoxes.setPreferredSize(new Dimension(400, 350));
 
         Font title_font = new Font("Roboto Slab", Font.BOLD + Font.ITALIC, 20);
         jlTitle.setFont(title_font);
@@ -63,12 +66,17 @@ public class MainMenuView extends JPanel {
         Font text_font = new Font("Oswald", Font.BOLD + Font.ITALIC, 12);
         jlCreateNewGame.setFont(text_font);
         jlGame.setFont(text_font);
+
+        jlSameGameTitle.setFont(text_font);
         jlSameGame.setFont(text_font);
+        jlfSameGameName.setFont(text_font);
 
         jlTitle.setForeground(Color.WHITE);
         jlCreateNewGame.setForeground(Color.WHITE);
         jlGame.setForeground(Color.WHITE);
         jlSameGame.setForeground(Color.WHITE);
+        jlfSameGameName.setForeground(Color.WHITE);
+        jlSameGameTitle.setForeground(Color.WHITE);
 
         jpBoxes.add(jlTitle);
         jpBoxes.add(jlCreateNewGame);
@@ -79,7 +87,10 @@ public class MainMenuView extends JPanel {
         jpBoxes.add(jbGame);
         jbGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         jpBoxes.add(jlSameGame);
+        jpBoxes.add(jlSameGameTitle);
         jpBoxes.add(jtfSameGame);
+        jpBoxes.add(jlfSameGameName);
+        jpBoxes.add(jtfSameGameName);
         jpBoxes.add(jbCreateGame);
         jbCreateGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         jpBoxes.add(jbDelete);
@@ -129,15 +140,30 @@ public class MainMenuView extends JPanel {
     public String getJtfSameGame() {
         return jtfSameGame.getText();
     }
+    public String getJtfSameGameName() {
+        return jtfSameGameName.getText();
+    }
 
     public void start() {
         setVisible(true);
     }
-
     public void GameDeletionErrorMessage() {
         JOptionPane.showMessageDialog(null, "El nom d'aquesta partida no existeix!", "Error", JOptionPane.ERROR_MESSAGE);
     }
     public void GameDeletionSuccessMessage() {
         JOptionPane.showMessageDialog(null, "S'ha borrat la partida correctament!", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
+    public void GameLoadErrorMessage() {
+        JOptionPane.showMessageDialog(null, "El nom d'aquesta partida ja creada no existeix!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    public void GameLoadSuccessMessage() {
+        JOptionPane.showMessageDialog(null, "S'ha creat la partida correctament!", "Success", JOptionPane.INFORMATION_MESSAGE);
+    }
+    public void emptyNameNewGame() {
+        JOptionPane.showMessageDialog(null, "No has introduït res al nom de la nova partida!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    public void emptyNameSettingsGame() {
+        JOptionPane.showMessageDialog(null, "No has introduït res al nom del joc ja creat!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
 }
