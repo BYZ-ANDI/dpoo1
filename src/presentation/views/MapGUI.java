@@ -23,14 +23,13 @@ public class MapGUI extends JPanel {
     private JButton moveDownButton = new JButton("Down");
     private JButton moveLeftButton = new JButton("Left");
     private JButton moveRightButton = new JButton("Right");
+    private JButton logoutButton = new JButton("Logout");
     private Circle circle;
     private int XCirclePosition;
     private int YCirclePosition;
     private String userColor;
     private Room[][] roomsMatrix = new Room[4][4];
     private Map<String, Color> colorMap;
-    //--------------Creación matriz mapa--------------
-
     private  JPanel[][] cells;
     private JLabel roomLabel;
 
@@ -45,7 +44,6 @@ public class MapGUI extends JPanel {
         colorMap.put("ORANGE", Color.ORANGE);
         return colorMap;
     }
-
     private String fromColorToRGB(String color){
         if (color.equals("RED")){
             return "255,0,0";
@@ -70,7 +68,6 @@ public class MapGUI extends JPanel {
         }
         return null;
     }
-
     private void updateView(boolean isGlobalView, Map<String, Color> colorMap) {
         for (Component component : contentPanel.getComponents()) {
             if (component instanceof JLabel) {
@@ -87,39 +84,27 @@ public class MapGUI extends JPanel {
             }
         }
     }
-
     public MapGUI(MainModel mainModel) {
         this.mainModel = mainModel;
     }
     public void setColor(String color){
         this.userColor = color;
     }
-
     public void createMapGUI(){
         rooms = mainModel.getRooms();
 
-        setSize(600, 400);
+        setSize(600, 900);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout(5,5));
         mainPanel.setSize(600,600);
 
         contentPanel = new JPanel();
         contentPanel.setLayout(new GridLayout(4, 4));
-
         colorMap = createColorMap();
-
-        /*for (Room room : rooms) {
-            String colorName = room.getColour();
-            Color color = colorMap.get(colorName);
-
-            JLabel roomLabel = new JLabel(room.getId());
-            roomLabel.setBorder(new LineBorder(Color.black,1));
-            roomLabel.setBackground(color);
-            roomLabel.setOpaque(true);
-            contentPanel.add(roomLabel);
-        }*/
         cells = new JPanel[4][4];
+
         setRoomMatrix(rooms);
+
         int iterador = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -135,7 +120,6 @@ public class MapGUI extends JPanel {
                 cells[i][j].setBackground(new Color(Integer.parseInt(colorNameParts[0]),Integer.parseInt(colorNameParts[1]),Integer.parseInt(colorNameParts[2]), (int) (0.2f * 127)));
                 roomLabel.setOpaque(false);
                 roomLabel.setSize(150,150);
-                //cells[i][j].add(roomLabel); // texto de cada room
                 contentPanel.add(cells[i][j]);
                 iterador++;
             }
@@ -150,6 +134,7 @@ public class MapGUI extends JPanel {
         buttonPanel.add(moveDownButton);
         buttonPanel.add(moveLeftButton);
         buttonPanel.add(moveRightButton);
+        buttonPanel.add(logoutButton);
 
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
         add(mainPanel);
@@ -183,7 +168,6 @@ public class MapGUI extends JPanel {
             }
         }
     }
-
     public void MapGUIController(ActionListener listener){
         moveUpButton.addActionListener(listener);
         moveUpButton.setActionCommand("up");
@@ -195,6 +179,8 @@ public class MapGUI extends JPanel {
         moveRightButton.setActionCommand("right");
         toggleVisionButton.addActionListener(listener);
         toggleVisionButton.setActionCommand("toggle");
+        logoutButton.addActionListener(listener);
+        logoutButton.setActionCommand("logout");
     }
     public int getYCirclePosition(){
         return YCirclePosition;
@@ -213,11 +199,9 @@ public class MapGUI extends JPanel {
         repaint();
 
     }
-
     public List<Room> getRooms() {
         return rooms;
     }
-
     public void seeMap() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -227,7 +211,6 @@ public class MapGUI extends JPanel {
             }
         }
     }
-
     public void hideMap(){
         int iterador = 0;
         for (int i = 0; i < 4; i++) {
@@ -243,21 +226,6 @@ public class MapGUI extends JPanel {
         }
     }
 
-    private class ToggleVisionListener implements ActionListener {
-        private boolean isGlobalView = true;
-
-        public void actionPerformed(ActionEvent e) {
-            isGlobalView = !isGlobalView;
-            Map<String, Color> colorMap = createColorMap();
-            updateView(isGlobalView, colorMap);
-
-            toggleVisionButton.setText(isGlobalView ? "Limited Vision" : "Global Vision");
-            moveUpButton.setVisible(true);
-            moveDownButton.setVisible(true);
-            moveLeftButton.setVisible(true);
-            moveRightButton.setVisible(true);
-        }
-    }
     /*public static void main(String[] args) {
         List<Room> rooms;
         MapsDAO mapDAO = new MapsDAO();

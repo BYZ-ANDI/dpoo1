@@ -2,6 +2,7 @@ package presentation.controllers;
 
 import Business.GameManager;
 import Business.entities.Room;
+import presentation.model.MainModel;
 import presentation.views.MapGUI;
 
 import java.awt.event.ActionEvent;
@@ -12,14 +13,17 @@ public class GameController implements ActionListener {
     private int posX;
     private int posY;
     private boolean[][] gameBoardMatrix = new boolean[4][4];
+    private MainModel mainModel;
+
     private GameManager gameManager;
     private MapGUI mapGUI;
     private List<Room> rooms;
     private Room[][] roomsMatrix = new Room[4][4];
     private boolean toggleButtonPressed = false;
-    public GameController(GameManager gameManager, MapGUI mapGUI){
+    public GameController(GameManager gameManager, MapGUI mapGUI, MainModel mainModel){
         this.gameManager = gameManager;
         this.mapGUI = mapGUI;
+        this.mainModel = mainModel;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -77,7 +81,8 @@ public class GameController implements ActionListener {
             }
 
         }
-        if(e.getActionCommand().equals("EXIT")){
+        if(e.getActionCommand().equals("logout")){
+            mainModel.goToLogoutView();
             //gameExit();
             //recibir de gameView los parámetros
         }

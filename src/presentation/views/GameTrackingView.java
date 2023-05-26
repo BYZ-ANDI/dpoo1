@@ -29,6 +29,7 @@ public class GameTrackingView extends JPanel {
     private JButton jbLeft, jbRight;
     public static final String LEFT_COMMAND = "LEFT_COMMAND";
     public static final String RIGHT_COMMAND = "RIGHT_COMMAND";
+
     public GameTrackingView(MainModel mainmodel, GameTrackingController gameTrackingController){
         this.mainModel = mainmodel;
         this.gameTrackingController = gameTrackingController;
@@ -48,8 +49,14 @@ public class GameTrackingView extends JPanel {
         jlSus = new JLabel("Suspicious");
         jlNoSus = new JLabel("No suspicious");
         jpUnknown = new JPanel();
+        //jpUnknown.setPreferredSize(new Dimension(500, 500));;
+        jpUnknown.setLayout(new BoxLayout(jpUnknown, BoxLayout.Y_AXIS));
         jpSus = new JPanel();
+        //jpSus.setPreferredSize(new Dimension(500, 500));;
+        jpSus.setLayout(new BoxLayout(jpSus, BoxLayout.Y_AXIS));
         jpNoSus = new JPanel();
+        //jpNoSus.setPreferredSize(new Dimension(500, 500));;
+        jpNoSus.setLayout(new BoxLayout(jpNoSus, BoxLayout.Y_AXIS));
         Map<String, Color> colorMap = createColorMap();
 
         this.add(jpMain);
@@ -97,6 +104,7 @@ public class GameTrackingView extends JPanel {
     private void configAll() {
         for (Player personaje : personajes) {
             jpPers = new JPanel();
+            //jpPers.setPreferredSize(new Dimension(100,100));
             jpPers.setBackground(createColorMap().get(personaje.getColor()));
             jpPers.setLayout(new BorderLayout());
             jlTitle = new JLabel(personaje.getColor());

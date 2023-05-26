@@ -24,7 +24,7 @@ public class MainMenuView extends JPanel {
         configLayout();
     }
     private void configWindow() {
-        setSize(900,650);
+        setSize(900,900);
         //setTitle("Between Us");
         //setLocationRelativeTo(null);
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
