@@ -24,10 +24,7 @@ public class MainMenuView extends JPanel {
         configLayout();
     }
     private void configWindow() {
-        setSize(900,900);
-        //setTitle("Between Us");
-        //setLocationRelativeTo(null);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(900,650);
     }
     private void configLayout() {
         jpMenu = new JPanel();
@@ -128,7 +125,19 @@ public class MainMenuView extends JPanel {
         jbLogout.addActionListener(mainMenuController);
         jbDelete.addActionListener(mainMenuController);
     }
+
+    public String getJtfSameGame() {
+        return jtfSameGame.getText();
+    }
+
     public void start() {
         setVisible(true);
+    }
+
+    public void GameDeletionErrorMessage() {
+        JOptionPane.showMessageDialog(null, "El nom d'aquesta partida no existeix!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    public void GameDeletionSuccessMessage() {
+        JOptionPane.showMessageDialog(null, "S'ha borrat la partida correctament!", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 }

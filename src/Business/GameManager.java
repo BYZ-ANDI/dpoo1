@@ -40,6 +40,13 @@ public class GameManager {
         gameDAO.startGame(game);
     }
 
+    public boolean deleteGame(String game_game){
+        if(gameDAO.deleteGame(game_game)){
+            resetGame();
+            return true;
+        }
+        return  false;
+    }
     public boolean correctPersAndImpos(int N_impostores, int N_persponajes) {
         if (N_impostores > N_persponajes / 3) {
             resetGame();
@@ -47,14 +54,12 @@ public class GameManager {
         }
         return true;
     }
-
     public void resetGame() {
         game.setName(null);
         game.setN_persponajes(0);
         game.setN_impostores(0);
         game.setMapa(null);
     }
-
     public boolean emptyName() {
         if(game.getName().isEmpty()) {
             resetGame();

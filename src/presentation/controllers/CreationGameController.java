@@ -58,6 +58,8 @@ public class CreationGameController implements ActionListener, MouseWheelListene
             mainModel.goToMapView();
         } else if (e.getActionCommand().equals(creationGameView.LOGOUT_COMMAND)) {
             mainModel.goToLogoutView();
+        } else if (e.getActionCommand().equals(creationGameView.GO_BACK_COMMAND)) {
+            mainModel.goToMainMenuView();
         }
     }
 

@@ -7,10 +7,10 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class CreationGameView extends JPanel {
-    private JPanel jpButtons, jpPanel, jpGame, jpLogout;
+    private JPanel jpButtons, jpPanel, jpGame, jpLogout, jpGoback;
     private JLabel jlGameName, jlNumPers, jlTitle, jlNumImpos, jlColor;
     private JTextField jtfGameName;
-    private JButton jbSubmit, jbMap, jbLogout;
+    private JButton jbSubmit, jbMap, jbLogout, jbGoback;
     private JComboBox<String> jcbNumPers, jcbNumImpos, jcbColor;
     private JImagePanel jiPanel;
     public static final String NUMPERS_COMMAND = "NUMPERS_COMMAND";
@@ -19,6 +19,7 @@ public class CreationGameView extends JPanel {
     public static final String MAP_COMMAND = "MAP_COMMAND";
     public static final String SUBMIT_COMMAND = "SUBMIT_COMMAND";
     public static final String LOGOUT_COMMAND = "LOGOUT_COMMAND";
+    public static final String GO_BACK_COMMAND = "GO_BACK_COMMAND";
     public static final String[] num_players = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
     public static final String[] num_impostor = {"1", "2", "3"};
     public static final String[] colors = {"vermell", "blau", "verd", "rosa", "taronja", "groc", "negre", "blanc", "lila", "marró", "cian", "llima"};
@@ -30,13 +31,11 @@ public class CreationGameView extends JPanel {
     }
     private void configWindow() {
         setSize(900,650);
-        //setTitle("Between Us");
-        //setLocationRelativeTo(null);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     private void configLayout() {
         jpGame = new JPanel();
         jpLogout = new JPanel(new BorderLayout());
+        jpGoback = new JPanel(new BorderLayout());
         jpPanel = new JPanel(new GridBagLayout());
         jpButtons = new JPanel(new GridLayout(0, 1, 0, 5));
         jiPanel = new JImagePanel("images/betweenUsRegister.jpg");
@@ -65,6 +64,7 @@ public class CreationGameView extends JPanel {
         jbMap = new JButton("Choose Map");
         jbSubmit = new JButton("Submit");
         jbLogout = new JButton("Logout");
+        jbGoback = new JButton("Go Back");
 
         JPanel jpBoxes = new JPanel(new GridLayout(0, 1, 0, 5));
         jpBoxes.setBackground(new Color (80, 100, 200));
@@ -104,12 +104,18 @@ public class CreationGameView extends JPanel {
         jbSubmit.setAlignmentX(Component.CENTER_ALIGNMENT);
         jbSubmit.setPreferredSize(new Dimension(100, 25));
         jpLogout.add(jbLogout, BorderLayout.EAST);
+        jpGoback.add(jbGoback, BorderLayout.WEST);
+
+        JPanel jpTop = new JPanel();
+        jpTop.setLayout(new BoxLayout(jpTop, BoxLayout.Y_AXIS));
+        jpTop.add(jpLogout);
+        jpTop.add(jpGoback);
 
         jpGame.setLayout(new BorderLayout(10,10));
         jpGame.setBackground(new Color (80, 100, 200));
+        jpGame.add(jpTop, BorderLayout.NORTH);
         jpGame.add(jpBoxes, BorderLayout.CENTER);
         jpGame.add(jpButtons, BorderLayout.SOUTH);
-        jpGame.add(jpLogout, BorderLayout.NORTH);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -126,7 +132,7 @@ public class CreationGameView extends JPanel {
         gbc2.anchor = GridBagConstraints.NORTHEAST;
 
         jpPanel.add(jpGame, gbc);
-        jpPanel.add(jpLogout, gbc2);
+        jpPanel.add(jpTop, gbc2);
 
         jiPanel.setLayout(jpPanel.getLayout());
         jiPanel.add(jpPanel);
@@ -137,6 +143,7 @@ public class CreationGameView extends JPanel {
         jcbNumImpos.setName(NUMIMP_COMMAND);
         jcbColor.setName(COLORS_COMMAND);
         jbLogout.setActionCommand(LOGOUT_COMMAND);
+        jbGoback.setActionCommand(GO_BACK_COMMAND);
     }
     public void start() {
         setVisible(true);
@@ -145,6 +152,7 @@ public class CreationGameView extends JPanel {
         jbMap.addActionListener(creationGameController);
         jbSubmit.addActionListener(creationGameController);
         jbLogout.addActionListener(creationGameController);
+        jbGoback.addActionListener(creationGameController);
         jcbNumPers.addMouseWheelListener(creationGameController);
         jcbNumImpos.addMouseWheelListener(creationGameController);
         jcbColor.addMouseWheelListener(creationGameController);

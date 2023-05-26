@@ -1,7 +1,7 @@
 package presentation.controllers;
 
 import Business.GameManager;
-import Business.ImpostorManager;
+//import Business.ImpostorManager;
 import Business.entities.Room;
 import presentation.model.MainModel;
 import presentation.views.MapGUI;
@@ -29,10 +29,10 @@ public class GameController implements ActionListener {
         this.mapGUI = mapGUI;
         this.mainModel = mainModel;
     }
-    public void startImposterManager(){
+    /*public void startImposterManager(){
         ImpostorManager impostorManager = new ImpostorManager();
         impostorManager.startImpostor(xImpostor, yImpostor);
-    }
+    }*/
     @Override
     public void actionPerformed(ActionEvent e) {
         rooms = mapGUI.getRooms();

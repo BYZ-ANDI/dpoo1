@@ -1,0 +1,49 @@
+<changelist name="Uncommitted_changes_before_Update_at_26_5_23,_12_27_[Changes]" date="1685096849734" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_5_23,_12_27_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 26/5/23, 12:27 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/presentation/views/MapGUI.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/presentation/views/MapGUI.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_5_23,_12_27_[Changes]/MapGUI.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/presentation/controllers/MainMenuController.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/presentation/controllers/MainMenuController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_5_23,_12_27_[Changes]/MainMenuController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/presentation/views/CreationGameView.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/presentation/views/CreationGameView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_5_23,_12_27_[Changes]/CreationGameView.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/presentation/controllers/CreationGameController.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/presentation/controllers/CreationGameController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_5_23,_12_27_[Changes]/CreationGameController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/presentation/views/MainView.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/presentation/views/MainView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_5_23,_12_27_[Changes]/MainView.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/Business/GameManager.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/Business/GameManager.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_5_23,_12_27_[Changes]/GameManager.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/persistence/GameDAO.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/persistence/GameDAO.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_5_23,_12_27_[Changes]/GameDAO.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/Main.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_5_23,_12_27_[Changes]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/presentation/views/MainMenuView.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/presentation/views/MainMenuView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_5_23,_12_27_[Changes]/MainMenuView.class" />
+  </binary>
+</changelist>

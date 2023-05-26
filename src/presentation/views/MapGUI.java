@@ -94,7 +94,7 @@ public class MapGUI extends JPanel {
     public void createMapGUI(){
         rooms = mainModel.getRooms();
 
-        setSize(600, 900);
+        setSize(600, 600);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout(5,5));
         mainPanel.setSize(600,600);
@@ -168,7 +168,7 @@ public class MapGUI extends JPanel {
             impostorYPosition = 0;
             gameController.setFila(impostorYPosition);
             gameController.setColumna(impostorXPosition);
-            gameController.startImposterManager();
+            //gameController.startImposterManager();
         }
         for (int i = 0; i < numTripulantes-1; i++) {
             Circle circle2 = new Circle("groc");

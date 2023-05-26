@@ -1,0 +1,392 @@
+Index: src/presentation/views/MainMenuView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package presentation.views;\n\nimport presentation.controllers.MainMenuController;\n\nimport javax.swing.*;\nimport java.awt.*;\n\npublic class MainMenuView extends JPanel {\n    private JPanel jpMenu, jpPanel, jpLogout;\n    private JLabel jlCreateNewGame, jlGame, jlSameGame, jlTitle;\n    private JTextField jtfSameGame, jtfGame;\n    private JButton jbCreateNewGame, jbCreateGame, jbGame, jbLogout, jbDelete;\n    private JImagePanel jiPanel;\n\n    public static final String NEWGAME_COMMAND = \"NEWGAME_COMMAND\";\n    public static final String GAME_COMMAND = \"GAME_COMMAND\";\n    public static final String SAMEGAME_COMMAND = \"SAME_COMMAND\";\n    public static final String LOGOUT_COMMAND = \"LOGOUT_COMMAND\";\n    public static final String DELETE_COMMAND = \"DELETE_COMMAND\";\n\n    public MainMenuView(){\n        setLayout(new BorderLayout());\n        configWindow();\n        configLayout();\n    }\n    private void configWindow() {\n        setSize(900,900);\n        //setTitle(\"Between Us\");\n        //setLocationRelativeTo(null);\n        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n    }\n    private void configLayout() {\n        jpMenu = new JPanel();\n        jpLogout = new JPanel(new BorderLayout());\n        jpPanel = new JPanel(new GridBagLayout());\n        jiPanel = new JImagePanel(\"images/betweenUsRegister.jpg\");\n        jpPanel.setBackground(new Color (80, 100, 200));\n        jpPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));\n        jpPanel.setBorder(BorderFactory.createCompoundBorder(\n                BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2),\n                BorderFactory.createEmptyBorder(20, 80, 20, 10)\n        ));\n\n        this.add(jiPanel);\n\n        jlTitle = new JLabel(\"GAME MENU!\");\n        jlTitle.setHorizontalAlignment(JLabel.CENTER);\n        jlCreateNewGame = new JLabel(\"Create a new Game: \");\n        jbCreateNewGame = new JButton(\"Create new Game\");\n        jlGame = new JLabel(\"Continue a Game: \");\n        jtfGame = new JTextField();\n        jbGame = new JButton(\"Continue a Game\");\n        jlSameGame = new JLabel(\"Create a new Game manteining settings: \");\n        jtfSameGame = new JTextField();\n        jbCreateGame = new JButton(\"Create a Game\");\n        jbLogout = new JButton(\"Logout\");\n        jbDelete = new JButton(\"Delete a Game\");\n\n        JPanel jpBoxes = new JPanel(new GridLayout(0, 1, 0, 5));\n        jpBoxes.setBackground(new Color (80, 100, 200));\n        jpBoxes.setPreferredSize(new Dimension(400, 250));\n\n        Font title_font = new Font(\"Roboto Slab\", Font.BOLD + Font.ITALIC, 20);\n        jlTitle.setFont(title_font);\n\n        Font text_font = new Font(\"Oswald\", Font.BOLD + Font.ITALIC, 12);\n        jlCreateNewGame.setFont(text_font);\n        jlGame.setFont(text_font);\n        jlSameGame.setFont(text_font);\n\n        jlTitle.setForeground(Color.WHITE);\n        jlCreateNewGame.setForeground(Color.WHITE);\n        jlGame.setForeground(Color.WHITE);\n        jlSameGame.setForeground(Color.WHITE);\n\n        jpBoxes.add(jlTitle);\n        jpBoxes.add(jlCreateNewGame);\n        jpBoxes.add(jbCreateNewGame);\n        jbCreateNewGame.setAlignmentX(Component.CENTER_ALIGNMENT);\n        jpBoxes.add(jlGame);\n        jpBoxes.add(jtfGame);\n        jpBoxes.add(jbGame);\n        jbGame.setAlignmentX(Component.CENTER_ALIGNMENT);\n        jpBoxes.add(jlSameGame);\n        jpBoxes.add(jtfSameGame);\n        jpBoxes.add(jbCreateGame);\n        jbCreateGame.setAlignmentX(Component.CENTER_ALIGNMENT);\n        jpBoxes.add(jbDelete);\n        jbDelete.setAlignmentX(Component.CENTER_ALIGNMENT);\n\n        jpLogout.add(jbLogout, BorderLayout.EAST);\n\n        jpMenu.setLayout(new BorderLayout(10,10));\n        jpMenu.setBackground(new Color (80, 100, 200));\n        jpMenu.add(jpBoxes, BorderLayout.CENTER);\n        jpMenu.add(jpLogout, BorderLayout.NORTH);\n\n        GridBagConstraints gbc = new GridBagConstraints();\n        gbc.gridx = 0;\n        gbc.gridy = 0;\n        gbc.weightx = 1;\n        gbc.weighty = 1;\n        gbc.anchor = GridBagConstraints.CENTER;\n\n        GridBagConstraints gbc2 = new GridBagConstraints();\n        gbc2.gridx = 1;\n        gbc2.gridy = 0;\n        gbc2.weightx = 0;\n        gbc2.weighty = 1;\n        gbc2.anchor = GridBagConstraints.NORTHEAST;\n\n        jpPanel.add(jpMenu, gbc);\n        jpPanel.add(jpLogout, gbc2);\n\n        jiPanel.setLayout(jpPanel.getLayout());\n        jiPanel.add(jpPanel);\n\n        jbCreateNewGame.setActionCommand(NEWGAME_COMMAND);\n        jbGame.setActionCommand(GAME_COMMAND);\n        jbCreateGame.setActionCommand(SAMEGAME_COMMAND);\n        jbLogout.setActionCommand(LOGOUT_COMMAND);\n        jbDelete.setActionCommand(DELETE_COMMAND);\n    }\n    public void registController (MainMenuController mainMenuController) {\n        jbCreateNewGame.addActionListener(mainMenuController);\n        jbGame.addActionListener(mainMenuController);\n        jbCreateGame.addActionListener(mainMenuController);\n        jbLogout.addActionListener(mainMenuController);\n        jbDelete.addActionListener(mainMenuController);\n    }\n    public void start() {\n        setVisible(true);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/presentation/views/MainMenuView.java b/src/presentation/views/MainMenuView.java
+--- a/src/presentation/views/MainMenuView.java	(revision bdc006d9f4ef1e74dc2e1dc6e9cc37dbdbc5d562)
++++ b/src/presentation/views/MainMenuView.java	(date 1685096178150)
+@@ -24,10 +24,7 @@
+         configLayout();
+     }
+     private void configWindow() {
+-        setSize(900,900);
+-        //setTitle("Between Us");
+-        //setLocationRelativeTo(null);
+-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
++        setSize(900,650);
+     }
+     private void configLayout() {
+         jpMenu = new JPanel();
+@@ -128,6 +125,11 @@
+         jbLogout.addActionListener(mainMenuController);
+         jbDelete.addActionListener(mainMenuController);
+     }
++
++    public String getJtfSameGame() {
++        return jtfSameGame.getText();
++    }
++
+     public void start() {
+         setVisible(true);
+     }
+Index: src/persistence/GameDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package persistence;\n\nimport Business.entities.Game;\nimport Business.entities.User;\n\nimport java.sql.ResultSet;\nimport java.sql.SQLException;\nimport java.util.ArrayList;\nimport java.util.List;\nimport java.util.Objects;\n\npublic class GameDAO {\n\n    public void gameRecord(Game game, User user, String color){\n        List<String> games = new ArrayList<>();\n        ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select(\"SELECT nombre_partida FROM Partida;\");\n        boolean verify = true;\n\n        try {\n            while (resultSet.next()){\n                games.add(resultSet.getString(\"nombre_partida\"));\n            }\n        } catch (SQLException throwables){\n            throwables.printStackTrace();\n        }\n\n        for(String partida : games){\n            if (Objects.equals(partida, game.getName())){\n                verify = false;\n                break;\n            }\n        }\n\n        if (verify){\n            DatabaseConnection.getDatabaseConnection().insert(\"INSERT INTO Partida(nombre_partida, n_personajes, n_impostores, mapa) VALUES ('\" + game.getName() + \"','\" + game.getN_persponajes() + \"','\" + game.getN_impostores() + \"','\" + game.getMapa() + \"');\");\n            DatabaseConnection.getDatabaseConnection().insert(\"INSERT INTO Jugada(nombre_jugador, nombre_partida, color_personaje) VALUES ('\" + user.getName() + \"','\" + game.getName() + \"','\" + color + \"');\");\n        }\n    }\n\n    public boolean startGame(Game game){\n        List<String> games = new ArrayList<>();\n        ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select(\"SELECT nombre_partida FROM Partida;\");\n\n        try{\n            while (resultSet.next()){\n                games.add(resultSet.getString(\"nombre_partida\"));\n            }\n            for(int i = 0; i < games.size(); i++){\n                if(Objects.equals(game.getName(), games.get(i))){\n                    return true;\n                }\n            }\n        }catch (SQLException throwables){\n            throwables.printStackTrace();\n        }\n        return false;\n    }\n    /*\n    public void deleteGame(Game game, String name){\n        DatabaseConnection.getDatabaseConnection().delete(\"DELETE FROM Partida WHERE nombre_partida LIKE '\" + name + \"'\");\n        game = null;\n    }*/\n\n    public void saveGame(String partidaName, int n_personajes, int n_impostores, String mapa){\n        String query = \"UPDATE 'partida' SET 'n_personajes'='\"+n_personajes+\"','n_impostores'='\"+n_impostores+\"' WHERE 'nombre_partida'='\"+partidaName+\"'\";\n        DatabaseConnection.getDatabaseConnection().update(query);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/persistence/GameDAO.java b/src/persistence/GameDAO.java
+--- a/src/persistence/GameDAO.java	(revision bdc006d9f4ef1e74dc2e1dc6e9cc37dbdbc5d562)
++++ b/src/persistence/GameDAO.java	(date 1685095774841)
+@@ -55,11 +55,10 @@
+         }
+         return false;
+     }
+-    /*
+-    public void deleteGame(Game game, String name){
++
++    public void deleteGame(String name){
+         DatabaseConnection.getDatabaseConnection().delete("DELETE FROM Partida WHERE nombre_partida LIKE '" + name + "'");
+-        game = null;
+-    }*/
++    }
+ 
+     public void saveGame(String partidaName, int n_personajes, int n_impostores, String mapa){
+         String query = "UPDATE 'partida' SET 'n_personajes'='"+n_personajes+"','n_impostores'='"+n_impostores+"' WHERE 'nombre_partida'='"+partidaName+"'";
+Index: src/presentation/controllers/MainMenuController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package presentation.controllers;\n\nimport Business.GameManager;\nimport presentation.model.MainModel;\nimport presentation.views.MainMenuView;\n\nimport javax.swing.*;\nimport java.awt.event.*;\n\npublic class MainMenuController implements ActionListener {\n    private MainMenuView mainMenuView;\n    private MainModel mainModel;\n    private GameManager gameManager;\n    public MainMenuController(MainMenuView mainMenuView, MainModel mainModel, GameManager gameManager) {\n        this.mainMenuView = mainMenuView;\n        this.mainModel = mainModel;\n        this.gameManager = gameManager;\n    }\n\n    @Override\n    public void actionPerformed(ActionEvent e) {\n        if(e.getActionCommand().equals(mainMenuView.NEWGAME_COMMAND)) {\n            // Pasar a la View de Creation Game.\n            mainModel.goToCreationGameView();\n        } else if(e.getActionCommand().equals(mainMenuView.GAME_COMMAND)) {\n            // Buscar partida por el nombre.\n        } else if(e.getActionCommand().equals(mainMenuView.SAMEGAME_COMMAND)) {\n            // Buscar partida con el mismo nombre.\n        } else if(e.getActionCommand().equals(mainMenuView.LOGOUT_COMMAND)) {\n            mainModel.goToLogoutView();\n        } else if(e.getActionCommand().equals(mainMenuView.DELETE_COMMAND)) {\n            // Pasar a su lista de Games para hacer Delete.\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/presentation/controllers/MainMenuController.java b/src/presentation/controllers/MainMenuController.java
+--- a/src/presentation/controllers/MainMenuController.java	(revision bdc006d9f4ef1e74dc2e1dc6e9cc37dbdbc5d562)
++++ b/src/presentation/controllers/MainMenuController.java	(date 1685096178122)
+@@ -1,6 +1,7 @@
+ package presentation.controllers;
+ 
+ import Business.GameManager;
++import Business.entities.Game;
+ import presentation.model.MainModel;
+ import presentation.views.MainMenuView;
+ 
+@@ -11,6 +12,7 @@
+     private MainMenuView mainMenuView;
+     private MainModel mainModel;
+     private GameManager gameManager;
++
+     public MainMenuController(MainMenuView mainMenuView, MainModel mainModel, GameManager gameManager) {
+         this.mainMenuView = mainMenuView;
+         this.mainModel = mainModel;
+@@ -30,6 +32,7 @@
+             mainModel.goToLogoutView();
+         } else if(e.getActionCommand().equals(mainMenuView.DELETE_COMMAND)) {
+             // Pasar a su lista de Games para hacer Delete.
++            gameManager.deleteGame(mainMenuView.getJtfSameGame());
+         }
+     }
+ }
+Index: src/Business/GameManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Business;\n\nimport Business.entities.Game;\nimport Business.entities.Map;\nimport Business.entities.User;\nimport persistence.GameDAO;\n\nimport javax.xml.crypto.Data;\nimport java.util.List;\n\npublic class GameManager {\n    private Game game;\n    private GameDAO gameDAO;\n    private User user;\n\n\n    public GameManager(Game game, GameDAO gameDAO, User user){\n        this.game = game;\n        this.gameDAO = gameDAO;\n        this.user = user;\n    }\n\n    public void createGame(String name_game, int N_persponajes, int N_impostores, String color, String mapa){\n        game.setName(name_game);\n        game.setN_impostores(N_persponajes);\n        game.setN_persponajes(N_impostores);\n        game.setMapa(mapa);\n    }\n\n    public void createGameData(String color) {\n        gameDAO.gameRecord(game, user, color);\n    }\n\n    public void inicarGame(String name_game, int N_persponajes, int N_impostores, String mapa){\n        game.setName(name_game);\n        game.setN_impostores(N_persponajes);\n        game.setN_persponajes(N_impostores);\n        game.setMapa(mapa);\n\n        gameDAO.startGame(game);\n    }\n\n    public boolean correctPersAndImpos(int N_impostores, int N_persponajes) {\n        if (N_impostores > N_persponajes / 3) {\n            resetGame();\n            return false;\n        }\n        return true;\n    }\n\n    public void resetGame() {\n        game.setName(null);\n        game.setN_persponajes(0);\n        game.setN_impostores(0);\n        game.setMapa(null);\n    }\n\n    public boolean emptyName() {\n        if(game.getName().isEmpty()) {\n            resetGame();\n            return true;\n        }\n        return false;\n    }\n    public void savePartida(String partidaName, int n_personajes, int n_impostores, String mapa){\n        gameDAO.saveGame(partidaName,n_personajes,n_impostores,mapa);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Business/GameManager.java b/src/Business/GameManager.java
+--- a/src/Business/GameManager.java	(revision bdc006d9f4ef1e74dc2e1dc6e9cc37dbdbc5d562)
++++ b/src/Business/GameManager.java	(date 1685095774912)
+@@ -40,6 +40,10 @@
+         gameDAO.startGame(game);
+     }
+ 
++    public void deleteGame(String game_game){
++        gameDAO.deleteGame(game_game);
++        resetGame();
++    }
+     public boolean correctPersAndImpos(int N_impostores, int N_persponajes) {
+         if (N_impostores > N_persponajes / 3) {
+             resetGame();
+@@ -47,14 +51,12 @@
+         }
+         return true;
+     }
+-
+     public void resetGame() {
+         game.setName(null);
+         game.setN_persponajes(0);
+         game.setN_impostores(0);
+         game.setMapa(null);
+     }
+-
+     public boolean emptyName() {
+         if(game.getName().isEmpty()) {
+             resetGame();
+Index: src/presentation/views/CreationGameView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package presentation.views;\n\nimport presentation.controllers.CreationGameController;\n\nimport javax.swing.*;\nimport java.awt.*;\nimport java.awt.event.ActionListener;\n\npublic class CreationGameView extends JPanel {\n    private JPanel jpButtons, jpPanel, jpGame, jpLogout;\n    private JLabel jlGameName, jlNumPers, jlTitle, jlNumImpos, jlColor;\n    private JTextField jtfGameName;\n    private JButton jbSubmit, jbMap, jbLogout;\n    private JComboBox<String> jcbNumPers, jcbNumImpos, jcbColor;\n    private JImagePanel jiPanel;\n    public static final String NUMPERS_COMMAND = \"NUMPERS_COMMAND\";\n    public static final String NUMIMP_COMMAND = \"NUMIMP_COMMAND\";\n    public static final String COLORS_COMMAND = \"COLORS_COMMAND\";\n    public static final String MAP_COMMAND = \"MAP_COMMAND\";\n    public static final String SUBMIT_COMMAND = \"SUBMIT_COMMAND\";\n    public static final String LOGOUT_COMMAND = \"LOGOUT_COMMAND\";\n    public static final String[] num_players = {\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"};\n    public static final String[] num_impostor = {\"1\", \"2\", \"3\"};\n    public static final String[] colors = {\"vermell\", \"blau\", \"verd\", \"rosa\", \"taronja\", \"groc\", \"negre\", \"blanc\", \"lila\", \"marró\", \"cian\", \"llima\"};\n\n    public CreationGameView(){\n        setLayout(new BorderLayout());\n        configWindow();\n        configLayout();\n    }\n    private void configWindow() {\n        setSize(900,650);\n        //setTitle(\"Between Us\");\n        //setLocationRelativeTo(null);\n        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n    }\n    private void configLayout() {\n        jpGame = new JPanel();\n        jpLogout = new JPanel(new BorderLayout());\n        jpPanel = new JPanel(new GridBagLayout());\n        jpButtons = new JPanel(new GridLayout(0, 1, 0, 5));\n        jiPanel = new JImagePanel(\"images/betweenUsRegister.jpg\");\n        jpPanel.setBackground(new Color (80, 100, 200));\n        jpPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));\n        jpPanel.setBorder(BorderFactory.createCompoundBorder(\n                BorderFactory.createLineBorder(Color.LIGHT_GRAY, 2),\n                BorderFactory.createEmptyBorder(20, 80, 20, 10)\n        ));\n\n        this.add(jiPanel);\n\n        jlTitle = new JLabel(\"GAME CREATION!\");\n        jlTitle.setHorizontalAlignment(JLabel.CENTER);\n        jlGameName = new JLabel(\"Enter Game Name:\");\n        jtfGameName = new JTextField(20);\n        jlNumPers = new JLabel(\"Select Number of players:\");\n        jcbNumPers = new JComboBox<>(num_players);\n        jcbNumPers.setSelectedIndex(0);\n        jlNumImpos = new JLabel(\"Select Number of impostors:\");\n        jcbNumImpos = new JComboBox<>(num_impostor);\n        jcbNumImpos.setSelectedIndex(0);\n        jlColor = new JLabel(\"Select your colour:\");\n        jcbColor = new JComboBox<>(colors);\n        jcbColor.setSelectedIndex(0);\n        jbMap = new JButton(\"Choose Map\");\n        jbSubmit = new JButton(\"Submit\");\n        jbLogout = new JButton(\"Logout\");\n\n        JPanel jpBoxes = new JPanel(new GridLayout(0, 1, 0, 5));\n        jpBoxes.setBackground(new Color (80, 100, 200));\n        jpBoxes.setPreferredSize(new Dimension(400, 250));\n\n        Font title_font = new Font(\"Roboto Slab\", Font.BOLD + Font.ITALIC, 20);\n        jlTitle.setFont(title_font);\n\n        Font text_font = new Font(\"Oswald\", Font.BOLD + Font.ITALIC, 12);\n        jlGameName.setFont(text_font);\n        jlNumPers.setFont(text_font);\n        jlNumImpos.setFont(text_font);\n\n        jlTitle.setForeground(Color.WHITE);\n        jlGameName.setForeground(Color.WHITE);\n        jlNumPers.setForeground(Color.WHITE);\n        jlNumImpos.setForeground(Color.WHITE);\n        jlColor.setForeground(Color.WHITE);\n\n        jpBoxes.add(jlTitle);\n        jpBoxes.add(jlGameName);\n        jpBoxes.add(jtfGameName);\n        jpBoxes.add(jlNumPers);\n        jpBoxes.add(jcbNumPers);\n        jpBoxes.add(jlNumImpos);\n        jpBoxes.add(jcbNumPers);\n        jpBoxes.add(jlNumImpos);\n        jpBoxes.add(jcbNumImpos);\n        jpBoxes.add(jlColor);\n        jpBoxes.add(jcbColor);\n\n        jpButtons.setBackground(new Color (80, 100, 200));\n        jpButtons.add(jbMap);\n        jbMap.setAlignmentX(Component.CENTER_ALIGNMENT);\n        jbMap.setPreferredSize(new Dimension(100, 25));\n        jpButtons.add(jbSubmit);\n        jbSubmit.setAlignmentX(Component.CENTER_ALIGNMENT);\n        jbSubmit.setPreferredSize(new Dimension(100, 25));\n        jpLogout.add(jbLogout, BorderLayout.EAST);\n\n        jpGame.setLayout(new BorderLayout(10,10));\n        jpGame.setBackground(new Color (80, 100, 200));\n        jpGame.add(jpBoxes, BorderLayout.CENTER);\n        jpGame.add(jpButtons, BorderLayout.SOUTH);\n        jpGame.add(jpLogout, BorderLayout.NORTH);\n\n        GridBagConstraints gbc = new GridBagConstraints();\n        gbc.gridx = 0;\n        gbc.gridy = 0;\n        gbc.weightx = 1;\n        gbc.weighty = 1;\n        gbc.anchor = GridBagConstraints.CENTER;\n\n        GridBagConstraints gbc2 = new GridBagConstraints();\n        gbc2.gridx = 1;\n        gbc2.gridy = 0;\n        gbc2.weightx = 0;\n        gbc2.weighty = 1;\n        gbc2.anchor = GridBagConstraints.NORTHEAST;\n\n        jpPanel.add(jpGame, gbc);\n        jpPanel.add(jpLogout, gbc2);\n\n        jiPanel.setLayout(jpPanel.getLayout());\n        jiPanel.add(jpPanel);\n\n        jbMap.setActionCommand(MAP_COMMAND);\n        jbSubmit.setActionCommand(SUBMIT_COMMAND);\n        jcbNumPers.setName(NUMPERS_COMMAND);\n        jcbNumImpos.setName(NUMIMP_COMMAND);\n        jcbColor.setName(COLORS_COMMAND);\n        jbLogout.setActionCommand(LOGOUT_COMMAND);\n    }\n    public void start() {\n        setVisible(true);\n    }\n    public void registController(CreationGameController creationGameController) {\n        jbMap.addActionListener(creationGameController);\n        jbSubmit.addActionListener(creationGameController);\n        jbLogout.addActionListener(creationGameController);\n        jcbNumPers.addMouseWheelListener(creationGameController);\n        jcbNumImpos.addMouseWheelListener(creationGameController);\n        jcbColor.addMouseWheelListener(creationGameController);\n    }\n    public String getGameName() {\n        return jtfGameName.getText();\n    }\n    public int getNumPers() {\n        return Integer.parseInt((String) jcbNumPers.getSelectedItem());\n    }\n    public int getNumImpos() {\n        return Integer.parseInt((String) jcbNumImpos.getSelectedItem());\n    }\n    public String getColor() {\n        return (String) jcbColor.getSelectedItem();\n    }\n    public void setColor(int selectedItem) {\n        jcbColor.setSelectedIndex(selectedItem);\n    }\n    public void setNumPers(int selectedItem) {\n        jcbNumPers.setSelectedIndex(selectedItem);\n    }\n    public void setNumImpos(int selectedItem) {\n        jcbNumImpos.setSelectedIndex(selectedItem);\n    }\n    public void PersAndImposErrorMessage() {\n        JOptionPane.showMessageDialog(null, \"La relació entre personatges i impostors es incorrecte!\", \"Error\", JOptionPane.ERROR_MESSAGE);\n    }\n    public void createCorrect() {\n        JOptionPane.showMessageDialog(null, \"Has creat correctement la partida!\", \"Correcte\", JOptionPane.INFORMATION_MESSAGE);\n    }\n    public void emptyName() {\n        JOptionPane.showMessageDialog(null, \"No has introduït res al nom!\", \"Error\", JOptionPane.ERROR_MESSAGE);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/presentation/views/CreationGameView.java b/src/presentation/views/CreationGameView.java
+--- a/src/presentation/views/CreationGameView.java	(revision bdc006d9f4ef1e74dc2e1dc6e9cc37dbdbc5d562)
++++ b/src/presentation/views/CreationGameView.java	(date 1685094373922)
+@@ -7,10 +7,10 @@
+ import java.awt.event.ActionListener;
+ 
+ public class CreationGameView extends JPanel {
+-    private JPanel jpButtons, jpPanel, jpGame, jpLogout;
++    private JPanel jpButtons, jpPanel, jpGame, jpLogout, jpGoback;
+     private JLabel jlGameName, jlNumPers, jlTitle, jlNumImpos, jlColor;
+     private JTextField jtfGameName;
+-    private JButton jbSubmit, jbMap, jbLogout;
++    private JButton jbSubmit, jbMap, jbLogout, jbGoback;
+     private JComboBox<String> jcbNumPers, jcbNumImpos, jcbColor;
+     private JImagePanel jiPanel;
+     public static final String NUMPERS_COMMAND = "NUMPERS_COMMAND";
+@@ -19,6 +19,7 @@
+     public static final String MAP_COMMAND = "MAP_COMMAND";
+     public static final String SUBMIT_COMMAND = "SUBMIT_COMMAND";
+     public static final String LOGOUT_COMMAND = "LOGOUT_COMMAND";
++    public static final String GO_BACK_COMMAND = "GO_BACK_COMMAND";
+     public static final String[] num_players = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+     public static final String[] num_impostor = {"1", "2", "3"};
+     public static final String[] colors = {"vermell", "blau", "verd", "rosa", "taronja", "groc", "negre", "blanc", "lila", "marró", "cian", "llima"};
+@@ -30,13 +31,11 @@
+     }
+     private void configWindow() {
+         setSize(900,650);
+-        //setTitle("Between Us");
+-        //setLocationRelativeTo(null);
+-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+     }
+     private void configLayout() {
+         jpGame = new JPanel();
+         jpLogout = new JPanel(new BorderLayout());
++        jpGoback = new JPanel(new BorderLayout());
+         jpPanel = new JPanel(new GridBagLayout());
+         jpButtons = new JPanel(new GridLayout(0, 1, 0, 5));
+         jiPanel = new JImagePanel("images/betweenUsRegister.jpg");
+@@ -65,6 +64,7 @@
+         jbMap = new JButton("Choose Map");
+         jbSubmit = new JButton("Submit");
+         jbLogout = new JButton("Logout");
++        jbGoback = new JButton("Go Back");
+ 
+         JPanel jpBoxes = new JPanel(new GridLayout(0, 1, 0, 5));
+         jpBoxes.setBackground(new Color (80, 100, 200));
+@@ -104,12 +104,18 @@
+         jbSubmit.setAlignmentX(Component.CENTER_ALIGNMENT);
+         jbSubmit.setPreferredSize(new Dimension(100, 25));
+         jpLogout.add(jbLogout, BorderLayout.EAST);
++        jpGoback.add(jbGoback, BorderLayout.WEST);
++
++        JPanel jpTop = new JPanel();
++        jpTop.setLayout(new BoxLayout(jpTop, BoxLayout.Y_AXIS));
++        jpTop.add(jpLogout);
++        jpTop.add(jpGoback);
+ 
+         jpGame.setLayout(new BorderLayout(10,10));
+         jpGame.setBackground(new Color (80, 100, 200));
++        jpGame.add(jpTop, BorderLayout.NORTH);
+         jpGame.add(jpBoxes, BorderLayout.CENTER);
+         jpGame.add(jpButtons, BorderLayout.SOUTH);
+-        jpGame.add(jpLogout, BorderLayout.NORTH);
+ 
+         GridBagConstraints gbc = new GridBagConstraints();
+         gbc.gridx = 0;
+@@ -125,8 +131,15 @@
+         gbc2.weighty = 1;
+         gbc2.anchor = GridBagConstraints.NORTHEAST;
+ 
++        GridBagConstraints gbc3 = new GridBagConstraints();
++        gbc3.gridx = 1;
++        gbc3.gridy = 0;
++        gbc3.weightx = 0;
++        gbc3.weighty = 1;
++        gbc3.anchor = GridBagConstraints.NORTHWEST;
++
+         jpPanel.add(jpGame, gbc);
+-        jpPanel.add(jpLogout, gbc2);
++        jpPanel.add(jpTop, gbc2);
+ 
+         jiPanel.setLayout(jpPanel.getLayout());
+         jiPanel.add(jpPanel);
+@@ -137,6 +150,7 @@
+         jcbNumImpos.setName(NUMIMP_COMMAND);
+         jcbColor.setName(COLORS_COMMAND);
+         jbLogout.setActionCommand(LOGOUT_COMMAND);
++        jbGoback.setActionCommand(GO_BACK_COMMAND);
+     }
+     public void start() {
+         setVisible(true);
+@@ -145,6 +159,7 @@
+         jbMap.addActionListener(creationGameController);
+         jbSubmit.addActionListener(creationGameController);
+         jbLogout.addActionListener(creationGameController);
++        jbGoback.addActionListener(creationGameController);
+         jcbNumPers.addMouseWheelListener(creationGameController);
+         jcbNumImpos.addMouseWheelListener(creationGameController);
+         jcbColor.addMouseWheelListener(creationGameController);
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"249361a4-0a68-4e6d-8f20-4d4fdc4de4c3\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_23_bin.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_23_bin.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/config.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/persistence/config.json\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/S2Project/persistence/ReadConfigJSON.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/S2Project/persistence/ReadConfigJSON.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/S2Project/presentation/views/Circle.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/S2Project/presentation/views/Circle.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/S2Project/presentation/views/MainView.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/S2Project/presentation/views/MainView.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/S2Project/presentation/views/MapGUI$ToggleVisionListener.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/S2Project/presentation/views/MapGUI.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/S2Project/presentation/views/MapGUI.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Main.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/persistence/ReadConfigJSON.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/persistence/ReadConfigJSON.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/presentation/controllers/GameController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/presentation/controllers/GameController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/presentation/views/Circle.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/presentation/views/Circle.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/presentation/views/GameTrackingView.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/presentation/views/GameTrackingView.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/presentation/views/MainView.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/presentation/views/MainView.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/presentation/views/MapGUI.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/presentation/views/MapGUI.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2QG3Nwq89NXpVJehyD1NREWtiv2\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"Downloaded.Files.Path.Enabled\": \"false\",\n    \"Repository.Attach.Annotations\": \"false\",\n    \"Repository.Attach.JavaDocs\": \"false\",\n    \"Repository.Attach.Sources\": \"false\",\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"last_opened_file_path\": \"C:/Users/mique/Desktop/Uni/2n/DPOO/mysql-connector-java-5.1.23-bin.jar\",\n    \"project.structure.last.edited\": \"Libraries\",\n    \"project.structure.proportion\": \"0.15\",\n    \"project.structure.side.proportion\": \"0.2\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/persistence\" />\n      <recent name=\"$PROJECT_DIR$/src\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\n      <module name=\"S2Project\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.Main\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"249361a4-0a68-4e6d-8f20-4d4fdc4de4c3\" name=\"Changes\" comment=\"\" />\n      <created>1684966058203</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1684966058203</updated>\n    </task>\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <breakpoint enabled=\"true\" type=\"java-exception\">\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\" />\n          <option name=\"timeStamp\" value=\"2\" />\n        </breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision bdc006d9f4ef1e74dc2e1dc6e9cc37dbdbc5d562)
++++ b/.idea/workspace.xml	(date 1685096179437)
+@@ -4,21 +4,23 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="249361a4-0a68-4e6d-8f20-4d4fdc4de4c3" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_23_bin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_23_bin.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++    <list default="true" id="249361a4-0a68-4e6d-8f20-4d4fdc4de4c3" name="Changes" comment="Logout button on game y actualizacion de roles">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistence/config.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/S2Project/persistence/ReadConfigJSON.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/persistence/ReadConfigJSON.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/views/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/views/Circle.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/S2Project/Business/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/Business/GameManager.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/S2Project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/Main.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/S2Project/persistence/GameDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/persistence/GameDAO.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/controllers/CreationGameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/controllers/CreationGameController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/controllers/MainMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/controllers/MainMenuController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/views/CreationGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/views/CreationGameView.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MainMenuView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MainMenuView.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MainView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MainView.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MapGUI$ToggleVisionListener.class" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MapGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MapGUI.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/persistence/ReadConfigJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistence/ReadConfigJSON.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/presentation/controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/controllers/GameController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/presentation/views/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/views/Circle.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/presentation/views/GameTrackingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/views/GameTrackingView.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Business/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business/GameManager.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/persistence/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistence/GameDAO.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/presentation/controllers/CreationGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/controllers/CreationGameController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/presentation/controllers/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/controllers/MainMenuController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/presentation/views/CreationGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/views/CreationGameView.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/presentation/views/MainMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/views/MainMenuView.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/presentation/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/views/MainView.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/presentation/views/MapGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/views/MapGUI.java" afterDir="false" />
+     </list>
+@@ -29,7 +31,6 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+@@ -83,6 +84,21 @@
+       <option name="presentableId" value="Default" />
+       <updated>1684966058203</updated>
+     </task>
++    <task id="LOCAL-00001" summary="Logout button on game y actualizacion de roles">
++      <created>1685089285670</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1685089285670</updated>
++    </task>
++    <task id="LOCAL-00002" summary="Logout button on game y actualizacion de roles">
++      <created>1685089325604</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1685089325604</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -95,6 +111,10 @@
+         </entry>
+       </map>
+     </option>
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Logout button on game y actualizacion de roles" />
++    <option name="LAST_COMMIT_MESSAGE" value="Logout button on game y actualizacion de roles" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: src/presentation/controllers/CreationGameController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package presentation.controllers;\n\nimport Business.GameManager;\nimport presentation.model.MainModel;\nimport presentation.views.CreationGameView;\nimport presentation.views.MapGUI;\n\nimport javax.swing.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.awt.event.MouseWheelEvent;\nimport java.awt.event.MouseWheelListener;\nimport java.io.File;\n\npublic class CreationGameController implements ActionListener, MouseWheelListener {\n    private CreationGameView creationGameView;\n    private MainModel mainModel;\n    private GameManager gameManager;\n    private File selectedFile;\n    private MapGUI mapGUI;\n\n    public CreationGameController(CreationGameView creationGameView, MainModel mainModel, GameManager gameManager, File selectedFile, MapGUI mapGUI) {\n        this.creationGameView = creationGameView;\n        this.mainModel = mainModel;\n        this.gameManager = gameManager;\n        this.selectedFile = selectedFile;\n        this.mapGUI = mapGUI;\n    }\n\n    @Override\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(creationGameView.MAP_COMMAND)) {\n            // Hacer lo del JFileChooser\n            JFileChooser fileChooser = new JFileChooser();\n            int result = fileChooser.showOpenDialog(creationGameView);\n            if (result == JFileChooser.APPROVE_OPTION) {\n                selectedFile = fileChooser.getSelectedFile();\n                // Lógica para procesar el archivo seleccionado\n                //por ejemplo, cargar los datos en el modelo usando Gson\n                mainModel.loadDataFromJsonFile(selectedFile.getName());\n            }\n        } else if (e.getActionCommand().equals(creationGameView.SUBMIT_COMMAND)) {\n            // Pasar a la MapView || GameView\n            // Hay que cambiar lo del GameManager, para que funcione bien.\n            gameManager.createGame(creationGameView.getGameName(), creationGameView.getNumImpos(), creationGameView.getNumPers(), creationGameView.getColor(), selectedFile.getName());\n            if (!gameManager.correctPersAndImpos(creationGameView.getNumImpos(), creationGameView.getNumPers())) {\n                creationGameView.PersAndImposErrorMessage();\n                return;\n            } else if (gameManager.emptyName()) {\n                creationGameView.emptyName();\n                return;\n            }\n            gameManager.createGameData(creationGameView.getColor());\n            mapGUI.setColor(creationGameView.getColor());\n            creationGameView.createCorrect();\n            //MapGUI mapGUI = new MapGUI(mainModel);\n            mainModel.goToMapView();\n        } else if (e.getActionCommand().equals(creationGameView.LOGOUT_COMMAND)) {\n            mainModel.goToLogoutView();\n        }\n    }\n\n    @Override\n    public void mouseWheelMoved(MouseWheelEvent e) {\n        if(e.getSource() instanceof JComboBox<?>) {\n            JComboBox<?> combobox = (JComboBox<?>) e.getSource();\n            // We get the rotation value of the wheel\n            // Positive value = down side rotation.\n            int selectedItem = combobox.getSelectedIndex();\n            int offset = e.getWheelRotation();\n            selectedItem += offset;\n            if (selectedItem < 0) {\n                selectedItem = combobox.getItemCount() + selectedItem;\n            }\n            selectedItem %= combobox.getItemCount();\n            //combobox.setSelectedIndex(selectedItem);\n            String comboBoxName = combobox.getName();\n\n            if(comboBoxName.equals(creationGameView.NUMPERS_COMMAND)) {\n                creationGameView.setNumPers(selectedItem);\n            } else if(comboBoxName.equals(creationGameView.NUMIMP_COMMAND)) {\n                creationGameView.setNumImpos(selectedItem);\n            } else if(comboBoxName.equals(creationGameView.COLORS_COMMAND)) {\n                creationGameView.setColor(selectedItem);\n            }\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/presentation/controllers/CreationGameController.java b/src/presentation/controllers/CreationGameController.java
+--- a/src/presentation/controllers/CreationGameController.java	(revision bdc006d9f4ef1e74dc2e1dc6e9cc37dbdbc5d562)
++++ b/src/presentation/controllers/CreationGameController.java	(date 1685093853518)
+@@ -57,6 +57,8 @@
+             mainModel.goToMapView();
+         } else if (e.getActionCommand().equals(creationGameView.LOGOUT_COMMAND)) {
+             mainModel.goToLogoutView();
++        } else if (e.getActionCommand().equals(creationGameView.GO_BACK_COMMAND)) {
++            mainModel.goToMainMenuView();
+         }
+     }
+ 
+Index: src/presentation/views/MapGUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package presentation.views;\n\nimport Business.entities.Room;\nimport persistence.MapsDAO;\nimport presentation.controllers.GameController;\nimport presentation.model.MainModel;\n\nimport javax.swing.*;\nimport javax.swing.border.LineBorder;\nimport javax.swing.plaf.ColorUIResource;\nimport java.awt.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.util.List;\nimport java.util.Map;\n\npublic class MapGUI extends JPanel {\n    private MainModel mainModel;\n    private List<Room> rooms;\n    private JPanel contentPanel;\n    private JButton toggleVisionButton = new JButton(\"Toggle Vision\");\n    private JButton moveUpButton = new JButton(\"Up\");\n    private JButton moveDownButton = new JButton(\"Down\");\n    private JButton moveLeftButton = new JButton(\"Left\");\n    private JButton moveRightButton = new JButton(\"Right\");\n    private JButton logoutButton = new JButton(\"Logout\");\n    private Circle circle;\n    private int XCirclePosition;\n    private int YCirclePosition;\n    private String userColor;\n    private Room[][] roomsMatrix = new Room[4][4];\n    private Map<String, Color> colorMap;\n    private  JPanel[][] cells;\n    private JLabel roomLabel;\n\n    private Map<String, Color> createColorMap() {\n        Map<String, Color> colorMap = new java.util.HashMap<>();\n        colorMap.put(\"RED\", Color.RED);\n        colorMap.put(\"GRAY\", Color.GRAY);\n        colorMap.put(\"BLUE\", Color.BLUE);\n        colorMap.put(\"BLACK\", Color.BLACK);\n        colorMap.put(\"GREEN\", Color.GREEN);\n        colorMap.put(\"MAGENTA\", Color.MAGENTA);\n        colorMap.put(\"ORANGE\", Color.ORANGE);\n        return colorMap;\n    }\n    private String fromColorToRGB(String color){\n        if (color.equals(\"RED\")){\n            return \"255,0,0\";\n        }\n        if (color.equals(\"BLUE\")){\n            return \"25,135,189\";\n        }\n        if (color.equals(\"GRAY\")){\n            return \"111,116,119\";\n        }\n        if (color.equals(\"BLACK\")){\n            return \"0,0,0\";\n        }\n        if (color.equals(\"GREEN\")){\n            return \"48,144,50\";\n        }\n        if (color.equals(\"MAGENTA\")){\n            return \"207,52,118\";\n        }\n        if (color.equals(\"ORANGE\")){\n            return \"255,165,0\";\n        }\n        return null;\n    }\n    private void updateView(boolean isGlobalView, Map<String, Color> colorMap) {\n        for (Component component : contentPanel.getComponents()) {\n            if (component instanceof JLabel) {\n                JLabel label = (JLabel) component;\n                String colorName = label.getBackground().getRed() + \",\" + label.getBackground().getGreen() + \",\" + label.getBackground().getBlue();\n\n                if (isGlobalView || label.getText().equals(\"Spawn\")) {\n                    // Global view or player's room, keep the color unchanged\n                    label.setBackground(colorMap.get(colorName));\n                } else {\n                    // Limited view, darken the color of other rooms\n                    label.setBackground(Color.DARK_GRAY);\n                }\n            }\n        }\n    }\n    public MapGUI(MainModel mainModel) {\n        this.mainModel = mainModel;\n    }\n    public void setColor(String color){\n        this.userColor = color;\n    }\n    public void createMapGUI(){\n        rooms = mainModel.getRooms();\n\n        setSize(600, 900);\n        JPanel mainPanel = new JPanel();\n        mainPanel.setLayout(new BorderLayout(5,5));\n        mainPanel.setSize(600,600);\n\n        contentPanel = new JPanel();\n        contentPanel.setLayout(new GridLayout(4, 4));\n        colorMap = createColorMap();\n        cells = new JPanel[4][4];\n\n        setRoomMatrix(rooms);\n\n        int iterador = 0;\n        for (int i = 0; i < 4; i++) {\n            for (int j = 0; j < 4; j++) {\n                cells[i][j] = new JPanel();\n                cells[i][j].setBorder(new LineBorder(Color.white,1));\n                cells[i][j].setPreferredSize(new Dimension(150,150));\n                String colorName = rooms.get(iterador).getColour();\n                String colorRGB = fromColorToRGB(colorName);\n                String[] colorNameParts = colorRGB.split(\",\");\n                roomLabel = new JLabel(rooms.get(iterador).getId());\n                roomLabel.setBorder(new LineBorder(Color.black,1));\n                roomLabel.setBackground(new Color(Integer.parseInt(colorNameParts[0]),Integer.parseInt(colorNameParts[1]),Integer.parseInt(colorNameParts[2]), (int) (0.2f * 127)));\n                cells[i][j].setBackground(new Color(Integer.parseInt(colorNameParts[0]),Integer.parseInt(colorNameParts[1]),Integer.parseInt(colorNameParts[2]), (int) (0.2f * 127)));\n                roomLabel.setOpaque(false);\n                roomLabel.setSize(150,150);\n                contentPanel.add(cells[i][j]);\n                iterador++;\n            }\n        }\n        mainPanel.add(contentPanel,BorderLayout.NORTH);\n        setVisible(true);\n\n        JPanel buttonPanel = new JPanel();\n        buttonPanel.setLayout(new FlowLayout());\n        buttonPanel.add(toggleVisionButton);\n        buttonPanel.add(moveUpButton);\n        buttonPanel.add(moveDownButton);\n        buttonPanel.add(moveLeftButton);\n        buttonPanel.add(moveRightButton);\n        buttonPanel.add(logoutButton);\n\n        mainPanel.add(buttonPanel, BorderLayout.SOUTH);\n        add(mainPanel);\n        // Add player circles to the map\n        //for (Player player : players) {\n            //JLabel playerLabel = new JLabel();\n            //playerLabel.setOpaque(true);\n            //playerLabel.setBackground(player.getPlayerColor());\n            //playerLabel.setBackground(Color.white);\n            //playerLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));\n            //playerLabel.setVerticalAlignment(SwingConstants.CENTER);\n            //playerLabel.setText(player.getPlayerName());\n            //playerLabel.setText(\"Tripulante\");\n            circle = new Circle(userColor);\n            //circle.setColor(userColor);\n            cells[0][0].add(circle);\n            String colorName = roomsMatrix[0][0].getColour();\n            Color color = colorMap.get(colorName);\n            cells[0][0].setBackground(color);\n            YCirclePosition = 0;\n            XCirclePosition = 0;\n        //}\n    }\n\n    private void setRoomMatrix(List<Room> rooms) {\n        int iterador = 0;\n        for (int i = 0; i < 4; i++) {\n            for (int j = 0; j < 4; j++) {\n                roomsMatrix[i][j] = rooms.get(iterador);\n                iterador++;\n            }\n        }\n    }\n    public void MapGUIController(ActionListener listener){\n        moveUpButton.addActionListener(listener);\n        moveUpButton.setActionCommand(\"up\");\n        moveDownButton.addActionListener(listener);\n        moveDownButton.setActionCommand(\"down\");\n        moveLeftButton.addActionListener(listener);\n        moveLeftButton.setActionCommand(\"left\");\n        moveRightButton.addActionListener(listener);\n        moveRightButton.setActionCommand(\"right\");\n        toggleVisionButton.addActionListener(listener);\n        toggleVisionButton.setActionCommand(\"toggle\");\n        logoutButton.addActionListener(listener);\n        logoutButton.setActionCommand(\"logout\");\n    }\n    public int getYCirclePosition(){\n        return YCirclePosition;\n    }\n    public int getXCirclePosition(){\n        return XCirclePosition;\n    }\n    public void uptadeCirclePosition(int i, int j){\n        cells[YCirclePosition][XCirclePosition].setBackground(new Color(255,0,0, (int) (0.2f * 127)));\n        YCirclePosition = i;\n        XCirclePosition = j;\n        cells[i][j].add(circle);\n        String colorName = roomsMatrix[i][j].getColour();\n        Color color = colorMap.get(colorName);\n        cells[i][j].setBackground(color);\n        repaint();\n\n    }\n    public List<Room> getRooms() {\n        return rooms;\n    }\n    public void seeMap() {\n        for (int i = 0; i < 4; i++) {\n            for (int j = 0; j < 4; j++) {\n                String colorName = roomsMatrix[i][j].getColour();\n                Color color = colorMap.get(colorName);\n                cells[i][j].setBackground(color);\n            }\n        }\n    }\n    public void hideMap(){\n        int iterador = 0;\n        for (int i = 0; i < 4; i++) {\n            for (int j = 0; j < 4; j++) {\n                String colorName = rooms.get(iterador).getColour();\n                String colorRGB = fromColorToRGB(colorName);\n                String[] colorNameParts = colorRGB.split(\",\");\n                roomLabel.setBackground(new Color(Integer.parseInt(colorNameParts[0]),Integer.parseInt(colorNameParts[1]),Integer.parseInt(colorNameParts[2]), (int) (0.2f * 127)));\n                roomLabel.setOpaque(false);\n                cells[i][j].setBackground(new Color(Integer.parseInt(colorNameParts[0]),Integer.parseInt(colorNameParts[1]),Integer.parseInt(colorNameParts[2]), (int) (0.2f * 127)));\n                iterador++;\n            }\n        }\n    }\n\n    /*public static void main(String[] args) {\n        List<Room> rooms;\n        MapsDAO mapDAO = new MapsDAO();\n        rooms = mapDAO.loadRooms(\"src/persistence/maps.json\");\n        new MapGUI(rooms);\n    }*/\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/presentation/views/MapGUI.java b/src/presentation/views/MapGUI.java
+--- a/src/presentation/views/MapGUI.java	(revision bdc006d9f4ef1e74dc2e1dc6e9cc37dbdbc5d562)
++++ b/src/presentation/views/MapGUI.java	(date 1685091741920)
+@@ -93,7 +93,7 @@
+     public void createMapGUI(){
+         rooms = mainModel.getRooms();
+ 
+-        setSize(600, 900);
++        setSize(600, 600);
+         JPanel mainPanel = new JPanel();
+         mainPanel.setLayout(new BorderLayout(5,5));
+         mainPanel.setSize(600,600);
+Index: src/presentation/views/MainView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package presentation.views;\n\nimport presentation.controllers.*;\nimport presentation.model.MainModel;\n\nimport javax.swing.*;\nimport java.awt.*;\n\npublic class MainView extends JFrame {\n    private CardLayout cardLayout;\n    private LogView logView;\n    private LogoutView logoutView;\n    private RegisterView registerView;\n    private MainModel mainModel;\n    private MainMenuView mainMenuView;\n    private CreationGameView creationGameView;\n    private MapGUI mapGUI;\n    private GameTrackingController gameTrackingController;\n    private LogsView logsView;\n\n    public MainView(MainModel mainModel, LogView logView, LogoutView logoutView, RegisterView registerView, MainMenuView mainMenuView, CreationGameView creationGameView, MapGUI mapGUI, GameTrackingController gameTrackingController, LogsView logsView) {\n        this.mainModel = mainModel;\n        this.logView = logView;\n        this.logoutView = logoutView;\n        this.registerView = registerView;\n        this.mainMenuView = mainMenuView;\n        this.creationGameView = creationGameView;\n        this.mapGUI = mapGUI;\n        this.gameTrackingController = gameTrackingController;\n        this.logsView = logsView;\n        setLayout(new BorderLayout());\n        configWindow();\n        configLayout();\n    }\n\n    private void configWindow() {\n        setSize(900, 650);\n        setTitle(\"Between Us\");\n        setLocationRelativeTo(null);\n        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\n    }\n\n    private void configLayout() {\n        cardLayout = new CardLayout();\n        getContentPane().setLayout(cardLayout);\n\n        logView.setName(\"Log In\");\n        getContentPane().add(logView, \"Log In\");\n\n        logoutView.setName(\"Logout\");\n        getContentPane().add(logoutView, \"Logout\");\n\n        registerView.setName(\"Register\");\n        getContentPane().add(registerView, \"Register\");\n\n        mainMenuView.setName(\"Menu\");\n        getContentPane().add(mainMenuView, \"Menu\");\n\n        creationGameView.setName(\"Creation Game\");\n        getContentPane().add(creationGameView, \"Creation Game\");\n\n        mapGUI.setName(\"Map\");\n        getContentPane().add(mapGUI, \"Map\");\n\n        gameTrackingController.getGameTrackingView().setName(\"Game Tracking\");\n        getContentPane().add(gameTrackingController.getGameTrackingView(), \"Game Tracking\");\n\n        logsView.setName(\"Logs\");\n        getContentPane().add(logsView, \"Logs\");\n    }\n\n    public void start() {\n        //showLogoutView();\n        //showMainMenuView();\n        showLoginView();\n        setVisible(true);\n    }\n\n    public void showLoginView() {\n        cardLayout.show(getContentPane(), \"Log In\");\n    }\n\n    public void showRegisterView() {\n        cardLayout.show(getContentPane(), \"Register\");\n    }\n\n    public void showLogoutView() {\n        cardLayout.show(getContentPane(), \"Logout\");\n    }\n\n    public void showMainMenuView() {\n        cardLayout.show(getContentPane(), \"Menu\");\n    }\n\n    public void showCreationGameView() {\n        cardLayout.show(getContentPane(), \"Creation Game\");\n    }\n\n    public void showMapView() {\n        cardLayout.show(getContentPane(), \"Map\");\n        mapGUI.createMapGUI();\n    }\n\n    public void showGameTrackingView() {\n        cardLayout.show(getContentPane(), \"Game Tracking\");\n        gameTrackingController.getGameTrackingView().configLayout();\n    }\n\n    public void showLogsView() {\n        cardLayout.show(getContentPane(), \"Logs\");\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/presentation/views/MainView.java b/src/presentation/views/MainView.java
+--- a/src/presentation/views/MainView.java	(revision bdc006d9f4ef1e74dc2e1dc6e9cc37dbdbc5d562)
++++ b/src/presentation/views/MainView.java	(date 1685091826576)
+@@ -34,7 +34,7 @@
+     }
+ 
+     private void configWindow() {
+-        setSize(900, 650);
++        setSize(900, 800);
+         setTitle("Between Us");
+         setLocationRelativeTo(null);
+         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+@@ -71,8 +71,9 @@
+ 
+     public void start() {
+         //showLogoutView();
+-        //showMainMenuView();
+-        showLoginView();
++        showMainMenuView();
++        //showLoginView();
++        //showGameTrackingView();
+         setVisible(true);
+     }
+ 

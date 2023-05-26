@@ -55,11 +55,27 @@ public class GameDAO {
         }
         return false;
     }
-    /*
-    public void deleteGame(Game game, String name){
-        DatabaseConnection.getDatabaseConnection().delete("DELETE FROM Partida WHERE nombre_partida LIKE '" + name + "'");
-        game = null;
-    }*/
+
+    public boolean deleteGame(String name){
+        List<String> games = new ArrayList<>();
+        ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select("SELECT nombre_partida FROM Partida;");
+
+        try {
+            while (resultSet.next()){
+                games.add(resultSet.getString("nombre_partida"));
+            }
+            for (int i = 0; i < games.size(); i++) {
+                if(Objects.equals(name, games.get(i))){
+                    DatabaseConnection.getDatabaseConnection().delete("DELETE FROM Jugada WHERE nombre_partida LIKE '" + name + "'");
+                    DatabaseConnection.getDatabaseConnection().delete("DELETE FROM Partida WHERE nombre_partida LIKE '" + name + "'");
+                    return true;
+                }
+            }
+        }catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
 
     public void saveGame(String partidaName, int n_personajes, int n_impostores, String mapa){
         String query = "UPDATE 'partida' SET 'n_personajes'='"+n_personajes+"','n_impostores'='"+n_impostores+"' WHERE 'nombre_partida'='"+partidaName+"'";
