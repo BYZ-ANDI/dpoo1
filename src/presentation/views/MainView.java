@@ -34,7 +34,7 @@ public class MainView extends JFrame {
     }
 
     private void configWindow() {
-        setSize(900, 650);
+        setSize(900, 800);
         setTitle("Between Us");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,8 +71,8 @@ public class MainView extends JFrame {
 
     public void start() {
         //showLogoutView();
-        //showMainMenuView();
-        showLoginView();
+        showMainMenuView();
+        //showLoginView();
         setVisible(true);
     }
 

@@ -1,6 +1,7 @@
 package presentation.controllers;
 
 import Business.GameManager;
+import Business.entities.Game;
 import presentation.model.MainModel;
 import presentation.views.MainMenuView;
 
@@ -11,6 +12,7 @@ public class MainMenuController implements ActionListener {
     private MainMenuView mainMenuView;
     private MainModel mainModel;
     private GameManager gameManager;
+
     public MainMenuController(MainMenuView mainMenuView, MainModel mainModel, GameManager gameManager) {
         this.mainMenuView = mainMenuView;
         this.mainModel = mainModel;
@@ -25,11 +27,26 @@ public class MainMenuController implements ActionListener {
         } else if(e.getActionCommand().equals(mainMenuView.GAME_COMMAND)) {
             // Buscar partida por el nombre.
         } else if(e.getActionCommand().equals(mainMenuView.SAMEGAME_COMMAND)) {
-            // Buscar partida con el mismo nombre.
+            if (mainMenuView.getJtfSameGame().isEmpty()){
+                mainMenuView.emptyNameSettingsGame();
+            }else if(mainMenuView.getJtfSameGameName().isEmpty()){
+                mainMenuView.emptyNameNewGame();
+            }else{
+                if (gameManager.inicarGame(mainMenuView.getJtfSameGame(), mainMenuView.getJtfSameGameName())){
+                    mainMenuView.GameLoadSuccessMessage();
+                    mainModel.goToMapView();
+                }else {
+                    mainMenuView.GameLoadErrorMessage();
+                }
+            }
         } else if(e.getActionCommand().equals(mainMenuView.LOGOUT_COMMAND)) {
             mainModel.goToLogoutView();
         } else if(e.getActionCommand().equals(mainMenuView.DELETE_COMMAND)) {
-            // Pasar a su lista de Games para hacer Delete.
+            if (gameManager.deleteGame(mainMenuView.getJtfSameGame())){
+                mainMenuView.GameDeletionSuccessMessage();
+            }else {
+                mainMenuView.GameDeletionErrorMessage();
+            }
         }
     }
 }

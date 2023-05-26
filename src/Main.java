@@ -37,7 +37,8 @@ public class Main {
         MainModel mainModel = new MainModel(rooms, mapDAO);
         MapGUI mapGUI = new MapGUI(mainModel);
         GameManager gameManager = new GameManager(game,gameDAO,user);
-        GameController gameController = new GameController(gameManager,mapGUI);
+        GameController gameController = new GameController(gameManager,mapGUI, mainModel);
+        mapGUI.setGameController(gameController);
         mapGUI.MapGUIController(gameController);
         CreationGameView creationGameView = new CreationGameView();
         GameTrackingController gameTrackingController = new GameTrackingController(mainModel, gameManager);

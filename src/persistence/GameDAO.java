@@ -36,17 +36,49 @@ public class GameDAO {
             DatabaseConnection.getDatabaseConnection().insert("INSERT INTO Jugada(nombre_jugador, nombre_partida, color_personaje) VALUES ('" + user.getName() + "','" + game.getName() + "','" + color + "');");
         }
     }
+    public Game startGame(String name_game, String new_game_name, Game game){
+        try{
+            ResultSet resultSet1 = DatabaseConnection.getDatabaseConnection().select("SELECT n_personajes FROM Partida WHERE nombre_partida LIKE '"+name_game+"';");
+            ResultSet resultSet2 = DatabaseConnection.getDatabaseConnection().select("SELECT n_impostores FROM Partida WHERE nombre_partida LIKE '"+name_game+"';");
+            ResultSet resultSet3 = DatabaseConnection.getDatabaseConnection().select("SELECT mapa FROM Partida WHERE nombre_partida LIKE'"+name_game+"';");
+            game.setName(new_game_name);
+            resultSet1.next();
+            game.setN_persponajes(resultSet1.getInt("n_personajes"));
+            resultSet2.next();
+            game.setN_impostores(resultSet2.getInt("n_impostores"));
+            resultSet3.next();
+            game.setMapa(resultSet3.getString("mapa"));
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
 
-    public boolean startGame(Game game){
+
+        return game;
+    }
+    public String getGameColor(String name_game){
+        String color = null;
         List<String> games = new ArrayList<>();
         ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select("SELECT nombre_partida FROM Partida;");
 
         try{
+            ResultSet resultSet1 = DatabaseConnection.getDatabaseConnection().select("SELECT color_personaje FROM Jugada WHERE nombre_partida LIKE '" + name_game + "';");
+            resultSet1.next();
+            color = resultSet1.getString("color_personaje");
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return color;
+    }
+    public boolean findGame(String name_game){
+        List<String> games_name = new ArrayList<>();
+        ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select("SELECT nombre_partida FROM Partida;");
+
+        try{
             while (resultSet.next()){
-                games.add(resultSet.getString("nombre_partida"));
+                games_name.add(resultSet.getString("nombre_partida"));
             }
-            for(int i = 0; i < games.size(); i++){
-                if(Objects.equals(game.getName(), games.get(i))){
+            for(int i = 0; i < games_name.size(); i++){
+                if(Objects.equals(name_game, games_name.get(i))){
                     return true;
                 }
             }
@@ -55,12 +87,26 @@ public class GameDAO {
         }
         return false;
     }
-    /*
-    public void deleteGame(Game game, String name){
-        DatabaseConnection.getDatabaseConnection().delete("DELETE FROM Partida WHERE nombre_partida LIKE '" + name + "'");
-        game = null;
-    }*/
+    public boolean deleteGame(String name){
+        List<String> games = new ArrayList<>();
+        ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select("SELECT nombre_partida FROM Partida;");
 
+        try {
+            while (resultSet.next()){
+                games.add(resultSet.getString("nombre_partida"));
+            }
+            for (int i = 0; i < games.size(); i++) {
+                if(Objects.equals(name, games.get(i))){
+                    DatabaseConnection.getDatabaseConnection().delete("DELETE FROM Jugada WHERE nombre_partida LIKE '" + name + "'");
+                    DatabaseConnection.getDatabaseConnection().delete("DELETE FROM Partida WHERE nombre_partida LIKE '" + name + "'");
+                    return true;
+                }
+            }
+        }catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return false;
+    }
     public void saveGame(String partidaName, int n_personajes, int n_impostores, String mapa){
         String query = "UPDATE 'partida' SET 'n_personajes'='"+n_personajes+"','n_impostores'='"+n_impostores+"' WHERE 'nombre_partida'='"+partidaName+"'";
         DatabaseConnection.getDatabaseConnection().update(query);

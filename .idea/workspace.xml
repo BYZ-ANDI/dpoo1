@@ -5,19 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="249361a4-0a68-4e6d-8f20-4d4fdc4de4c3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_23_bin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_23_bin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/S2Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/S2Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/controllers/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/controllers/GameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistence/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/S2Project/persistence/ReadConfigJSON.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/persistence/ReadConfigJSON.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/views/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/views/Circle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MapGUI$ToggleVisionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MapGUI$ToggleVisionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MainView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MainView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MapGUI$ToggleVisionListener.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MapGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S2Project/presentation/views/MapGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/persistence/ReadConfigJSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/persistence/ReadConfigJSON.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/controllers/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/controllers/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/views/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/views/Circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/views/GameTrackingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/views/GameTrackingView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/views/MainView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/views/MapGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/views/MapGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +29,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -36,20 +39,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mique/Desktop/Uni/2n/DPOO/mysql-connector-java-5.1.23-bin.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/mique/Desktop/Uni/2n/DPOO/mysql-connector-java-5.1.23-bin.jar",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/persistence" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -89,11 +99,10 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/presentation/views/MapGUI.java</url>
-          <line>216</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
