@@ -1,0 +1,122 @@
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import Business.GameManager;\r\nimport Business.UserManager;\r\nimport Business.entities.Game;\r\nimport Business.entities.Map;\r\nimport Business.entities.Room;\r\nimport Business.entities.User;\r\nimport persistence.DatabaseDAO;\r\nimport persistence.GameDAO;\r\nimport persistence.MapsDAO;\r\nimport persistence.UserDAO;\r\nimport presentation.controllers.*;\r\nimport presentation.model.MainModel;\r\nimport presentation.views.*;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class Main {\r\n    public static void main(String[] args) {\r\n        DatabaseDAO databaseDAO = new DatabaseDAO();\r\n        databaseDAO.createDatabase();\r\n        databaseDAO.createTableJugador();\r\n        databaseDAO.createTablePartida();\r\n        databaseDAO.createTableJugada();\r\n        UserDAO userDAO = new UserDAO();\r\n        GameDAO gameDAO = new GameDAO();\r\n        MapsDAO mapDAO = new MapsDAO();\r\n        User user = new User(null, null, null);\r\n        Game game = new Game(null, 0, 0, null);\r\n        Map mapa = new Map();\r\n\r\n        LogView logView = new LogView();\r\n        LogoutView logoutView = new LogoutView();\r\n        RegisterView registerView = new RegisterView();\r\n        MainMenuView mainMenuView = new MainMenuView();\r\n        CreationGameView creationGameView = new CreationGameView();\r\n        List<Room> rooms = new ArrayList<>();\r\n        MainModel mainModel = new MainModel(rooms, mapDAO);\r\n        MapGUI mapGUI = new MapGUI(mainModel);\r\n        MainView mainView = new MainView(mainModel, logView, logoutView, registerView, mainMenuView, creationGameView,mapGUI);\r\n\r\n        UserManager userManager = new UserManager(user, userDAO);\r\n        GameManager gameManager = new GameManager(game, gameDAO, user);\r\n\r\n        LogController logController = new LogController(logView, mainModel, userManager);\r\n        logView.registController(logController);\r\n        LogoutController logoutController = new LogoutController(logoutView, mainModel,userManager,user );\r\n        logoutView.registController(logoutController);\r\n        RegisterController registerController = new RegisterController(registerView, mainModel, userManager);\r\n        registerView.registController(registerController);\r\n        MainMenuController mainMenuController = new MainMenuController(mainMenuView, mainModel, gameManager);\r\n        mainMenuView.registController(mainMenuController);\r\n        CreationGameController creationGameController = new CreationGameController(creationGameView, mainModel, gameManager, null);\r\n        creationGameView.registController(creationGameController);\r\n\r\n        MainController mainController = new MainController(mainView, mainModel);\r\n        mainView.start();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	(revision df2463c4ffe7c1addaa3e10d7b90e32ff3c13a30)
++++ b/src/Main.java	(date 1684921043341)
+@@ -36,7 +36,7 @@
+         CreationGameView creationGameView = new CreationGameView();
+         List<Room> rooms = new ArrayList<>();
+         MainModel mainModel = new MainModel(rooms, mapDAO);
+-        MapGUI mapGUI = new MapGUI(mainModel);
++        MapGUI mapGUI = new MapGUI(rooms);
+         MainView mainView = new MainView(mainModel, logView, logoutView, registerView, mainMenuView, creationGameView,mapGUI);
+ 
+         UserManager userManager = new UserManager(user, userDAO);
+Index: src/Business/UserManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Business;\r\n\r\nimport Business.entities.User;\r\nimport persistence.UserDAO;\r\n\r\npublic class UserManager {\r\n    private static final String EMAIL_FORMAT = \"@\";\r\n    private static final String PASSWORD_FORMAT = \" \";\r\n    private User user;\r\n    private UserDAO userDAO;\r\n    private String confirm_password;\r\n\r\n    public UserManager(User user, UserDAO userDAO) {\r\n        this.user = user;\r\n        this.userDAO = userDAO;\r\n    }\r\n    public boolean correctEmail() {\r\n        if (!user.getMail().contains(EMAIL_FORMAT)) {\r\n            resetUser();\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n    public boolean correctPassword() {\r\n        // Falta implementar la validacion de la password.\r\n        if (user.getPassword().length() < 8 || user.getPassword().contains(PASSWORD_FORMAT)\r\n                || !user.getPassword().matches(\".*[A-Z].*\") || !user.getPassword().matches(\".*[a-z].*\") || !user.getPassword().matches(\".*[0-9].*\")) {\r\n            resetUser();\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n    public boolean confirmPassword() {\r\n        if(user.getPassword().equals(confirm_password)) {\r\n            return true;\r\n        }\r\n        resetUser();\r\n        return false;\r\n    }\r\n    public void createUser (String name, String email, String password){\r\n        user.setName(name);\r\n        user.setMail(email);\r\n        user.setPassword(password);\r\n    }\r\n    public void createUserData() {\r\n        userDAO.signupUser(user);\r\n    }\r\n    public boolean loginUser ( String name, String email, String password){\r\n        user.setName(name);\r\n        user.setMail(email);\r\n        user.setPassword(password);\r\n\r\n        if(userDAO.loginUser(user)){\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public void deleteUser(User user){\r\n        userDAO.deleteUser(user);\r\n        resetUser();\r\n    }\r\n    public void logoutUser(){\r\n        resetUser();\r\n    }\r\n    public void setConfirm_password(String confirm_password) {\r\n        this.confirm_password = confirm_password;\r\n    }\r\n    public void resetUser() {\r\n        user.setName(null);\r\n        user.setMail(null);\r\n        user.setPassword(null);\r\n    }\r\n    public boolean emptyName() {\r\n        if(user.getName().isEmpty()) {\r\n            resetUser();\r\n            return true;\r\n        }\r\n        return false;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Business/UserManager.java b/src/Business/UserManager.java
+--- a/src/Business/UserManager.java	(revision df2463c4ffe7c1addaa3e10d7b90e32ff3c13a30)
++++ b/src/Business/UserManager.java	(date 1684880372824)
+@@ -21,6 +21,7 @@
+         }
+         return true;
+     }
++
+     public boolean correctPassword() {
+         // Falta implementar la validacion de la password.
+         if (user.getPassword().length() < 8 || user.getPassword().contains(PASSWORD_FORMAT)
+@@ -30,6 +31,7 @@
+         }
+         return true;
+     }
++
+     public boolean confirmPassword() {
+         if(user.getPassword().equals(confirm_password)) {
+             return true;
+@@ -37,14 +39,17 @@
+         resetUser();
+         return false;
+     }
++
+     public void createUser (String name, String email, String password){
+         user.setName(name);
+         user.setMail(email);
+         user.setPassword(password);
+     }
++
+     public void createUserData() {
+         userDAO.signupUser(user);
+     }
++
+     public boolean loginUser ( String name, String email, String password){
+         user.setName(name);
+         user.setMail(email);
+@@ -60,17 +65,21 @@
+         userDAO.deleteUser(user);
+         resetUser();
+     }
++
+     public void logoutUser(){
+         resetUser();
+     }
++
+     public void setConfirm_password(String confirm_password) {
+         this.confirm_password = confirm_password;
+     }
++
+     public void resetUser() {
+         user.setName(null);
+         user.setMail(null);
+         user.setPassword(null);
+     }
++
+     public boolean emptyName() {
+         if(user.getName().isEmpty()) {
+             resetUser();
+Index: src/Business/entities/Player.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Business.entities;\r\n\r\nimport java.awt.Color;\r\n\r\npublic class Player {\r\n    private String color;\r\n    private boolean alive;\r\n    private String room;\r\n\r\n    public Player(String color, boolean alive, String room) {\r\n        this.color = color;\r\n        this.alive = alive;\r\n        this.room = room;\r\n    }\r\n\r\n    public String getColor() {\r\n        return color;\r\n    }\r\n    public void setColor(String color) {\r\n        this.color = color;\r\n    }\r\n    public boolean isAlive() {\r\n        return alive;\r\n    }\r\n    public void setAlive(boolean alive) {\r\n        this.alive = alive;\r\n    }\r\n    public String getRoom() {\r\n        return room;\r\n    }\r\n    public void setRoom(String room) {\r\n        this.room = room;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Business/entities/Player.java b/src/Business/entities/Player.java
+--- a/src/Business/entities/Player.java	(revision df2463c4ffe7c1addaa3e10d7b90e32ff3c13a30)
++++ b/src/Business/entities/Player.java	(date 1684879772033)
+@@ -1,7 +1,5 @@
+ package Business.entities;
+ 
+-import java.awt.Color;
+-
+ public class Player {
+     private String color;
+     private boolean alive;
+Index: src/presentation/views/MapGUI.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package presentation.views;\r\n\r\nimport Business.entities.Room;\r\nimport persistence.MapsDAO;\r\nimport presentation.model.MainModel;\r\n\r\nimport javax.swing.*;\r\nimport javax.swing.border.LineBorder;\r\nimport javax.swing.plaf.ColorUIResource;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.util.List;\r\nimport java.util.Map;\r\n\r\npublic class MapGUI extends JPanel {\r\n    private MainModel mainModel;\r\n    private List<Room> rooms;\r\n    private JPanel contentPanel;\r\n    private JButton toggleVisionButton;\r\n    private JButton moveUpButton;\r\n    private JButton moveDownButton;\r\n    private JButton moveLeftButton;\r\n    private JButton moveRightButton;\r\n\r\n    //--------------Creación matriz mapa--------------\r\n\r\n    private  JPanel[][] cells;\r\n\r\n    private Map<String, Color> createColorMap() {\r\n        Map<String, Color> colorMap = new java.util.HashMap<>();\r\n        colorMap.put(\"RED\", Color.RED);\r\n        colorMap.put(\"GRAY\", Color.GRAY);\r\n        colorMap.put(\"BLUE\", Color.BLUE);\r\n        colorMap.put(\"BLACK\", Color.BLACK);\r\n        colorMap.put(\"GREEN\", Color.GREEN);\r\n        colorMap.put(\"MAGENTA\", Color.MAGENTA);\r\n        colorMap.put(\"ORANGE\", Color.ORANGE);\r\n        return colorMap;\r\n    }\r\n\r\n    private void updateView(boolean isGlobalView, Map<String, Color> colorMap) {\r\n        for (Component component : contentPanel.getComponents()) {\r\n            if (component instanceof JLabel) {\r\n                JLabel label = (JLabel) component;\r\n                String colorName = label.getBackground().getRed() + \",\" + label.getBackground().getGreen() + \",\" + label.getBackground().getBlue();\r\n\r\n                if (isGlobalView || label.getText().equals(\"Spawn\")) {\r\n                    // Global view or player's room, keep the color unchanged\r\n                    label.setBackground(colorMap.get(colorName));\r\n                } else {\r\n                    // Limited view, darken the color of other rooms\r\n                    label.setBackground(Color.DARK_GRAY);\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    public MapGUI(MainModel mainModel) {\r\n        this.mainModel = mainModel;\r\n        rooms = mainModel.getRooms();\r\n\r\n        setSize(600, 400);\r\n\r\n        contentPanel = new JPanel();\r\n        contentPanel.setLayout(new GridLayout(4, 4));\r\n\r\n        Map<String, Color> colorMap = createColorMap();\r\n\r\n        for (Room room : rooms) {\r\n            String colorName = room.getColour();\r\n            Color color = colorMap.get(colorName);\r\n\r\n            JLabel roomLabel = new JLabel(room.getId());\r\n            roomLabel.setBorder(new LineBorder(Color.black,1));\r\n            roomLabel.setBackground(color);\r\n            roomLabel.setOpaque(true);\r\n            contentPanel.add(roomLabel);\r\n        }\r\n        //cells = new JPanel[4][4];\r\n        /*for (int i = 0; i < 4; i++) {\r\n            for (int j = 0; j < 4; j++) {\r\n                String colorName = rooms.get(j).getColour();\r\n                Color color = colorMap.get(colorName);\r\n\r\n                cells[i][j] = new JPanel();\r\n                cells[i][j].setBorder(new LineBorder(Color.black,1));\r\n                cells[i][j].setBackground(ColorUIResource.DARK_GRAY);\r\n                cells[i][j].setPreferredSize(new Dimension(30,30));\r\n                contentPanel.add(cells[i][j]);\r\n            }\r\n        }*/\r\n\r\n        add(contentPanel);\r\n        setVisible(true);\r\n\r\n        toggleVisionButton = new JButton(\"Toggle Vision\");\r\n        moveUpButton = new JButton(\"Up\");\r\n        moveDownButton = new JButton(\"Down\");\r\n        moveLeftButton = new JButton(\"Left\");\r\n        moveRightButton = new JButton(\"Right\");\r\n\r\n        toggleVisionButton.addActionListener(new ToggleVisionListener());\r\n        moveUpButton.addActionListener(new MoveUpListener());\r\n        moveDownButton.addActionListener(new MoveDownListener());\r\n        moveLeftButton.addActionListener(new MoveLeftListener());\r\n        moveRightButton.addActionListener(new MoveRightListener());\r\n\r\n        JPanel buttonPanel = new JPanel();\r\n        buttonPanel.setLayout(new FlowLayout());\r\n        buttonPanel.add(toggleVisionButton);\r\n        buttonPanel.add(moveUpButton);\r\n        buttonPanel.add(moveDownButton);\r\n        buttonPanel.add(moveLeftButton);\r\n        buttonPanel.add(moveRightButton);\r\n\r\n        add(buttonPanel, BorderLayout.SOUTH);\r\n        // Add player circles to the map\r\n        //for (Player player : players) {\r\n            //JLabel playerLabel = new JLabel();\r\n            //playerLabel.setOpaque(true);\r\n            //playerLabel.setBackground(player.getPlayerColor());\r\n            //playerLabel.setBackground(Color.white);\r\n            //playerLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));\r\n            //playerLabel.setVerticalAlignment(SwingConstants.CENTER);\r\n            //playerLabel.setText(player.getPlayerName());\r\n            //playerLabel.setText(\"Tripulante\");\r\n            //Circle circle = new Circle();\r\n            //cells[0][0].add(circle);\r\n        //}\r\n        //}\r\n    }\r\n\r\n    private class ToggleVisionListener implements ActionListener {\r\n        private boolean isGlobalView = true;\r\n\r\n        public void actionPerformed(ActionEvent e) {\r\n            isGlobalView = !isGlobalView;\r\n            Map<String, Color> colorMap = createColorMap();\r\n            updateView(isGlobalView, colorMap);\r\n\r\n            toggleVisionButton.setText(isGlobalView ? \"Limited Vision\" : \"Global Vision\");\r\n            moveUpButton.setVisible(true);\r\n            moveDownButton.setVisible(true);\r\n            moveLeftButton.setVisible(true);\r\n            moveRightButton.setVisible(true);\r\n        }\r\n    }\r\n\r\n    private class MoveUpListener implements ActionListener {\r\n        public void actionPerformed(ActionEvent e) {\r\n            // TODO: Implement the logic to move up\r\n        }\r\n    }\r\n\r\n    private class MoveDownListener implements ActionListener {\r\n        public void actionPerformed(ActionEvent e) {\r\n            // TODO: Implement the logic to move down\r\n        }\r\n    }\r\n\r\n    private class MoveLeftListener implements ActionListener {\r\n        public void actionPerformed(ActionEvent e) {\r\n            // TODO: Implement the logic to move left\r\n        }\r\n    }\r\n\r\n    private class MoveRightListener implements ActionListener {\r\n        public void actionPerformed(ActionEvent e) {\r\n            // TODO: Implement the logic to move right\r\n        }\r\n    }\r\n\r\n    /*public static void main(String[] args) {\r\n        List<Room> rooms;\r\n        MapsDAO mapDAO = new MapsDAO();\r\n        rooms = mapDAO.loadRooms(\"src/persistence/maps.json\");\r\n        new MapGUI(rooms);\r\n    }*/\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/presentation/views/MapGUI.java b/src/presentation/views/MapGUI.java
+--- a/src/presentation/views/MapGUI.java	(revision df2463c4ffe7c1addaa3e10d7b90e32ff3c13a30)
++++ b/src/presentation/views/MapGUI.java	(date 1684921391054)
+@@ -13,7 +13,7 @@
+ import java.util.List;
+ import java.util.Map;
+ 
+-public class MapGUI extends JPanel {
++public class MapGUI extends JFrame {
+     private MainModel mainModel;
+     private List<Room> rooms;
+     private JPanel contentPanel;

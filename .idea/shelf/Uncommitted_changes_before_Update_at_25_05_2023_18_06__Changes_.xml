@@ -1,0 +1,14 @@
+<changelist name="Uncommitted_changes_before_Update_at_25_05_2023_18_06_[Changes]" date="1685030804145" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2023_18_06_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 25/05/2023 18:06 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/Business/entities/Player.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/Business/entities/Player.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2023_18_06_[Changes]/Player.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/Business/UserManager.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/Business/UserManager.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_05_2023_18_06_[Changes]/UserManager.class" />
+  </binary>
+</changelist>

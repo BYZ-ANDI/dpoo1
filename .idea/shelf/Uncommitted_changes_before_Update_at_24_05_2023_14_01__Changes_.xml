@@ -1,0 +1,29 @@
+<changelist name="Uncommitted_changes_before_Update_at_24_05_2023_14_01_[Changes]" date="1684929670959" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2023_14_01_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 24/05/2023 14:01 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/Business/entities/Player.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/Business/entities/Player.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2023_14_01_[Changes]/Player.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/Main.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2023_14_01_[Changes]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/presentation/views/MapGUI.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/presentation/views/MapGUI.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2023_14_01_[Changes]/MapGUI.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/Business/UserManager.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/Business/UserManager.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2023_14_01_[Changes]/UserManager.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/S2Project/presentation/controllers/CreationGameController.class" />
+    <option name="AFTER_PATH" value="out/production/S2Project/presentation/controllers/CreationGameController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2023_14_01_[Changes]/CreationGameController.class" />
+  </binary>
+</changelist>

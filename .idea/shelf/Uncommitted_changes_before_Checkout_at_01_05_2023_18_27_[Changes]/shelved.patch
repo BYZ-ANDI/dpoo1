@@ -1,0 +1,42 @@
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	
++++ b/src/Main.java	
+@@ -6,6 +6,9 @@
+         databaseDAO.createTablePartida();
+         databaseDAO.createTableJugada();
+ 
++        UserDAO user = new UserDAO("jan", "jan@gmail.com", "jan123");
++
++        //user.signinUser("jan", "jan@gmail.com", "jan123");
+ 
+     }
+ }
+Index: src/UserDAO.java
+===================================================================
+diff --git a/src/UserDAO.java b/src/UserDAO.java
+--- a/src/UserDAO.java	
++++ b/src/UserDAO.java	
+@@ -18,8 +18,8 @@
+     public void signinUser (String name, String mail, String password){
+         List<String> users = new ArrayList<>();
+         List<String> mails = new ArrayList<>();
+-        ResultSet resultSet0 = DatabaseConnection.getDatabaseConnection().select("SELECT nombre_jugador FROM Jugador");
+-        ResultSet resultSet1 =  DatabaseConnection.getDatabaseConnection().select("SELECT correo FROM Jugador");
++        ResultSet resultSet0 = DatabaseConnection.getDatabaseConnection().select("SELECT nombre_jugador FROM Jugador;");
++        ResultSet resultSet1 =  DatabaseConnection.getDatabaseConnection().select("SELECT correo FROM Jugador;");
+         boolean verify = false;
+ 
+         try {
+@@ -86,6 +86,6 @@
+         return false;
+     }
+ 
+-    public void deleteUser ();
++    //public void deleteUser ();
+ 
+ }
