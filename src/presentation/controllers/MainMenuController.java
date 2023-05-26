@@ -34,6 +34,7 @@ public class MainMenuController implements ActionListener {
             }else{
                 if (gameManager.inicarGame(mainMenuView.getJtfSameGame(), mainMenuView.getJtfSameGameName())){
                     mainMenuView.GameLoadSuccessMessage();
+                    mainModel.goToMapView();
                 }else {
                     mainMenuView.GameLoadErrorMessage();
                 }
