@@ -10,8 +10,10 @@ public class DatabaseConnection {
     private String url;
 
     private Connection connection;
+    private static Configuration configuration;
     private static DatabaseConnection databaseConnection = null;
     private static String server;
+    private static ReadConfigJSON readConfigJSON = new ReadConfigJSON();
 
     private DatabaseConnection(String nameUser, String password, String ip, int port, String databaseName) {
         this.nameUser = nameUser;
@@ -32,8 +34,9 @@ public class DatabaseConnection {
         }
     }
     public static DatabaseConnection getDatabaseConnection (){
+        configuration = readConfigJSON.readJSON();
         if(databaseConnection == null){
-            databaseConnection = new DatabaseConnection("root","","localhost",3306,"Between_Us");
+            databaseConnection = new DatabaseConnection(configuration.getUser(), configuration.getPassword(), configuration.getServer(), configuration.getPort(), "Between_Us");
             databaseConnection.connection();
         }
         return databaseConnection;

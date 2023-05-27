@@ -70,9 +70,9 @@ public class MainView extends JFrame {
     }
 
     public void start() {
-        //showLogoutView();
-        showMainMenuView();
-        //showLoginView();
+        //showMainMenuView();
+        showLoginView();
+        //showGameTrackingView();
         setVisible(true);
     }
 

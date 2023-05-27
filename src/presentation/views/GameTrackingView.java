@@ -36,28 +36,25 @@ public class GameTrackingView extends JPanel {
     }
     private void configWindow() {
         setSize(900,650);
-        //setTitle("Between Us");
-        //setLocationRelativeTo(null);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public void configLayout() {
         personajes = mainModel.getPers();
         configWindow();
 
         jpMain = new JPanel(new GridLayout(2, 3));
+
         jlUnknown = new JLabel("Unknown");
         jlSus = new JLabel("Suspicious");
         jlNoSus = new JLabel("No suspicious");
+
         jpUnknown = new JPanel();
-        //jpUnknown.setPreferredSize(new Dimension(500, 500));;
         jpUnknown.setLayout(new BoxLayout(jpUnknown, BoxLayout.Y_AXIS));
+
         jpSus = new JPanel();
-        //jpSus.setPreferredSize(new Dimension(500, 500));;
         jpSus.setLayout(new BoxLayout(jpSus, BoxLayout.Y_AXIS));
+
         jpNoSus = new JPanel();
-        //jpNoSus.setPreferredSize(new Dimension(500, 500));;
         jpNoSus.setLayout(new BoxLayout(jpNoSus, BoxLayout.Y_AXIS));
-        Map<String, Color> colorMap = createColorMap();
 
         this.add(jpMain);
         jpMain.add(jlUnknown);
@@ -86,7 +83,6 @@ public class GameTrackingView extends JPanel {
         revalidate();
         repaint();
     }
-
     public void start() {
         setVisible(true);
     }
@@ -104,9 +100,9 @@ public class GameTrackingView extends JPanel {
     private void configAll() {
         for (Player personaje : personajes) {
             jpPers = new JPanel();
-            //jpPers.setPreferredSize(new Dimension(100,100));
             jpPers.setBackground(createColorMap().get(personaje.getColor()));
             jpPers.setLayout(new BorderLayout());
+
             jlTitle = new JLabel(personaje.getColor());
             jlTitle.setBackground(createColorMap().get(personaje.getColor()));
             jlTitle.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
