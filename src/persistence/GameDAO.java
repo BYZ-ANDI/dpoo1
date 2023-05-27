@@ -37,6 +37,7 @@ public class GameDAO {
         }
     }
     public Game startGame(String name_game, String new_game_name, Game game){
+
         try{
             ResultSet resultSet1 = DatabaseConnection.getDatabaseConnection().select("SELECT n_personajes FROM Partida WHERE nombre_partida LIKE '"+name_game+"';");
             ResultSet resultSet2 = DatabaseConnection.getDatabaseConnection().select("SELECT n_impostores FROM Partida WHERE nombre_partida LIKE '"+name_game+"';");
