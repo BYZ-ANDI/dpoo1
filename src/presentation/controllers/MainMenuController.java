@@ -52,11 +52,15 @@ public class MainMenuController implements ActionListener {
         } else if(e.getActionCommand().equals(mainMenuView.LOGOUT_COMMAND)) {
             mainModel.goToLogoutView();
         } else if(e.getActionCommand().equals(mainMenuView.DELETE_COMMAND)) {
-            if (gameManager.deleteGame(mainMenuView.getJtfSameGame())){
+            if (mainMenuView.getJtfSameGame().isEmpty()){
+                mainMenuView.emptyNameDeleteGame();
+            }else if (gameManager.deleteGame(mainMenuView.getJtfSameGame())){
                 mainMenuView.GameDeletionSuccessMessage();
             }else {
                 mainMenuView.GameDeletionErrorMessage();
             }
+        } else if(e.getActionCommand().equals(mainMenuView.STATS_COMMAND)) {
+            mainModel.goToStatsView();
         }
     }
 }

@@ -43,7 +43,8 @@ public class Main {
         CreationGameView creationGameView = new CreationGameView();
         GameTrackingController gameTrackingController = new GameTrackingController(mainModel, gameManager);
         LogsView logsView = new LogsView();
-        MainView mainView = new MainView(mainModel, logView, logoutView, registerView, mainMenuView, creationGameView, mapGUI, gameTrackingController, logsView);
+        StatsView statsView = new StatsView();
+        MainView mainView = new MainView(mainModel, logView, logoutView, registerView, mainMenuView, creationGameView, mapGUI, gameTrackingController, logsView, statsView);
 
         UserManager userManager = new UserManager(user, userDAO);
 

@@ -17,8 +17,9 @@ public class MainView extends JFrame {
     private MapGUI mapGUI;
     private GameTrackingController gameTrackingController;
     private LogsView logsView;
+    private StatsView statsView;
 
-    public MainView(MainModel mainModel, LogView logView, LogoutView logoutView, RegisterView registerView, MainMenuView mainMenuView, CreationGameView creationGameView, MapGUI mapGUI, GameTrackingController gameTrackingController, LogsView logsView) {
+    public MainView(MainModel mainModel, LogView logView, LogoutView logoutView, RegisterView registerView, MainMenuView mainMenuView, CreationGameView creationGameView, MapGUI mapGUI, GameTrackingController gameTrackingController, LogsView logsView, StatsView statsView) {
         this.mainModel = mainModel;
         this.logView = logView;
         this.logoutView = logoutView;
@@ -28,6 +29,7 @@ public class MainView extends JFrame {
         this.mapGUI = mapGUI;
         this.gameTrackingController = gameTrackingController;
         this.logsView = logsView;
+        this.statsView = statsView;
         setLayout(new BorderLayout());
         configWindow();
         configLayout();
@@ -108,5 +110,9 @@ public class MainView extends JFrame {
 
     public void showLogsView() {
         cardLayout.show(getContentPane(), "Logs");
+    }
+    public void showStatsView(){
+        cardLayout.show(getContentPane(), "Stats");
+        statsView.createLineChart();
     }
 }

@@ -41,6 +41,9 @@ public class MainModel {
     public void goToLogsView(){
         mainController.changeToLogsView();
     }
+    public void goToStatsView(){
+        mainController.changeToStatsView();
+    }
     public void setController(MainController mainController) {
         this.mainController = mainController;
     }

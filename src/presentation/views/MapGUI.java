@@ -39,6 +39,7 @@ public class MapGUI extends JPanel {
     private int numTripulantes = 0;
     private JLabel status = new JLabel();
     private GameController gameController;
+
     private Map<String, Color> createColorMap() {
         Map<String, Color> colorMap = new java.util.HashMap<>();
         colorMap.put("RED", Color.RED);
@@ -50,16 +51,13 @@ public class MapGUI extends JPanel {
         colorMap.put("ORANGE", Color.ORANGE);
         return colorMap;
     }
-
     public void setGameController(GameController gameController) {
         this.gameController = gameController;
     }
-
     public void setNumImpostores(int numImpostores, int numTripulantes) {
         this.numImpostores = numImpostores;
         this.numTripulantes = numTripulantes-numImpostores;
     }
-
     private String fromColorToRGB(String color){
         if (color.equals("RED")){
             return "255,0,0";
@@ -180,7 +178,6 @@ public class MapGUI extends JPanel {
             XCirclePosition = 0;
         }
     }
-
     private void setRoomMatrix(List<Room> rooms) {
         int iterador = 0;
         for (int i = 0; i < 4; i++) {
@@ -249,10 +246,4 @@ public class MapGUI extends JPanel {
         }
     }
 
-    /*public static void main(String[] args) {
-        List<Room> rooms;
-        MapsDAO mapDAO = new MapsDAO();
-        rooms = mapDAO.loadRooms("src/persistence/maps.json");
-        new MapGUI(rooms);
-    }*/
 }

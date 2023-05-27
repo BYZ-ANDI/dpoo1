@@ -33,5 +33,8 @@ public class MainController {
     public void changeToLogsView() {
         mainView.showLogsView();
     }
+    public void changeToStatsView(){
+        mainView.showStatsView();
+    }
 
 }
