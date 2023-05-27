@@ -20,12 +20,6 @@ public class DatabaseConnection {
         this.password = password;
         this.url = "jdbc:mysql://"+ip+":"+port+"/"+databaseName;
     }
-    public void inicialitzeJSON(Configuration configuration){
-        nameUser = configuration.getUser();
-        password = configuration.getPassword();
-        port = configuration.getPort();
-        server = configuration.getServer();
-    }
     public void connection(){
         try {
             connection = DriverManager.getConnection(url,nameUser,password);

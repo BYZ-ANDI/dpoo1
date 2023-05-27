@@ -19,7 +19,6 @@ public class DatabaseDAO {
         url = "jdbc:mysql://"+configuration.getServer()+":"+configuration.getPort();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Making connection");
             userName = configuration.getUser();
             password = configuration.getPassword();
             connection = DriverManager.getConnection(url,userName,password);
