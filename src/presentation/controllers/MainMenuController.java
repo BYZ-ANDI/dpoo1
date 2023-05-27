@@ -7,6 +7,8 @@ import presentation.views.MainMenuView;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainMenuController implements ActionListener {
     private MainMenuView mainMenuView;
@@ -39,6 +41,10 @@ public class MainMenuController implements ActionListener {
                     mainMenuView.GameLoadErrorMessage();
                 }
             }
+        } else if (e.getActionCommand().equals(mainMenuView.EXISTING_COMMAND)) {
+            List<String> games = new ArrayList<>();
+            gameManager.existingGames(games);
+            mainMenuView.existingGames(games);
         } else if(e.getActionCommand().equals(mainMenuView.LOGOUT_COMMAND)) {
             mainModel.goToLogoutView();
         } else if(e.getActionCommand().equals(mainMenuView.DELETE_COMMAND)) {

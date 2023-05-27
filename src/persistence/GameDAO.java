@@ -112,4 +112,16 @@ public class GameDAO {
         String query = "UPDATE 'partida' SET 'n_personajes'='"+n_personajes+"','n_impostores'='"+n_impostores+"' WHERE 'nombre_partida'='"+partidaName+"'";
         DatabaseConnection.getDatabaseConnection().update(query);
     }
+    public void existingGames(List<String> games){
+        ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select("SELECT nombre_partida FROM Partida;");
+
+        try {
+            while (resultSet.next()){
+                games.add(resultSet.getString("nombre_partida"));
+            }
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+    }
 }

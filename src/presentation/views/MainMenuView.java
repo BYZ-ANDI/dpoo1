@@ -4,12 +4,13 @@ import presentation.controllers.MainMenuController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class MainMenuView extends JPanel {
     private JPanel jpMenu, jpPanel, jpLogout;
     private JLabel jlCreateNewGame, jlGame, jlSameGameTitle, jlSameGame, jlfSameGameName, jlTitle;
     private JTextField jtfSameGame, jtfSameGameName, jtfGame;
-    private JButton jbCreateNewGame, jbCreateGame, jbGame, jbLogout, jbDelete;
+    private JButton jbCreateNewGame, jbCreateGame, jbGame, jbLogout, jbDelete, jbExistingGames;
     private JImagePanel jiPanel;
 
     public static final String NEWGAME_COMMAND = "NEWGAME_COMMAND";
@@ -17,6 +18,7 @@ public class MainMenuView extends JPanel {
     public static final String SAMEGAME_COMMAND = "SAME_COMMAND";
     public static final String LOGOUT_COMMAND = "LOGOUT_COMMAND";
     public static final String DELETE_COMMAND = "DELETE_COMMAND";
+    public static final String EXISTING_COMMAND = "EXISTING_COMMAND";
 
     public MainMenuView(){
         setLayout(new BorderLayout());
@@ -48,6 +50,7 @@ public class MainMenuView extends JPanel {
         jtfGame = new JTextField();
         jbGame = new JButton("Continue a Game");
         jlSameGame = new JLabel("Create a new Game manteining settings or delete it");
+        jbExistingGames = new JButton("Existing Games");
         jlSameGameTitle = new JLabel("Name of the Game to copy settings or to delete it:");
         jtfSameGame = new JTextField();
         jlfSameGameName = new JLabel("Name of the new game:");
@@ -87,6 +90,7 @@ public class MainMenuView extends JPanel {
         jpBoxes.add(jbGame);
         jbGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         jpBoxes.add(jlSameGame);
+        jpBoxes.add(jbExistingGames);
         jpBoxes.add(jlSameGameTitle);
         jpBoxes.add(jtfSameGame);
         jpBoxes.add(jlfSameGameName);
@@ -128,6 +132,7 @@ public class MainMenuView extends JPanel {
         jbCreateGame.setActionCommand(SAMEGAME_COMMAND);
         jbLogout.setActionCommand(LOGOUT_COMMAND);
         jbDelete.setActionCommand(DELETE_COMMAND);
+        jbExistingGames.setActionCommand(EXISTING_COMMAND);
     }
     public void registController (MainMenuController mainMenuController) {
         jbCreateNewGame.addActionListener(mainMenuController);
@@ -135,6 +140,7 @@ public class MainMenuView extends JPanel {
         jbCreateGame.addActionListener(mainMenuController);
         jbLogout.addActionListener(mainMenuController);
         jbDelete.addActionListener(mainMenuController);
+        jbExistingGames.addActionListener(mainMenuController);
     }
 
     public String getJtfSameGame() {
@@ -164,6 +170,9 @@ public class MainMenuView extends JPanel {
     }
     public void emptyNameSettingsGame() {
         JOptionPane.showMessageDialog(null, "No has introduït res al nom del joc ja creat!", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    public void existingGames(List<String> games) {
+        JOptionPane.showMessageDialog(null, games.toString(), "Games", JOptionPane.INFORMATION_MESSAGE);
     }
 
 }

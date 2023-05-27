@@ -6,6 +6,7 @@ import Business.entities.User;
 import persistence.GameDAO;
 
 import javax.xml.crypto.Data;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager {
@@ -28,7 +29,6 @@ public class GameManager {
     public void createGameData(String color) {
         gameDAO.gameRecord(game, user, color);
     }
-
     public boolean inicarGame(String name_game, String new_game_name){
         String color;
 
@@ -43,7 +43,6 @@ public class GameManager {
 
         return true;
     }
-
     public boolean deleteGame(String game_game){
         if(gameDAO.deleteGame(game_game)){
             resetGame();
@@ -73,5 +72,9 @@ public class GameManager {
     }
     public void savePartida(String partidaName, int n_personajes, int n_impostores, String mapa){
         gameDAO.saveGame(partidaName,n_personajes,n_impostores,mapa);
+    }
+    public List<String> existingGames(List<String> games){
+        gameDAO.existingGames(games);
+        return games;
     }
 }
