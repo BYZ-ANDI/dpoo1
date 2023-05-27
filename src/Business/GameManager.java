@@ -29,8 +29,9 @@ public class GameManager {
     public void createGameData(String color) {
         gameDAO.gameRecord(game, user, color);
     }
-    public boolean inicarGame(String name_game, String new_game_name){
+    public boolean inicarGame(String name_game){
         String color;
+        String new_game_name = name_game + "Copy";
 
         if(!gameDAO.findGame(name_game)){
             return false;

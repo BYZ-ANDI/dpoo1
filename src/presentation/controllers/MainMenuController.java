@@ -31,10 +31,8 @@ public class MainMenuController implements ActionListener {
         } else if(e.getActionCommand().equals(mainMenuView.SAMEGAME_COMMAND)) {
             if (mainMenuView.getJtfSameGame().isEmpty()){
                 mainMenuView.emptyNameSettingsGame();
-            }else if(mainMenuView.getJtfSameGameName().isEmpty()){
-                mainMenuView.emptyNameNewGame();
-            }else{
-                if (gameManager.inicarGame(mainMenuView.getJtfSameGame(), mainMenuView.getJtfSameGameName())){
+            }else {
+                if (gameManager.inicarGame(mainMenuView.getJtfSameGame())){
                     mainMenuView.GameLoadSuccessMessage();
                     mainModel.goToMapView();
                 }else {

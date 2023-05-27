@@ -8,8 +8,8 @@ import java.util.List;
 
 public class MainMenuView extends JPanel {
     private JPanel jpMenu, jpPanel, jpLogout;
-    private JLabel jlCreateNewGame, jlGame, jlSameGameTitle, jlSameGame, jlfSameGameName, jlTitle;
-    private JTextField jtfSameGame, jtfSameGameName, jtfGame;
+    private JLabel jlCreateNewGame, jlGame, jlSameGameTitle, jlSameGame, jlTitle;
+    private JTextField jtfSameGame, jtfGame;
     private JButton jbCreateNewGame, jbCreateGame, jbGame, jbLogout, jbDelete, jbExistingGames;
     private JImagePanel jiPanel;
 
@@ -53,8 +53,6 @@ public class MainMenuView extends JPanel {
         jbExistingGames = new JButton("Existing Games");
         jlSameGameTitle = new JLabel("Name of the Game to copy settings or to delete it:");
         jtfSameGame = new JTextField();
-        jlfSameGameName = new JLabel("Name of the new game:");
-        jtfSameGameName = new JTextField();
         jbCreateGame = new JButton("Create a Game");
         jbLogout = new JButton("Logout");
         jbDelete = new JButton("Delete a Game");
@@ -70,15 +68,12 @@ public class MainMenuView extends JPanel {
         jlCreateNewGame.setFont(text_font);
         jlGame.setFont(text_font);
 
-        jlSameGameTitle.setFont(text_font);
         jlSameGame.setFont(text_font);
-        jlfSameGameName.setFont(text_font);
 
         jlTitle.setForeground(Color.WHITE);
         jlCreateNewGame.setForeground(Color.WHITE);
         jlGame.setForeground(Color.WHITE);
         jlSameGame.setForeground(Color.WHITE);
-        jlfSameGameName.setForeground(Color.WHITE);
         jlSameGameTitle.setForeground(Color.WHITE);
 
         jpBoxes.add(jlTitle);
@@ -93,8 +88,6 @@ public class MainMenuView extends JPanel {
         jpBoxes.add(jbExistingGames);
         jpBoxes.add(jlSameGameTitle);
         jpBoxes.add(jtfSameGame);
-        jpBoxes.add(jlfSameGameName);
-        jpBoxes.add(jtfSameGameName);
         jpBoxes.add(jbCreateGame);
         jbCreateGame.setAlignmentX(Component.CENTER_ALIGNMENT);
         jpBoxes.add(jbDelete);
@@ -146,9 +139,6 @@ public class MainMenuView extends JPanel {
     public String getJtfSameGame() {
         return jtfSameGame.getText();
     }
-    public String getJtfSameGameName() {
-        return jtfSameGameName.getText();
-    }
 
     public void start() {
         setVisible(true);
@@ -164,9 +154,6 @@ public class MainMenuView extends JPanel {
     }
     public void GameLoadSuccessMessage() {
         JOptionPane.showMessageDialog(null, "S'ha creat la partida correctament!", "Success", JOptionPane.INFORMATION_MESSAGE);
-    }
-    public void emptyNameNewGame() {
-        JOptionPane.showMessageDialog(null, "No has introduït res al nom de la nova partida!", "Error", JOptionPane.ERROR_MESSAGE);
     }
     public void emptyNameSettingsGame() {
         JOptionPane.showMessageDialog(null, "No has introduït res al nom del joc ja creat!", "Error", JOptionPane.ERROR_MESSAGE);
