@@ -4,6 +4,7 @@ import Business.GameManager;
 import Business.entities.Game;
 import presentation.model.MainModel;
 import presentation.views.MainMenuView;
+import presentation.views.MapGUI;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -14,11 +15,13 @@ public class MainMenuController implements ActionListener {
     private MainMenuView mainMenuView;
     private MainModel mainModel;
     private GameManager gameManager;
+    private MapGUI mapGUI;
 
-    public MainMenuController(MainMenuView mainMenuView, MainModel mainModel, GameManager gameManager) {
+    public MainMenuController(MainMenuView mainMenuView, MainModel mainModel, GameManager gameManager, MapGUI mapGUI) {
         this.mainMenuView = mainMenuView;
         this.mainModel = mainModel;
         this.gameManager = gameManager;
+        this.mapGUI = mapGUI;
     }
 
     @Override
@@ -34,6 +37,9 @@ public class MainMenuController implements ActionListener {
             }else {
                 if (gameManager.inicarGame(mainMenuView.getJtfSameGame())){
                     mainMenuView.GameLoadSuccessMessage();
+                    mapGUI.setColor(gameManager.getExistingGameColor(mainMenuView.getJtfSameGame()));
+                    mapGUI.setNumImpostores(gameManager.getExistingNumImp(mainMenuView.getJtfSameGame()),gameManager.getExistingNumPers(mainMenuView.getJtfSameGame()));
+                    mainModel.loadDataFromJsonFile(gameManager.getExistingGameMap(mainMenuView.getJtfSameGame()));
                     mainModel.goToMapView();
                 }else {
                     mainMenuView.GameLoadErrorMessage();

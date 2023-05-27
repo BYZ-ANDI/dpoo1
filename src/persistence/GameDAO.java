@@ -124,4 +124,52 @@ public class GameDAO {
         }
 
     }
+    public String getExistingGameColor(String name_game){
+        String color = null;
+        ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select("SELECT color_personaje FROM Jugada WHERE nombre_partida LIKE '" + name_game + "';");
+        try{
+            resultSet.next();
+            color = resultSet.getString("color_personaje");
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+        return color;
+    }
+    public Integer getExistingNumImp(String name_game){
+        Integer n_IMP = 0;
+        ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select("SELECT n_impostores FROM Partida WHERE nombre_partida LIKE '" + name_game + "';");
+        try{
+            resultSet.next();
+            n_IMP = resultSet.getInt("n_impostores");
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+        return n_IMP;
+    }
+    public Integer getExistingNumPers(String name_game){
+        Integer n_PERS = 0;
+        ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select("SELECT n_personajes FROM Partida WHERE nombre_partida LIKE '" + name_game + "';");
+        try{
+            resultSet.next();
+            n_PERS = resultSet.getInt("n_personajes");
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+        return n_PERS;
+    }
+    public String getExistingGameMap(String name_game){
+        String mapa = null;
+        ResultSet resultSet = DatabaseConnection.getDatabaseConnection().select("SELECT mapa FROM Partida WHERE nombre_partida LIKE '" + name_game + "';");
+        try{
+            resultSet.next();
+            mapa = resultSet.getString("mapa");
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+        return mapa;
+    }
 }

@@ -1,12 +1,9 @@
 package Business;
 
 import Business.entities.Game;
-import Business.entities.Map;
 import Business.entities.User;
 import persistence.GameDAO;
 
-import javax.xml.crypto.Data;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager {
@@ -74,8 +71,36 @@ public class GameManager {
     public void savePartida(String partidaName, int n_personajes, int n_impostores, String mapa){
         gameDAO.saveGame(partidaName,n_personajes,n_impostores,mapa);
     }
-    public List<String> existingGames(List<String> games){
+    public void existingGames(List<String> games){
         gameDAO.existingGames(games);
-        return games;
     }
+    public String getExistingGameColor(String name_game){
+        String color;
+
+        color = gameDAO.getExistingGameColor(name_game);
+
+        return color;
+    }
+    public Integer getExistingNumImp(String name_game){
+        Integer n_IMP;
+
+        n_IMP = gameDAO.getExistingNumImp(name_game);
+
+        return n_IMP;
+    }
+    public Integer getExistingNumPers(String name_game){
+        Integer n_PERS;
+
+        n_PERS = gameDAO.getExistingNumPers(name_game);
+
+        return n_PERS;
+    }
+    public String getExistingGameMap(String name_game){
+        String mapa;
+
+        mapa = gameDAO.getExistingGameMap(name_game);
+
+        return mapa;
+    }
+
 }

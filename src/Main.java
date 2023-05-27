@@ -53,7 +53,7 @@ public class Main {
         logoutView.registController(logoutController);
         RegisterController registerController = new RegisterController(registerView, mainModel, userManager);
         registerView.registController(registerController);
-        MainMenuController mainMenuController = new MainMenuController(mainMenuView, mainModel, gameManager);
+        MainMenuController mainMenuController = new MainMenuController(mainMenuView, mainModel, gameManager, mapGUI);
         mainMenuView.registController(mainMenuController);
         CreationGameController creationGameController = new CreationGameController(creationGameView, mainModel, gameManager, null, mapGUI);
         creationGameView.registController(creationGameController);
